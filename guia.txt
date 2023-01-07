@@ -1,0 +1,119 @@
+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
+1: Backend
+npm init --y
+npm install express --save
+npm install cors dotenv multer -S
+npm i express mysql nodemon
+npm i sequelize
+npm install bcrypt
+npm install express-session body-parser 
+npm install cookie-parser
+npm install argon2
+npm install connect-session-sequelize
+
+npm install express read-excel-file mysql body-parser multer
+npm i fast-csv
+npm i json2csv
+
+npm i exceljs
+
+2: Frontend
+yarn add react-router-dom
+yarn add sass
+yarn add @mui/x-data-gridi
+yarn add @mui/x-data-grid-generator
+yarn add @mui/material @emotion/react @emotion/styled
+yarn add @mui/material @mui/styled-engine-sc styled-components
+yarn add next react react-dom
+yarn add react-select
+
+yarn add react-hook-form
+yarn add yup
+yarn add formik
+
+yarn add @material-ui/icons
+yarn add @reduxjs/toolkit
+yarn add react-redux
+yarn add @mui/x-date-pickers
+
+yarn add react-icons
+npm install react-player
+3: Testing
+yarn add @testing-library/react
+yarn add @testing-library/jest-dom
+
+Mysql
+sudo /opt/lampp/lampp start
+service mysql stop
+sudo /etc/init.d/apache2 stop
+
+yarn add primereact primeicons
+yarn add @material-ui/styles
+
+__________
+npm install filepond react-filepond
+npm install filepond-plugin-file-validate-type
+
+
+
+Neas
+id: 1
+fecha: 19-09-02
+usario: admin
+
+bienes:
+id: 1
+description: hierros
+
+Neas_pedidos:
+id_neas
+id_bienes
+cantidad: 1
+precioU: 12
+precioT: 431
+
+
+
+
+
+SELECT 
+	inventarido_inicial.descripcion,
+    inventarido_inicial.cantidad - pecosa_bienes.cantidad stock
+FROM inventarido_inicial
+INNER JOIN pecosa_bienes ON inventarido_inicial.item = pecosa_bienes.bieneId.item
+
+SELECT 
+    inventarido_inicial.cantidad - pecosa_bienes.cantidad stock
+FROM inventarido_inicial
+INNER JOIN pecosa_bienes ON inventarido_inicial.id = pecosa_bienes.id
+
+SELECT 
+	IF NULL(p.total_entradas, 0) inventarido_inicial,
+    IF NULL(s.total_salidas, 0) pecosa_bienes,
+    IF NULL(p.total_entradas, 0) - IF NULL(p.total_salidas, 0) stock
+    FROM inventarido_inicial 
+    LEFT JOIN
+    (SELECT id, SUM(cantidad) total_entradas FROM inventarido_inicial
+    GROUP BY id) p_unitario
+    ON p.
+
+
+
+
+SELECT i.cantidad AS entrada, i.descripcion, p.cantidad AS salida, i.cantidad - COALESCE(SUM(p.cantidad), 0) AS stock
+FROM inventarido_inicial i LEFT JOIN 
+pecosa_bienes p
+ON i.id = p.bieneId
+GROUP BY i.id
+
+SELECT description, SUM(cantidad) FROM nea_bien 
+INNER JOIN bienes ON nea_bien.bieneId = bienes.id
+GROUP BY nea_bien.neaEntradaId
+
+
+
+SELECT i.id,  i.descripcion, i.cantidad AS entrada, p.cantidad AS salida, i.cantidad - COALESCE(SUM(p.cantidad), 0) AS stock
+FROM inventarido_inicial i LEFT JOIN 
+pecosa_bienes p
+ON i.id = p.inventaridoInicialId
+GROUP BY i.id
