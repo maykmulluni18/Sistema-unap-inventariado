@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./editarneasentradas.scss"
 import FilterAdministrativos from './FilterAdministrativos';
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/neasentradas/'
+const URI = DB_URL + 'neasentradas/'
 
-const URI1 = 'http://localhost:8000/user/'
+const URI1 = DB_URL + 'user/'
 
-const URI3 = 'http://localhost:8000/sedes/'
+const URI3 = DB_URL + 'sedes/'
 
 
 const EditarNeasEntradas_cont = () => {

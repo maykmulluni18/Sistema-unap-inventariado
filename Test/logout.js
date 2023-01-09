@@ -81,6 +81,20 @@ tabToOpen
 	})
 
 
+	.then(function () {
+		// Paso v - Encontrar el botón Salir de sesión
+		let promiseSignInBtnS = tab.findElement(
+			swd.By.css(".btn.btn-salir-sesion")
+		);
+		return promiseSignInBtnS;
+	})
+	.then(function (signInBtn) {
+
+		// Paso 7: hacer clic en el botón Salir sesión
+		let promiseClickSignInS = signInBtn.click();
+		return promiseClickSignInS;
+	})
+
 
 	.then(function () {
 		console.log("Successfully Sing!");

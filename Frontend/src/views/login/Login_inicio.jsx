@@ -153,6 +153,7 @@ const Login_inicio = () => {
                                                 placeholder="Ingrese su Usuario"
                                                 variant="outlined"
                                                 required
+                                                id='username'
                                                 name='username'
                                                 value={username}
                                                 onChange={(e) => setUsername(e.target.value)}
@@ -167,6 +168,7 @@ const Login_inicio = () => {
                                                 placeholder="Ingrese su Contraseña"
                                                 variant="outlined"
                                                 required
+                                                id='password'
                                                 name='password'
                                                 value={password}
                                                 onChange={(e) => {

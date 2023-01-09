@@ -8,9 +8,11 @@ import {
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import UNAP_LOGO from "../.././../image/UNAP.png"
 import "./pdfpecosa.scss"
-const URI = 'http://localhost:8000/pecosapedidos/'
-const URI1 = 'http://localhost:8000/pecosabienespedidos/'
-const URI2 = 'http://localhost:8000/metas/'
+import { DB_URL } from '../../../../../../config/config';
+
+const URI = DB_URL + 'pecosapedidos/'
+const URI1 = DB_URL + 'pecosabienespedidos/'
+const URI2 = DB_URL + 'metas/'
 
 // Create styles
 const styles = StyleSheet.create({

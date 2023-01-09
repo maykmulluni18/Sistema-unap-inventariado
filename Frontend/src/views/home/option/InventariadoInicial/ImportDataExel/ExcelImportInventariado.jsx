@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from "axios";
 import "./exceldata.scss"
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/excelimport/upload/'
+const URI = DB_URL + 'excelimport/upload/'
 const ExcelImportInventariado = () => {
   const navigate = useNavigate()
   const [msg, setMsg] = useState()
@@ -88,7 +89,7 @@ const ExcelImportInventariado = () => {
     <>
     <p>{msg}</p>
       <div className="contend_ex">
-      {isSuccess ? <p className="success-message">Validation successful</p> : null}
+      {isSuccess ? <p className="success-message">Error de datos</p> : null}
           <p className="error-message">{errorMsg}</p>
         <input
           type='file'

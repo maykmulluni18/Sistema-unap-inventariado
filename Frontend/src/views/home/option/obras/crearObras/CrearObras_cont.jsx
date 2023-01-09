@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./crearobras.scss"
 import Swal from 'sweetalert2'
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/obras/'
+const URI = DB_URL + 'obras/'
 
 const CrearObras_cont = () => {
 
@@ -102,7 +103,7 @@ const CrearObras_cont = () => {
                                         <div className="crearButtom_input_a">
                                             {detailss.length - 1 === index && detailss.length < 10 &&
                                                 (
-                                                    <button type='button' className="buttonA"
+                                                    <button type='button' className="btn buttonA"
                                                         onClick={handleAdd}
                                                     >
                                                         <span>Agregar</span>
@@ -128,9 +129,9 @@ const CrearObras_cont = () => {
                         }
 
                         <div className='crearButtom_B'>
-                            <button className='button1' type='submit'>Guardar</button>
+                            <button className='btn button1' type='submit'>Guardar</button>
                             <Link to={'../'} >
-                                <button className='button2'> Salir</button>
+                                <button className='btn button2'> Salir</button>
                             </Link>
                         </div>
                     </form>

@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import  FilterData  from './FilterData';
 import "./crearpecosapedidos.scss"
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/pecosapedidos/'
+const URI = DB_URL + 'pecosapedidos/'
 
-const URI1 = 'http://localhost:8000/metas/'
+const URI1 = DB_URL + 'metas/'
 
-const URI2 = 'http://localhost:8000/bienes/'
+const URI2 = DB_URL + 'bienes/'
 
-const URI3 = 'http://localhost:8000/sedes/'
+const URI3 = DB_URL + 'sedes/'
 
 
 const CrearPecosaPedidos_cont = () => {

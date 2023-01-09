@@ -13,8 +13,9 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 //import InputLabel from '@mui/material/InputLabel';
 import "./createusers.scss"
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/admin/'
+const URI = DB_URL + 'admin/'
 
 const CreateUsers_cont = () => {
     const [values, setValues] = useState({

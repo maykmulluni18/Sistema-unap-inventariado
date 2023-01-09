@@ -7,15 +7,15 @@ import { Link } from "react-router-dom";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Swal from 'sweetalert2'
+import { DB_URL } from '../../../../../../config/config';
 
+const URI = DB_URL + 'neasbienes/'
 
-const URI = 'http://localhost:8000/neasbienes/'
-
-const URI1 = 'http://localhost:8000/neasentradas/'
+const URI1 = DB_URL + 'neasentradas/'
 
 //const URI2 = 'http://localhost:8000/bienes/'
 
-const URI3 = 'http://localhost:8000/sedes/'
+const URI3 = DB_URL + 'sedes/'
 
 
 const EditarNeasBienes_cont = () => {
@@ -150,7 +150,7 @@ const EditarNeasBienes_cont = () => {
                             <div className="formInput" >
                                 <label>Descripcion</label>
                                 <input
-                                    value={descripcion}
+                                    value={descripcion.toUpperCase()}
                                     onChange={(e) => setDescripcion(e.target.value)}
                                     type="text"
                                     placeholder=""

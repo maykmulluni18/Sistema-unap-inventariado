@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./crearneasentradas.scss"
 import FilterAdministrativos from './FilterAdministrativos';
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/neasentradas/'
+const URI = DB_URL + 'neasentradas/'
 
-const URI3 = 'http://localhost:8000/sedes/'
+const URI3 = DB_URL + 'sedes/'
 
-const URI4 = 'http://localhost:8000/obras'
+const URI4 = DB_URL + 'obras/'
 
-const URI5 = 'http://localhost:8000/almacen'
+const URI5 = DB_URL + 'almacen/'
 
 const CrearNeasEntradas_cont = () => {
 

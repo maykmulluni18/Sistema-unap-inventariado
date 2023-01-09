@@ -6,8 +6,9 @@ import Swal from 'sweetalert2'
 import FiterResidente from './FiterResidente';
 import FilterAlmacenario from './FiterAlmacenario';
 import FilterAsistente from './FilterAsistente';
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/metas/'
+const URI = DB_URL + 'metas/'
 
 const CrearMetas_cont = () => {
 
@@ -131,7 +132,20 @@ const CrearMetas_cont = () => {
                                                 />
 
                                             </div>
+                                            <div className="formInput" >
+                                                <label htmlFor='meta_2'>OBRA</label>
+                                                <input
+                                                    id='obra'
+                                                    value={valu_cont.obra.toLowerCase()}
+                                                    name='obra'
+                                                    onChange={(e) => handleSubmit(e, index)}
+                                                    type="text"
+                                                    placeholder=''
+                                                    required
+                                                //pattern="[A-Z-0-9]+"
+                                                />
 
+                                            </div>
 
                                             <div className='formInput'>
                                                 <label htmlFor='residente'>RESIDENTE</label>
@@ -160,7 +174,7 @@ const CrearMetas_cont = () => {
                                                     onChange={(e) => handleSubmit(e, index)}
                                                     required
                                                 />
-                                               <FilterAlmacenario />
+                                                <FilterAlmacenario />
                                             </div>
                                             <div className='formInput'>
                                                 <label htmlFor='asistente_adm'>ASISTENTE_ADMINISTATIVO</label>

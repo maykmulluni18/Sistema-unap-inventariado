@@ -5,12 +5,13 @@ import Layout from "../../../../Layout";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./editarpecosabienes.scss"
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/pecosabienes/'
+const URI = DB_URL + 'pecosabienes/'
 
-const URI1 = 'http://localhost:8000/pecosapedidos/'
+const URI1 = DB_URL + 'pecosapedidos/'
 
-const URI2 = 'http://localhost:8000/invetinicial/'
+const URI2 = DB_URL + 'invetinicial/'
 
 const EditarPecosaBienes_cont = () => {
     const [pecosapedidos, setPecosaPedidos] = useState([])

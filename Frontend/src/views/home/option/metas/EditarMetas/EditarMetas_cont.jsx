@@ -6,9 +6,9 @@ import Swal from 'sweetalert2'
 import FilterResidente from '../CrearMetas/FiterResidente';
 import FilterAlmacenario from '../CrearMetas/FiterAlmacenario';
 import FilterAsistente from '../CrearMetas/FilterAsistente';
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/metas/'
+const URI = DB_URL + 'metas/'
 
 
 
@@ -99,7 +99,16 @@ const EditarMetas_cont = () => {
                                     required
                                 />
                             </div>
-
+                            <div className="formInput" >
+                                <label>Obra</label>
+                                <input
+                                    value={obra}
+                                    onChange={(e) => setObra(e.target.value.toUpperCase())}
+                                    type="text"
+                                    placeholder=""
+                                    required
+                                />
+                            </div>
 
                             <div className='formInput'>
                                 <label>RESIDENTE</label>

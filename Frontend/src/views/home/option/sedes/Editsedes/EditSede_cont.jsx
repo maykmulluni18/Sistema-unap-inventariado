@@ -5,9 +5,9 @@ import Layout from "../../../Layout";
 import UNAP from "../UNAP.png";
 import Swal from 'sweetalert2'
 import "./editsede.scss"
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/sedes/'
+const URI = DB_URL + 'sedes/'
 
 const EditSede_cont = () => {
     const [cuenta_de_costo, setCuentaDeCosto] = useState('')

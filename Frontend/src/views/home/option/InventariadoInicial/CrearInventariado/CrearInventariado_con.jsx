@@ -5,8 +5,9 @@ import "./crearinventariado.scss"
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Swal from 'sweetalert2'
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/invetinicial/'
+const URI = DB_URL + 'invetinicial/'
 
 const CrearIneventariado_cont = () => {
     const navigate = useNavigate()

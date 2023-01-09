@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import "./editaralmacen.scss"
 import Swal from 'sweetalert2'
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/almacen/'
+const URI = DB_URL + 'almacen/'
 
 const EditarAlmacen_cont = () => {
     const [almacen, setAlmacen] = useState('')

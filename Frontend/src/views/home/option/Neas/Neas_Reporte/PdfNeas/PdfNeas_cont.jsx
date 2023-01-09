@@ -10,9 +10,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import UNAP_LOGO from "../.././../image/UNAP.png"
 import "./pdfneas.scss"
 import { authSlice } from '../../../../auth/Authen';
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/neasentradas/'
-const URI1 = 'http://localhost:8000/neasbienesentradas/'
+const URI = DB_URL + 'neasentradas/'
+const URI1 = DB_URL + 'neasbienesentradas/'
 
 // Create styles
 const styles = StyleSheet.create({

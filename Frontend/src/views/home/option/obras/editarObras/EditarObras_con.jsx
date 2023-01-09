@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import "./editarobras.scss"
 import Swal from 'sweetalert2'
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/obras/'
+const URI = DB_URL + 'obras/'
 
 const EditarObras_cont = () => {
     const [obras, setObra] = useState('')

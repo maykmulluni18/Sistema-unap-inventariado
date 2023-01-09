@@ -10,7 +10,9 @@ import Swal from 'sweetalert2';
 import axios from "axios";
 import ExcelImportInventariado from "./ImportDataExel/ExcelImportInventariado";
 import './tablainventariado.scss'
-const URI = 'http://localhost:8000/invetinicial/'
+import { DB_URL } from '../../../../config/config';
+
+const URI = DB_URL + 'invetinicial/'
 
 
 const TablaInventariado = () => {

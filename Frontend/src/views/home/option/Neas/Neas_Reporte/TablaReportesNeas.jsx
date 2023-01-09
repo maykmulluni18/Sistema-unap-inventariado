@@ -9,9 +9,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import "./TablaReportesNeas.scss"
 
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/neasentradas/'
+const URI = DB_URL + 'neasentradas/'
 
 const TablaReportes = () => {
 

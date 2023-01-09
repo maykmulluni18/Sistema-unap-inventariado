@@ -8,8 +8,9 @@ import { useState, useEffect } from 'react'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import axios from "axios";
+import { DB_URL } from "../../../config/config";
 
-const URI = 'http://localhost:8000/stock/'
+const URI = DB_URL + 'stock/'
 
 
 const Stocks = () => {

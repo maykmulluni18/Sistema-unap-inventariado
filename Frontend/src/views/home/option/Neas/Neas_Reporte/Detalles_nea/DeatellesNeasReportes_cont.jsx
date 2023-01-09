@@ -5,9 +5,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import Layout from "../../../../Layout";
 import { Link } from "react-router-dom";
 import "./deatallesneasreporte.scss"
-const URI = 'http://localhost:8000/neasentradas/'
+import { DB_URL } from "../../../../../../config/config";
 
-const URI1 = 'http://localhost:8000/neasbienesentradas/'
+const URI = DB_URL + 'neasentradas/'
+
+const URI1 = DB_URL + 'neasbienesentradas/'
 
 const columns = [
     { field: 'cantidad', headerName: 'Cantidad', width: 100 },

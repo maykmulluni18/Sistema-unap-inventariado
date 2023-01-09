@@ -6,8 +6,9 @@ import UNAP from "./UNAP.png";
 import Swal from 'sweetalert2'
 
 import "./editusers.scss"
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/user/'
+const URI = DB_URL + 'user/'
 
 const Editusers_cont = () => {
     const [n_documento, setNdocumento] = useState('')

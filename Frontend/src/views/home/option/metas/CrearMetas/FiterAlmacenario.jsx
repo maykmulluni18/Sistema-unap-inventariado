@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { DB_URL } from '../../../../../config/config';
 
-const URI4 = 'http://localhost:8000/user/'
+const URI4 = DB_URL + 'user/'
 
 const FilterAlmacenario = () => {
     const [administrativos, setAdministrativos] = useState([])

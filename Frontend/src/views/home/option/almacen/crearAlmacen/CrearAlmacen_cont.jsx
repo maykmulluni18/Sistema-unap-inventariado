@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./crearalmacen.scss"
 import Swal from 'sweetalert2'
-
-const URI = 'http://localhost:8000/almacen/'
+import { DB_URL } from '../../../../../config/config';
+const URI = DB_URL + 'almacen/'
 
 const CrearAlmacen_cont = () => {
 

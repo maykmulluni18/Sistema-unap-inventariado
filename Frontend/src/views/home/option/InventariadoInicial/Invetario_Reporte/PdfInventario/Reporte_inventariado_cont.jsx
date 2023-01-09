@@ -9,8 +9,8 @@ import Layout from '../../../../Layout';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import UNAP_LOGO from "../.././../image/UNAP.png"
 //import "./pdfpecosa.scss"
-
-const URI = 'http://localhost:8000/invetinicialfilterdate/'
+import { DB_URL } from '../../../../../../config/config';
+const URI = DB_URL + 'invetinicialfilterdate/'
 
 // Create styles
 const styles = StyleSheet.create({

@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from "react-router-dom";
 import "./detallesinventariado.scss"
-
-const URI = 'http://localhost:8000/invetinicialfilterdate/'
+import { DB_URL } from "../../../../../../config/config";
+const URI = DB_URL + 'invetinicialfilterdate/'
 
 
 const columns = [

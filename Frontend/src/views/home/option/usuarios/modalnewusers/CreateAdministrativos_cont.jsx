@@ -4,8 +4,9 @@ import Swal from 'sweetalert2'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./createnew.scss"
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/user/'
+const URI = DB_URL + 'user/'
 
 const CreateAdministrativos_cont = () => {
 

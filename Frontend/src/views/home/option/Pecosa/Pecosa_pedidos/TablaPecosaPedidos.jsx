@@ -10,9 +10,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import "./TablaPecosaPedidos.scss"
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/pecosapedidos/'
+const URI = DB_URL + 'pecosapedidos/'
 
 
 const TablaPecosaPedidos = () => {

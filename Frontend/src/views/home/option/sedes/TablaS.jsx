@@ -11,8 +11,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import axios from "axios";
+import { DB_URL } from "../../../../config/config";
 
-const URI = 'http://localhost:8000/sedes/'
+const URI = DB_URL + 'sedes/'
 
 
 const TableS = () => {

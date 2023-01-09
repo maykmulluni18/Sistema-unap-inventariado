@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const URI = 'http://localhost:8000/login'
+import { DB_URL } from "../../../config/config";
+const URI = DB_URL + 'login'
 
 const initialState = {
     user: null,

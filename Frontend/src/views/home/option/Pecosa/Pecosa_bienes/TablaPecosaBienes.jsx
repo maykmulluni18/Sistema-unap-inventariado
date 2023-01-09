@@ -9,9 +9,9 @@ import { useState, useEffect } from 'react'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./TablaPecosaBienes.scss"
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/pecosabienes/'
+const URI = DB_URL + 'pecosabienes/'
 
 
 const TablaPecosaBienes = () => {

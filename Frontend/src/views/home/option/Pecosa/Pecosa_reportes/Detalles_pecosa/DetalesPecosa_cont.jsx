@@ -4,12 +4,13 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import "./detallesreportespecosa.scss";
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/pecosapedidos/'
+const URI = DB_URL + 'pecosapedidos/'
 
-const URI1 = 'http://localhost:8000/pecosabienespedidos/'
+const URI1 = DB_URL + 'pecosabienespedidos/'
 
-const URI2 = 'http://localhost:8000/metas/'
+const URI2 = DB_URL + 'metas/'
 
 
 const columnsb = [

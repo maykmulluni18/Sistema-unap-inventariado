@@ -7,8 +7,9 @@ import Layout from '../../../Layout';
 
 
 import "./createsedes.scss"
+import { DB_URL } from '../../../../../config/config';
 
-const URI = 'http://localhost:8000/sedes/'
+const URI = DB_URL + 'sedes/'
 
 const CreateSedes_cont = () => {
     const [sedes, setSedes] = useState([])

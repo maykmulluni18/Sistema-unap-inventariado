@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from "axios";
 import "./exceldatanea.scss"
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/excelneasimport/upload/'
+const URI = DB_URL + 'excelneasimport/upload/'
 
 const ImportNeasExcel = () => {
   const navigate = useNavigate()

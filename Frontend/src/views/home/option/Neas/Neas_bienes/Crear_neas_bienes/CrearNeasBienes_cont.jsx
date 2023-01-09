@@ -7,10 +7,11 @@ import Swal from 'sweetalert2'
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import "./crearneasbienes.scss"
+import { DB_URL } from '../../../../../../config/config';
 
-const URI = 'http://localhost:8000/neasbienes/'
+const URI = DB_URL + 'neasbienes/'
 
-const URI1 = 'http://localhost:8000/neasentradas/'
+const URI1 = DB_URL + 'neasentradas/'
 
 //const URI2 = 'http://localhost:8000/bienes/'
 
@@ -190,7 +191,7 @@ const CrearNeasBienes_cont = () => {
                                                 <label>Descripcion</label>
                                                 <input
                                                     name='descripcion'
-                                                    value={value_cont.descripcion}
+                                                    value={value_cont.descripcion.toUpperCase()}
                                                     onChange={(e) => handleSubmit(e, index)}
                                                     type="text"
                                                     placeholder=""

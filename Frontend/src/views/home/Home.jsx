@@ -6,6 +6,7 @@ import Layout from './Layout';
 import Welcome from './Welcome';
 import Stocks from './stocks/Stocks';
 import StocksNeas from './stocks/StocksNeas';
+
 const Home = () => {
 
   const dispatch = useDispatch();

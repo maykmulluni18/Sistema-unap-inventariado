@@ -10,9 +10,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./TablaNeasBienes.scss"
 import ImportNeasExcel from './importarExcel/ImportNeasExcel';
+import { DB_URL } from '../../../../../config/config';
 
-
-const URI = 'http://localhost:8000/neasbienes/'
+const URI = DB_URL + 'neasbienes/'
 
 
 const TablaNeasBienes = () => {

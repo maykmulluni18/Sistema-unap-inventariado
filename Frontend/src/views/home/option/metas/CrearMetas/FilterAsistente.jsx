@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const URI4 = 'http://localhost:8000/user/'
+import { DB_URL } from '../../../../../config/config';
+const URI4 = DB_URL + 'user/'
 
 const FilterAsistente = () => {
     const [administrativos, setAdministrativos] = useState([])

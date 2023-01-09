@@ -9,8 +9,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 import axios from "axios";
+import { DB_URL } from "../../../../config/config";
 
-const URI = 'http://localhost:8000/obras/'
+const URI = DB_URL + 'obras/'
 
 
 const TablaObras = () => {
@@ -68,7 +69,8 @@ const TablaObras = () => {
             <div className="cellAction">
 
               <div
-                className="deleteButton"
+                className="btn deleteButton"
+                id="deletedata"
                 onClick={() => deleteObras(params.id)}
               >
                 <DeleteIcon />
@@ -86,10 +88,10 @@ const TablaObras = () => {
       </div>
       <div className="Tabledata">
         <div className="dataTitle">
-          Lista de Almacen
+          Lista de Obras
           <div className="CrearButton">
             <Link to={'created-obras'}>
-              <button className="crear_bienes">Crear</button>
+              <button className="btn crear_bienes">Crear</button>
             </Link>
           </div>
         </div>

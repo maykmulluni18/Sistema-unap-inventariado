@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getMe } from "../../../auth/Authen"
 import EditarAlmacen_cont from './EditarAlmacen_cont';
 
+
 const EditarAlmacen = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();

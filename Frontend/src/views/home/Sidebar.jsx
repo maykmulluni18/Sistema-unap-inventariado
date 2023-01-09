@@ -284,10 +284,10 @@ function EjempSidebar(props) {
                             return (
                                 <Link key={item.id} to={item.path} className="icon">
                                     <div className="seting_div">
-                                        <ul className="menu_list grid">
+                                        <ul className="menu menu_list grid">
 
                                             <li key={index} className="list_item">
-                                                <p className="menu_link flex">
+                                                <p className="obras menu_link flex">
 
                                                     {item.icon} <span className="smallText">{item.title}</span>
 
@@ -427,7 +427,7 @@ function EjempSidebar(props) {
                             <div className='circle2'></div>
                             <h3>..</h3>
                             <p>{user && user.nombre}</p>
-                            <button onClick={logout} className='btn'>Salir</button>
+                            <button onClick={logout} className='btn btn-salir-sesion'>Salir</button>
                         </div>
 
                     </div>

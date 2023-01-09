@@ -10,9 +10,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./tablausers.scss"
 import { useSelector } from 'react-redux';
+import { DB_URL } from '../../../../config/config';
 
-
-const URI = 'http://localhost:8000/admin/'
+const URI = DB_URL + 'admin/'
 
 
 const TablaUsers = () => {
