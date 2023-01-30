@@ -13,6 +13,7 @@ import { DB_URL } from '../../../../../../config/config';
 const URI = DB_URL + 'pecosapedidos/'
 const URI1 = DB_URL + 'pecosabienespedidos/'
 const URI2 = DB_URL + 'metas/'
+const URI3 = DB_URL + 'bienes/'
 
 // Create styles
 const styles = StyleSheet.create({
@@ -21,20 +22,15 @@ const styles = StyleSheet.create({
         height: window.innerHeight - 130,
     },
     body: {
-        paddingTop: 10,
+        paddingTop: 5,
         paddingBottom: 20,
         paddingHorizontal: 20,
 
     },
     title: {
-        fontSize: 20,
+        fontSize: 24,
         textAlign: "center",
     },
-    /* text: {
-         margin: 12,
-         fontSize: 14,
-         textAlign: "justify",
-     },*/
     image: {
         marginVertical: 15,
         marginHorizontal: 100,
@@ -42,7 +38,7 @@ const styles = StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        top: 20,
+        top: 30,
         left: 40,
         position: "absolute"
 
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
         color: "grey",
         fontSize: 7,
         left: 95,
-        top: 18,
+        top: 14,
         paddingHorizontal: 35,
     },
     header_subtitle_almacen: {
@@ -73,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 7,
         left: 100,
         paddingHorizontal: 35,
-
+        top: 24,
     },
     header_title_principal: {
         fontWeight: 'bold',
@@ -82,19 +78,22 @@ const styles = StyleSheet.create({
         color: "#212121",
 
     },
-    header_title_principal_1: {
-        fontWeight: 'bold',
+    header_title_principal_2: {
         fontSize: 12,
-        top: -8,
+        color: "grey",
         textAlign: "center",
-        color: "#212121",
+        top: 6
     },
-
+    text_vacio: {
+        color: "white",
+        fontSize: 4,
+    },
+    // Contenido general 
     gen_depen: {
-        width: "62%",
-        left: "3.5%",
+        width: "96%",
+        left: "2.3%",
         borderRadius: "5px",
-        height: "10.5%",
+        height: "12%",
         top: "2%",
         border: "1px solid gray",
 
@@ -102,76 +101,89 @@ const styles = StyleSheet.create({
     dependencias: {
         fontSize: 8,
         color: "#212121",
-        right: "3%",
+        right: "1.5%",
         paddingHorizontal: 16,
-        top: 4,
+        top: "6%",
 
     },
     usuario: {
         fontSize: 8,
         color: "#212121",
-        right: "3%",
+        right: "1.5%",
         paddingHorizontal: 16,
-        top: 8,
+        top: "14%",
 
     },
     destino_a: {
         fontSize: 8,
         color: "#212121",
-        right: "3%",
+        right: "1.5%",
         paddingHorizontal: 16,
-        top: 10,
-        //border: 1,
-        //width: "40%"
+        top: "23%",
+
 
     },
     entregar_a: {
         fontSize: 8,
         color: "#212121",
-        right: "3%",
+        right: "1.5%",
         paddingHorizontal: 16,
-        top: 12,
+        top: "32%",
 
     },
-    meta_contend: {
-        width: "31%",
-        left: "65.5%",
-        borderRadius: "5px",
-        height: "9%",
-        top: "-6%",
-        border: "1px solid gray",
-    },
-    cadena_fun: {
+    tipo_moneda: {
         fontSize: 8,
         color: "#212121",
-        textAlign: "center",
-        fontWeight: 900,
-        top: "4%",
+        left: "56%",
+        paddingHorizontal: 16,
+        top: "-49%",
+        borderLeft: "1px solid gray",
     },
-    cadena_fun_data: {
+    fecha_nea: {
         fontSize: 8,
         color: "#212121",
-        textAlign: "center",
-        fontWeight: 900,
-        borderTop: "1px solid gray",
-        borderBottom: "1px solid gray",
-        top: "4%",
+        left: "56%",
+        paddingHorizontal: 16,
+        top: "-32%",
     },
-    cadena_fun_data_meta: {
+    tipo_almacen: {
         fontSize: 8,
         color: "#212121",
-        textAlign: "center",
-        fontWeight: 900,
-        top: "24%",
+        left: "56%",
+        borderLeft: "1px solid gray",
+        paddingHorizontal: 16,
+        top: "-23%",
+    },
+    tipo_documento: {
+        fontSize: 8,
+        color: "#212121",
+        left: "56%",
+        paddingHorizontal: 16,
+        top: "-14%",
+        borderLeft: "1px solid gray",
+    },
+    tipo_cambio: {
+        fontSize: 8,
+        color: "#212121",
+        left: "73%",
+        paddingHorizontal: 16,
+        top: "-78%",
+    },
+    tipo_uso: {
+        fontSize: 8,
+        color: "#212121",
+        left: "73%",
+        paddingHorizontal: 16,
+        top: "-69%",
     },
     fecha_contend: {
         border: "1px solid gray",
         borderRadius: "5px",
-        width: "9%",
+        width: "8%",
         left: "80.5%",
         borderRadius: "5px",
         height: "5%",
-        top: "-23%",
+        top: "-18%",
 
         //border: "1px solid gray",
 
@@ -192,10 +204,14 @@ const styles = StyleSheet.create({
 
     },
 
+    spacio: {
+        color: "white",
+        textAlign: 1,
 
+    },
     pageNumber: {
         position: "absolute",
-        fontSize: 8,
+        fontSize: 10,
         bottom: 30,
         left: 720,
         right: 0,
@@ -206,50 +222,43 @@ const styles = StyleSheet.create({
     table: {
         display: "table",
         width: "auto",
-        top: "-8%",
+        left: "0.5%",
         borderStyle: "solid",
+        top: "-6",
 
     },
+
 
     tableRow: {
         margin: "auto",
         flexDirection: "row",
+
+
     },
     tableCol_id_V: {
         width: "2%",
         //borderStyle: "solid",
         color: "white",
         border: "1px solid gray",
+
     },
-    tableCol_title: {
-        width: "52%",
-        //borderStyle: "solid",
-        border: "1px solid gray",
-    },
-    tableCol_title_2: {
-        width: "18%",
-        //borderStyle: "solid",
-        border: "1px solid gray",
-    },
-    tableCol_title_3: {
-        width: "21%",
-        //borderStyle: "solid",
-        color: "white",
-        border: "1px solid gray",
-    },
+
+
     tableCol_numero: {
         width: "2%",
-        //borderStyle: "solid",
+        borderStyle: "solid",
         border: "1px solid gray",
+
     },
     tableCol_unidad: {
         width: "8%",
-        //borderStyle: "solid",
+        
+        borderStyle: "solid",
         border: "1px solid gray",
 
     },
     tableCol_descripcion: {
-        width: "34%",
+        width: "45%",
         borderStyle: "solid",
         border: "1px solid gray",
 
@@ -266,14 +275,20 @@ const styles = StyleSheet.create({
         border: "1px solid gray",
 
     },
-    tableCol_unitario: {
+    tableCol_fte: {
         width: "7%",
         borderStyle: "solid",
         border: "1px solid gray",
 
     },
+    tableCol_unitario: {
+        width: "9%",
+        borderStyle: "solid",
+        border: "1px solid gray",
+
+    },
     tableCol_total: {
-        width: "7%",
+        width: "9%",
         borderStyle: "solid",
         border: "1px solid gray",
 
@@ -286,11 +301,10 @@ const styles = StyleSheet.create({
     },
     tableCell: {
 
-        marginTop: 8,
+        marginTop: 4,
         fontSize: 8,
-        height: 14,
+        height: 18.7,
         textAlign: "center",
-        margin: "center"
 
     },
     tableCell_cantidad: {
@@ -304,10 +318,23 @@ const styles = StyleSheet.create({
         textAlign: "center",
         //margin: "auto",
     },
+    tableCol_subtotal: {
+        width: "78%",
+        borderStyle: "solid",
+        border: "1px solid gray",
+        textAlign: "left",
+
+    },
+    tableCol_subtotal_1: {
+        width: "18%",
+        borderStyle: "solid",
+        border: "1px solid gray",
+    },
     Oficio: {
         fontSize: 8,
         color: "#212121",
         left: 10,
+        top: 15,
         paddingHorizontal: 18,
         fontWeight: "bold"
     },
@@ -315,64 +342,64 @@ const styles = StyleSheet.create({
         fontSize: 8,
         color: "#212121",
         //left: 10,
-        left: 25,
-        top: -1,
+        left: "5.5%",
+        top: 46,
         fontWeight: "bold"
+
     },
     solicitante_1: {
         fontSize: 8,
         color: "#212121",
         //left: 10,
-        left: 66,
-        top: 3,
+        left: "9.5%",
+        top: 48,
         fontWeight: "bold"
     },
     jefe_abast: {
         fontSize: 8,
         color: "#212121",
-        //left: 10,
-        left: 210,
-        top: -14,
+        left: 240,
+        top: 40,
         fontWeight: "bold"
     },
     jefe_abast_1: {
         fontSize: 8,
         color: "#212121",
         //left: 10,
-        left: 220,
-        top: -14,
+        left: 230,
+        top: 22.5,
         fontWeight: "bold"
     },
     jefe_alm: {
         fontSize: 8,
         color: "#212121",
         //left: 10,
-        left: 410,
-        top: -28,
+        left: 446,
+        top: 24,
         fontWeight: "bold"
     },
     jefe_alm_1: {
         fontSize: 8,
         color: "#212121",
-        //left: 10,
-        left: 438,
-        top: -27,
+        left: 420,
+        top: 7,
         fontWeight: "bold"
     },
     recibi_con: {
         fontSize: 8,
         color: "#212121",
-        left: 600,
-        top: -46,
+        left: 636,
+        top:  10,
         fontWeight: "bold"
     },
     recibi_con_1: {
         fontSize: 8,
         color: "#212121",
-        left: 626,
-        top: -40,
+        left: 610,
+        top: -8,
         fontWeight: "bold"
     }
+
 });
 
 
@@ -383,6 +410,7 @@ const PdfReporte_cont = () => {
     useEffect(() => {
         getPedidosPecosa_p()
         getPecosaBienes()
+        getBienes()
     }, [])
 
     const { id } = useParams()
@@ -404,7 +432,7 @@ const PdfReporte_cont = () => {
         setIdAdministradores(res.data.usuario.nombres + ' ' +
             res.data.usuario.apellido_paterno + ' ' +
             res.data.usuario.apellido_materno)
-        setIdMetas(res.data.Meta.meta_1)
+        setIdMetas(res.data.Meta.meta_1 + '  y  ' + res.data.Meta.meta_1 )
     }
 
     const [pecosaPedidoId, setPecosaPedidosId] = useState([])
@@ -415,13 +443,18 @@ const PdfReporte_cont = () => {
         console.log(res.data)
         setPecosaPedidosId(res.data)
     }
+    const [idBienes, setIdBien] = useState('')
+    const getBienes = async () => {
+        const res = await axios.get(URI3, idBienes)
+        console.log(res.data)
+    }
 
     const [sumatotal, setSumatTotal] = useState(0)
-    
-    
+
+
     useEffect(() => {
         const getsumarTotal = () => {
-            const total = pecosaPedidoId.map((item) => parseFloat(item.cantidad * item.inventarido_inicial?.precio || item.nea_bien?.p_unitario ))
+            const total = pecosaPedidoId.map((item) => parseFloat(item.cantidad * item.inventarido_inicial?.precio || item.nea_bien?.p_unitario))
                 .reduce((previus, current) => {
                     return previus + current;
                 }, 0)
@@ -429,7 +462,7 @@ const PdfReporte_cont = () => {
             setSumatTotal(total)
         };
         getsumarTotal()
-      });
+    });
     /*
     const [pedidospecosap, setPecosaPedidosP] = useState([])
     const getPedidosPecosa_p = async () => {
@@ -444,7 +477,7 @@ const PdfReporte_cont = () => {
                 <div className='top'>
                     <div className='BotonesOp'>
                         <Link to="../">
-                            <button  className='regresar'>Regresar</button >
+                            <button className='regresar'>Regresar</button >
                         </Link>
                         {/*<bottom className='imprimir'></bottom>*/}
 
@@ -457,7 +490,7 @@ const PdfReporte_cont = () => {
                     <Document>
                         <Page size="A4" orientation="landscape" style={styles.body}>
 
-                                <Image
+                            <Image
                                 style={styles.image}
                                 src={UNAP_LOGO}
                                 fixed
@@ -473,93 +506,77 @@ const PdfReporte_cont = () => {
                                 ALMACEN CENTRAL
                             </Text>
                             <Text style={styles.header_title_principal} fixed>
-                                PEDIDO DE COMPROBANTE DE SALIDA (PECOSA)
+                            PEDIDO DE COMPROBANTE DE SALIDA (PECOSA)
                             </Text>
-                            <Text style={styles.header_title_principal_1} fixed>
-                                ____________________________________________
+                            <Text style={styles.header_title_principal_2} fixed>
+                                Nro Salida: 0{id}
                             </Text>
+
                             {/* <Image style={styles.image} src={LebronStretch} />*/}
-                  
+                            <Text style={styles.text_vacio} fixed>
+                                vacio
+                            </Text>
                             <View style={styles.gen_depen} fixed>
                                 <Text style={styles.dependencias} fixed>
-                                    <Text>DEPENDENCIA SOLICITANTE   :</Text>   {dependencias}
+                                <Text>DEPENDENCIA SOLICITANTE   :</Text>   {dependencias}
                                 </Text>
                                 <Text style={styles.usuario} fixed>
-                                    <Text>SOLICITANTE                              :</Text>   {id_administradores}
+                                    <Text fixed>SOLICITANTE                              :</Text>    {id_administradores}
                                 </Text>
                                 <Text style={styles.destino_a} fixed>
-                                    <Text>CON DESTINO A                         :</Text>   {id_sedes}
+                                <Text>CON DESTINO A                         :</Text>   {id_sedes}
                                 </Text>
                                 <Text style={styles.entregar_a} fixed>
-                                    <Text>SOLICITO ENTREGAR A </Text>           :<Text>   {id_administradores} </Text>
+                                <Text>SOLICITO ENTREGAR A </Text>           :<Text>   {id_administradores} </Text>
                                 </Text>
-                            </View>
 
-
-                            <View style={styles.meta_contend} fixed>
-                                <Text style={styles.cadena_fun} >
-                                    CADENA FUNCIONAL
+                                <Text style={styles.tipo_moneda} fixed>
+                                    <Text fixed>CADENA FUNCIONAL </Text>   :<Text>   {id_metas} </Text>
                                 </Text>
-                                <Text style={styles.cadena_fun_data} >
-                                    CADENA FUNCIONAL
-                                </Text>
-                                <Text style={styles.cadena_fun_data_meta} >
-                                    {id_metas}
-                                </Text>
+                              
                             </View>
+                            <Text style={styles.Oficio} fixed>
+                                REFERENCIA: OFICIO N° 037-2022-SUMAP/USG-UNA-P
+                            </Text>
+
 
                             <View style={styles.fecha_contend} fixed>
-                                <Text style={styles.fecha_title} >
+                                <Text style={styles.fecha_title} fixed>
                                     Año Mes Dia
                                 </Text>
-                                <Text style={styles.fecha} >
+                                <Text style={styles.fecha} fixed>
                                     {fecha}
                                 </Text>
                             </View>
 
                             {/* Tabla  _______________________*/}
-                            <View style={styles.table}>
+                            <View style={styles.table} >
+
                                 <View style={styles.tableRow} fixed>
-                                    <View style={styles.tableCol_id_V}>
-                                        <Text style={styles.tableCell}>O</Text>
+                                    <View style={styles.tableCol_numero} >
+                                        <Text style={styles.tableCell} >N°</Text>
                                     </View>
-                                    <View style={styles.tableCol_title}>
-                                        <Text style={styles.tableCell}>ARTICULOS SOLICITADOS</Text>
-                                    </View>
-                                    <View style={styles.tableCol_title_2}>
-                                        <Text style={styles.tableCell}>ARTICULOS SOLICITADOS</Text>
-                                    </View>
-                                    <View style={styles.tableCol_title_3}>
-                                        <Text style={styles.tableCell}>ARTICULOS SOLICITADOS</Text>
-                                    </View>
-                                </View>
-                                <View style={styles.tableRow} fixed>
-                                    <View style={styles.tableCol_numero}>
-                                        <Text style={styles.tableCell}>N°</Text>
-                                    </View>
-                                    <View style={styles.tableCol_cantidad}>
-                                        <Text style={styles.tableCell}>CANTIDAD</Text>
-                                    </View>
-                                    <View style={styles.tableCol_unidad}>
-                                        <Text style={styles.tableCell}>U. MEDIDA</Text>
+                                    <View style={styles.tableCol_cantidad} >
+                                        <Text style={styles.tableCell} >CANTIDAD</Text>
                                     </View>
                                     <View style={styles.tableCol_descripcion}>
-                                        <Text style={styles.tableCell}>DESCRIPCIÓN</Text>
+                                        <Text style={styles.tableCell} >DESCRIPCIÓN</Text>
                                     </View>
-                                    <View style={styles.tableCol_codigo}>
-                                        <Text style={styles.tableCell}>CODIGO</Text>
+                                    <View style={styles.tableCol_unidad} >
+                                        <Text style={styles.tableCell} >U. MEDIDA</Text>
                                     </View>
-                                    <View style={styles.tableCol_cantidad}>
-                                        <Text style={styles.tableCell}>CANT</Text>
+                                    <View style={styles.tableCol_fte} >
+                                        <Text style={styles.tableCell} >CODIGO</Text>
                                     </View>
-                                    <View style={styles.tableCol_unitario}>
-                                        <Text style={styles.tableCell}>UNITARIO</Text>
+                                    <View style={styles.tableCol_codigo} >
+                                        <Text style={styles.tableCell} >P.UNITARIO</Text>
                                     </View>
-                                    <View style={styles.tableCol_total}>
-                                        <Text style={styles.tableCell}>TOTAL</Text>
+
+                                    <View style={styles.tableCol_unitario} >
+                                        <Text style={styles.tableCell} >VALOR TOTAL</Text>
                                     </View>
-                                    <View style={styles.tableCol_observacion}>
-                                        <Text style={styles.tableCell}>OBSERVACIONES</Text>
+                                    <View style={styles.tableCol_total} >
+                                        <Text style={styles.tableCell} >OBSERCIONES</Text>
                                     </View>
                                 </View>
 
@@ -570,30 +587,27 @@ const PdfReporte_cont = () => {
                                             <Text style={styles.tableCell}>{i + 1}</Text>
                                         </View>
                                         <View style={styles.tableCol_cantidad}>
-                                            <Text style={styles.tableCell}>{x.cantidad}</Text>
-                                        </View>
-                                        <View style={styles.tableCol_unidad}>
-                                            <Text style={styles.tableCell_unidad}>{x.inventarido_inicial?.unidad || x.nea_bien?.medida}</Text>
+                                            <Text style={styles.tableCell}>{x?.cantidad}</Text>
                                         </View>
                                         <View style={styles.tableCol_descripcion}>
-                                            <Text style={styles.tableCell}>{x.inventarido_inicial?.descripcion || x.nea_bien?.descripcion}</Text>
+                                            <Text style={styles.tableCell}>{x.inventarido_inicial?.biene.description || x.nea_bien?.biene.description}</Text>
                                         </View>
-                                        <View style={styles.tableCol_codigo}>
+                                        <View style={styles.tableCol_unidad}>
+                                            <Text style={styles.tableCell_unidad}>{x.inventarido_inicial?.biene.unidad_de_medida || x.nea_bien?.biene.unidad_de_medida}</Text>
+                                        </View>
+                                        <View style={styles.tableCol_fte}>
                                             <Text style={styles.tableCell}>{x.inventarido_inicial?.cuenta || x.nea_bien?.cuenta_contable}</Text>
                                         </View>
-                                        <View style={styles.tableCol_cantidad}>
-                                            <Text style={styles.tableCell}>{x.cantidad}</Text>
-                                        </View>
+                                       
                                         <View style={styles.tableCol_unitario}>
                                             <Text style={styles.tableCell}>{x.inventarido_inicial?.precio || x.nea_bien?.p_unitario}</Text>
                                         </View>
                                         <View style={styles.tableCol_total}>
-                                            <Text style={styles.tableCell}>{x.cantidad * x.inventarido_inicial?.precio || x.nea_bien?.p_unitario}</Text>
-                                        </View>
-                                        <View style={styles.tableCol_observacion}>
+                                            <Text style={styles.tableCell}>{Number.parseFloat(x.cantidad * x.inventarido_inicial?.precio || x.nea_bien?.p_unitario).toFixed(3)}</Text>
+                                        </View> 
+                                        <View style={styles.tableCol_codigo}>
                                             <Text style={styles.tableCell}>{x?.observaciones}</Text>
                                         </View>
-                                 
 
                                     </View>
 
@@ -603,65 +617,47 @@ const PdfReporte_cont = () => {
 
                                 }
                                 <View style={styles.tableRow}>
-                                    <View style={styles.tableCol_numero}>
-                                        <Text style={styles.tableCell}>_</Text>
+
+                                    <View style={styles.tableCol_subtotal}>
+                                        <Text style={styles.tableCell}>Sub Total S/ </Text>
                                     </View>
-                                    <View style={styles.tableCol_cantidad}>
-                                        <Text style={styles.tableCell}>_</Text>
+                                    <View style={styles.tableCol_subtotal_1}>
+                                        <Text style={styles.tableCell}>{Number.parseFloat(sumatotal).toFixed(3)}</Text>
                                     </View>
-                                    <View style={styles.tableCol_unidad}>
-                                        <Text style={styles.tableCell}>_</Text>
-                                    </View>
-                                    <View style={styles.tableCol_descripcion}>
-                                        <Text style={styles.tableCell}>_</Text>
-                                    </View>
-                                    <View style={styles.tableCol_codigo}>
-                                        <Text style={styles.tableCell}>_</Text>
-                                    </View>
-                                    <View style={styles.tableCol_cantidad}>
-                                        <Text style={styles.tableCell}>_</Text>
-                                    </View>
-                                    <View style={styles.tableCol_unitario}>
-                                        <Text style={styles.tableCell}>_</Text>
-                                    </View>
-                                    <View style={styles.tableCol_total}>
-                                        <Text style={styles.tableCell}>{sumatotal}</Text>
-                                    </View>
-                                    <View style={styles.tableCol_observacion}>
-                                        <Text style={styles.tableCell}>_</Text>
-                                    </View>
+
                                 </View>
 
                             </View>
 
                             <Text style={styles.Oficio} >
                                 REFERENCIA: OFICIO N° 037-2022-SUMAP/USG-UNA-P
-                                
                             </Text>
                             <Text style={styles.solicitante} fixed>
                                 ___________________________
                             </Text>
                             <Text style={styles.solicitante_1} fixed>
                                 SOLICITANTE
+
                             </Text>
                             <Text style={styles.jefe_abast} fixed>
-                                ____________________________
-                            </Text>
-                            <Text style={styles.jefe_abast_1} fixed>
                                 JEFE DE ABASTECIMIENTO
                             </Text>
-                            <Text style={styles.jefe_alm} fixed>
-                                ___________________________
+                            <Text style={styles.jefe_abast_1} fixed>
+                                ____________________________
                             </Text>
-                            <Text style={styles.jefe_alm_1} fixed>
+                            <Text style={styles.jefe_alm} fixed>
                                 JEFE DE ALMACEN
                             </Text>
-                            <Text style={styles.recibi_con} fixed>
+                            <Text style={styles.jefe_alm_1} fixed>
                                 ___________________________
                             </Text>
-                            <Text style={styles.recibi_con_1} fixed>
+                            <Text style={styles.recibi_con} fixed>
                                 RECIBI CONFORME
                             </Text>
+                            <Text style={styles.recibi_con_1} fixed>
+                                ___________________________
+                            </Text>
+
 
                             <Text
                                 style={styles.pageNumber}

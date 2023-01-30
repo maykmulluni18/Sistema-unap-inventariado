@@ -5,11 +5,11 @@ import ModelsNeaEntradas from "../models/ModelsNeaEntradas.js";
 export const getNeasBienes = async (req, res) => {
     try {
         const NeasBienes = await ModelsNeaBien.findAll({
-            include: [ModelsNeaEntradas]
+            include: [ModelsNeaEntradas, ModelsBienes]
         })
         res.json(NeasBienes)
     } catch (error) {
-        res.json({ message : error.message})
+        res.status(400).json({ message : error.message})
     }
 }
 
@@ -17,20 +17,20 @@ export const getNeasBienesId = async (req, res) => {
     try {
         const NeasBienes = await ModelsNeaBien.findAll({
             where: {id: req.params.id},
-            include: [ModelsNeaEntradas]
+            include: [ModelsNeaEntradas, ModelsBienes]
         })
         res.json(NeasBienes[0])
     } catch (error) {
-        res.json({ message : error.message})
+        res.status(400).json({ message : error.message})
     }
 }
 
 export const createNeasBienes = async (req, res) => {
     try {
         const NeasBienes = await ModelsNeaBien.create(req.body)
-        res.json({'message': 'Neas Bien Creado con Exito'})
+        res.status(200).json({'message': 'Neas Bien Creado con Exito'})
     } catch (error) {
-        res.json({ message : error.message})
+        res.status(400).json({ message : error.message})
     }
 }
 
@@ -39,9 +39,9 @@ export const updateNeasBienes = async (req, res) => {
         const NeasBienes = await ModelsNeaBien.update(req.body, {
             where: {id: req.params.id}
         })
-        res.json({'message': 'Neas Bien Actualizado con exito'})
+        res.status(200).json({'message': 'Neas Bien Actualizado con exito'})
     } catch (error) {
-        res.json({message : error.message})
+        res.status(400).json({message : error.message})
     }
 }
 
@@ -50,8 +50,8 @@ export const deleteNeasBienes = async (req, res) => {
         await ModelsNeaBien.destroy({
             where: {id: req.params.id}
         })
-        res.json({'message': 'Neas Bien Eliminado con exito'})
+        res.status(200).json({'message': 'Neas Bien Eliminado con exito'})
     } catch (error) {
-        res.json({message : error.message})
+        res.status(400).json({message : error.message})
     }
 }

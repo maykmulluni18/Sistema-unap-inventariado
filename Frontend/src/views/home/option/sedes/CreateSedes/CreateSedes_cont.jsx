@@ -24,37 +24,39 @@ const CreateSedes_cont = () => {
 
     const Sedes = async (e) => {
         e.preventDefault();
-        const respon = await axios.post(URI, {
-            cuenta_de_costo: cuenta_de_costo,
-            descripcion: descripcion,
-            sede: sede,
-            responsable: responsable,
-        })
+        try {
+            const respon = await axios.post(URI, {
+                cuenta_de_costo: cuenta_de_costo,
+                descripcion: descripcion,
+                sede: sede,
+                responsable: responsable,
+            })
 
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Creado con Exito..',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-            navigate('/sedes')
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Creado con Exito..',
+                        // text: 'Presione Clik para cerrar!',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+                navigate('/sedes')
 
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+            }
+
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
-
-        navigate('/sedes')
-
     }
 
     const mayusculas = (e) => {
@@ -116,10 +118,10 @@ const CreateSedes_cont = () => {
                                     type="text"
                                     placeholder=''
                                     required
-                                    //pattern="[A-Z-0-9]+"
+                                //pattern="[A-Z-0-9]+"
                                 />
-                               
-                            </div> 
+
+                            </div>
                             <div className='crearButtom_B'>
                                 <button className='button1' type='submit'>Guardar</button>
                                 <Link to={'../'} >

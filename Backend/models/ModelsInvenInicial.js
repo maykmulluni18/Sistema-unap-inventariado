@@ -1,31 +1,26 @@
+import ModelsBienes from './ModelsBienes.js';
 import db from '../database/db.js';
 import { Sequelize } from "sequelize";
 const { DataTypes } = Sequelize;
 const ModelsInvenInicial = db.define('inventarido_inicial', {
-    item: {
+    idBienes: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    descripcion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-
-    },
-    cuenta: {
+    cuenta:{
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    unidad: {
-        type: DataTypes.STRING,
+    cantidad_inicial: {
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
-
     },
     cantidad: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
     },
     precio: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
     },
     fecha_registro: {
@@ -38,4 +33,6 @@ const ModelsInvenInicial = db.define('inventarido_inicial', {
 });
 
 
+
 export default ModelsInvenInicial
+

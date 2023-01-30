@@ -324,16 +324,16 @@ const styles = StyleSheet.create({
         fontSize: 10,
         color: "#212121",
         //left: 10,
-        left: 410,
-        top: 136,
+        left: 370,
+        top: 46,
         fontWeight: "bold"
     },
     jefe_alm_1: {
         fontSize: 10,
         color: "#212121",
         //left: 10,
-        left: 438,
-        top: 138,
+        left: 400,
+        top: 48,
         fontWeight: "bold"
     },
     recibi_con: {
@@ -361,7 +361,7 @@ const Reporte_inventariado_cont = () => {
 
     var year = today.getFullYear()
     console.log(year);
-    
+
 
     useEffect(() => {
         getInventarioInicial()
@@ -390,7 +390,7 @@ const Reporte_inventariado_cont = () => {
 
     useEffect(() => {
         const getsumarTotal = () => {
-            const total = inevtariadoInicialId.map((item) => parseFloat(item.cantidad * item.precio))
+            const total = inevtariadoInicialId.map((item) => parseFloat(item.cantidad_inicial * item.precio))
                 .reduce((previus, current) => {
                     return previus + current;
                 }, 0)
@@ -434,7 +434,7 @@ const Reporte_inventariado_cont = () => {
                             <Text style={styles.header} fixed></Text>
                             <Text style={styles.header_subtitle} fixed>
                                 SISTEMA INTEGRADO DE GESTION ADMINISTRATIVAS
-                                
+
                             </Text>
                             <Text style={styles.header_subtitle_oficina} fixed>
                                 MODULO DE LOGISTICA
@@ -516,16 +516,16 @@ const Reporte_inventariado_cont = () => {
 
                                     <View style={styles.tableRow} key={`BR${i}`}>
                                         <View style={styles.tableCol_numero}>
-                                            <Text style={styles.tableCell}>{x.item}</Text>
+                                            <Text style={styles.tableCell}>{x.biene.item}</Text>
                                         </View>
                                         <View style={styles.tableCol_descripcion}>
-                                            <Text style={styles.tableCell}>{x.descripcion}</Text>
+                                            <Text style={styles.tableCell}>{x.biene.description}</Text>
                                         </View>
                                         <View style={styles.tableCol_cuenta}>
                                             <Text style={styles.tableCell_unidad}>{x.cuenta}</Text>
                                         </View>
                                         <View style={styles.tableCol_unidad}>
-                                            <Text style={styles.tableCell}>{x.unidad}</Text>
+                                            <Text style={styles.tableCell}>{x.biene.unidad_de_medida}</Text>
                                         </View>
                                         <View style={styles.tableCol_cantidad}>
                                             <Text style={styles.tableCell}>{x.cantidad}</Text>
@@ -535,10 +535,8 @@ const Reporte_inventariado_cont = () => {
                                         </View>
 
                                         <View style={styles.tableCol_total}>
-                                            <Text style={styles.tableCell}>{x.cantidad * x.precio}</Text>
+                                            <Text style={styles.tableCell}>{Number.parseFloat(x.cantidad_inicial * x.precio).toFixed(2)}</Text>
                                         </View>
-
-
 
                                     </View>
 
@@ -578,7 +576,12 @@ const Reporte_inventariado_cont = () => {
                                 </View>
 
                             </View>
-
+                            <Text style={styles.jefe_alm} fixed>
+                                ___________________________
+                            </Text>
+                            <Text style={styles.jefe_alm_1} fixed>
+                                JEFE DE ALMACEN
+                            </Text>
                             <Text
                                 style={styles.pageNumber}
                                 render={({ pageNumber, totalPages }) =>

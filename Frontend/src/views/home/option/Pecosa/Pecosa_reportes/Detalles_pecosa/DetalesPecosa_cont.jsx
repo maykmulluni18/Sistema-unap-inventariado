@@ -22,7 +22,7 @@ const columnsb = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.inventarido_inicial?.unidad || params.row.nea_bien?.medida }`,
+            `${params.row.inventarido_inicial?.biene.unidad_de_medida || params.row.nea_bien?.biene.unidad_de_medida }`,
     },
     {
         field: 'Descripcion',
@@ -31,7 +31,7 @@ const columnsb = [
         sortable: false,
         width: 450,
         valueGetter: (params) =>
-            `${params.row.inventarido_inicial?.descripcion || params.row.nea_bien?.descripcion  }`,
+            `${params.row.inventarido_inicial?.biene.description || params.row.nea_bien?.biene.description  }`,
     },
     {
         field: 'cuenta_contable',

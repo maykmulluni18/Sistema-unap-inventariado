@@ -8,7 +8,7 @@ const Welcome = () => {
     return (
         <div className="Container">
             <div className="listtitle">
-                Bienvenido al Sub - Almacen central{process.env.REACT_APP_NOT_SECRET_CODE}
+               <h1> Bienvenido al Sub - Almacen central </h1> 
             </div>
             <div className="listtitle_1">
                 <p><strong>{user && user.nombre}</strong></p> 

@@ -11,7 +11,7 @@ export const userColumns = [
         sortable: false,
         width: 350,
         valueGetter: (params) =>
-            `${params.row.inventarido_inicial?.descripcion || params.row.nea_bien?.descripcion}` ,
+            `${params.row.inventarido_inicial?.biene.description || params.row.nea_bien?.biene.description }` ,
     },
     {
         field: 'items',
@@ -20,7 +20,7 @@ export const userColumns = [
         sortable: false,
         width: 90,
         valueGetter: (params) =>
-            `${params.row.inventarido_inicial?.item || params.row.nea_bien?.item}`,
+            `${params.row.inventarido_inicial?.biene.item || params.row.nea_bien?.biene.item}`,
     },
     {
         field: 'u_medida',
@@ -29,7 +29,7 @@ export const userColumns = [
         sortable: false,
         width: 90,
         valueGetter: (params) =>
-            `${params.row.inventarido_inicial?.unidad || params.row.nea_bien?.medida}`,
+            `${params.row.inventarido_inicial?.biene.unidad_de_medida || params.row.nea_bien?.biene.unidad_de_medida}`,
     },
     { field: 'cantidad', headerName: 'Cantidad', width: 100 },
     { field: 'observaciones', headerName: 'Observaciones', width: 210 },    
@@ -41,6 +41,6 @@ export const userColumns = [
         sortable: false,
         width: 100,
         valueGetter: (params) =>
-            `${params.row.cantidad || ''}` * `${params.row.inventarido_inicial?.precio || params.row.nea_bien?.p_unitario}`,
-    },
+            Number.parseFloat(`${params.row.cantidad || ''}` * `${params.row.inventarido_inicial?.precio || params.row.nea_bien?.p_unitario}`).toFixed(2),  
+        },
 ];

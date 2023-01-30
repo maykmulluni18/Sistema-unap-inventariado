@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./editarpecosabienes.scss"
 import { DB_URL } from '../../../../../../config/config';
+import { getGridNumericColumnOperators } from '@mui/x-data-grid';
 
 const URI = DB_URL + 'pecosabienes/'
 
@@ -13,9 +14,12 @@ const URI1 = DB_URL + 'pecosapedidos/'
 
 const URI2 = DB_URL + 'invetinicial/'
 
+const URI3 = DB_URL + 'neasbienes/'
+
 const EditarPecosaBienes_cont = () => {
     const [pecosapedidos, setPecosaPedidos] = useState([])
     const [bienes, setBienes] = useState([])
+    const [neasbien, setNeasdBieneIdd] = useState([])
 
     const getPecosaPedidos = async () => {
         const res = await axios.get(URI1)
@@ -25,16 +29,23 @@ const EditarPecosaBienes_cont = () => {
         const res = await axios.get(URI2)
         setBienes(res.data)
     }
+    const getNeasBien = async () => {
+        const res = await axios.get(URI3)
+        setNeasdBieneIdd(res.data)
+    }
 
     useEffect(() => {
         getPecosaPedidos()
+        getNeasBien()
         getBienes()
         getPecosaBienes()
         updatePecosaBienes()
+
     }, [])
 
     const [pecosaPedidoId, setPecosaPedidoId] = useState('')
     const [inventaridoInicialId, setInventariadoInicialId] = useState('')
+    const [nea_bien_id, setNeasdBieneId] = useState('')
     const [cantidad, setCantidad] = useState('')
     const [observaciones, set_Observaciones] = useState('')
     const [fecha, setFecha] = useState('')
@@ -44,10 +55,11 @@ const EditarPecosaBienes_cont = () => {
 
     const updatePecosaBienes = async (e) => {
         e.preventDefault();
-        const respon = await axios.put(URI+id, {
+        const respon = await axios.put(URI + id, {
             pecosaPedidoId: pecosaPedidoId,
-            inventaridoInicialId: inventaridoInicialId,
-            cantidad:cantidad,
+            inventaridoInicialId: inventaridoInicialId || null,
+            nea_bien_id: nea_bien_id || null,
+            cantidad: cantidad,
             observaciones: observaciones,
             fecha: fecha
         })
@@ -72,17 +84,13 @@ const EditarPecosaBienes_cont = () => {
                 }
             )
         }
-
-        axios.put(URI2,{
-            cantidadi: cantidad - setCantidad(e.target.value)
-        })
-
     }
 
     const getPecosaBienes = async () => {
         const res = await axios.get(URI + id,)
         setPecosaPedidoId(res.data.pecosaPedidoId)
         setInventariadoInicialId(res.data.inventaridoInicialId)
+        setNeasdBieneId(res.data.nea_bien_id)
         setCantidad(res.data.cantidad)
         set_Observaciones(res.data.observaciones)
         setFecha(res.data.fecha)
@@ -92,12 +100,12 @@ const EditarPecosaBienes_cont = () => {
         <>
             <div className='editarpecosabienes'>
                 <div className="top">
-                    <h1>Crear Bienes de la Pecosa: {id}</h1>
+                    <h1>Editar Bienes de la Pecosa: {id}</h1>
                 </div>
                 <div className="bottom">
                     <div className="right">
                         <form onSubmit={updatePecosaBienes}>
-                            <div className='formInput'>
+                            <div className='formInput_pecosa'>
                                 <label>Pecosa</label>
                                 <input
                                     type="text"
@@ -105,7 +113,7 @@ const EditarPecosaBienes_cont = () => {
                                     placeholder='filtrar'
                                     value={pecosaPedidoId}
                                     onChange={(e) => setPecosaPedidoId(e.target.value)}
-                                    required
+
                                 />
                                 <datalist className='datalistt' id="datap">
                                     {
@@ -118,29 +126,59 @@ const EditarPecosaBienes_cont = () => {
                                     }
                                 </datalist>
                             </div>
+                            <div className='formInput_title'>
+                                <h4>Sección de Elegir Bienes de  Inventariado o de Neas (OJO SELECCIONE SOLO UNO)</h4>
+                            </div>
                             <div className='formInput'>
-                                <label>Bienes </label>
+                                <label>Bienes Inventariado </label>
 
                                 <input
-                                    type="text" list="bienesp"
+                                    type="text" list="bienesinv"
                                     placeholder='filtrar'
                                     value={inventaridoInicialId}
                                     onChange={(e) => setInventariadoInicialId(e.target.value)}
-                                    required
+                                    
                                 />
-                                <datalist id="bienesp">
+                                <datalist id="bienesinv">
                                     {
                                         bienes
                                             .map(res => {
                                                 return (
-                                                    <option key={res.id} value={res.id}> {res.description} </option>
+                                                    <option key={res.id} value={res.id}> [ N°: {res.id} ] -- [ {res.descripcion} ] -- [ Stock = {res.cantidad} ] </option>
                                                 )
                                             })
                                     }
 
                                 </datalist>
                             </div>
+                            <div className='formInput'>
+                                <label>Bienes Neas </label>
 
+                                <input
+                                    type="text" list="bienesnea"
+                                    placeholder='filtrar'
+                                    value={nea_bien_id}
+                                    onChange={(e) => setNeasdBieneId(e.target.value)}
+                                    
+
+                                />
+
+                                <datalist id="bienesnea">
+                                    {
+                                        neasbien
+                                            .map(res => {
+                                                return (
+                                                    <option key={res.id} value={res.id}> [N° NEA: {res.neaEntradaId}] -- [ {res.descripcion}] -- [ Stock: {res.cantidad} ]</option>
+                                                )
+                                            })
+                                    }
+
+                                </datalist>
+                            </div>
+                            <div className='formInput_title'>
+                                <h4>Sección de Ingresar cantidad y observación</h4>
+                            </div>
+                            
                             <div className="formInput">
                                 <label>Observaciones</label>
                                 <input
@@ -157,6 +195,7 @@ const EditarPecosaBienes_cont = () => {
                                     onChange={(e) => setCantidad(e.target.value)}
                                     type="number"
                                     required
+                                    
                                 />
                             </div>
                             <div className="formInput">

@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize";
 import ModelsPecosaPedidos from "./ModelsPecosaPedidos.js"
 import ModelsInvenInicial from "../models/ModelsInvenInicial.js"
 import ModelsNeaBien from './ModelsNeaBien.js';
+import ModelsBienes from './ModelsBienes.js';
 
 const { DataTypes } = Sequelize;
 const ModelsPecosaBienes = db.define('pecosa_bienes', {
@@ -27,7 +28,7 @@ const ModelsPecosaBienes = db.define('pecosa_bienes', {
         allowNull: true,
     },
     cantidad: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
         
 
@@ -57,7 +58,7 @@ ModelsPecosaPedidos.hasOne(ModelsPecosaBienes, {
 })
 
 ModelsPecosaBienes.belongsTo(ModelsInvenInicial, { foreignKey: "inventaridoInicialId" })
-ModelsInvenInicial.hasOne(ModelsPecosaBienes, {
+ModelsInvenInicial.hasMany(ModelsPecosaBienes, {
     foreignKey: {
         name: 'id',
     }
@@ -69,5 +70,10 @@ ModelsNeaBien.hasOne(ModelsPecosaBienes, {
         name: 'id',
     }
 })
-
+ModelsInvenInicial.belongsTo(ModelsBienes, { foreignKey: "idBienes" })
+ModelsBienes.hasMany(ModelsInvenInicial, {
+    foreignKey: {
+        name: 'id',
+    }
+})
 export default ModelsPecosaBienes

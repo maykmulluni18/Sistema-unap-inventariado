@@ -87,10 +87,10 @@ const TablaInventariado = () => {
         <h1>Inventario Inicial de Bienes de la Oficina de abastecimiento</h1>
 
       </div>
-      <div className="top_1">
+      {/*<div className="top_1">
         <ExcelImportInventariado />
 
-      </div>
+      </div>*/}
       <div className="Tabledata">
         <div className="dataTitle">
           Lista de Bienes

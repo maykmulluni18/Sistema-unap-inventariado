@@ -48,42 +48,44 @@ const EditarNeasEntradas_cont = () => {
 
     const Neas_Entradas = async (e) => {
         e.preventDefault();
-        const respon = await axios.put(URI + id, {
-            id_administradores: id_administradores,
-            id_sedes: id_sedes,
-            tipo_de_ingreso: tipo_de_ingreso,
-            recibido_por: recibido_por,
-            tipo_de_obra: tipo_de_obra,
-            tipo_de_moneda: tipo_de_moneda,
-            tipo_de_almacen: tipo_de_almacen,
-            documento: documento,
-            tipo_de_cambio: tipo_de_cambio,
-            tipo_de_uso: tipo_de_uso,
-            fecha_de_nea: fecha_de_nea,
-            fecha_de_registro: fecha_de_registro
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Creado con Exito..',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+        try {
+            const respon = await axios.put(URI + id, {
+                id_administradores: id_administradores,
+                id_sedes: id_sedes,
+                tipo_de_ingreso: tipo_de_ingreso,
+                recibido_por: recibido_por,
+                tipo_de_obra: tipo_de_obra,
+                tipo_de_moneda: tipo_de_moneda,
+                tipo_de_almacen: tipo_de_almacen,
+                documento: documento,
+                tipo_de_cambio: tipo_de_cambio,
+                tipo_de_uso: tipo_de_uso,
+                fecha_de_nea: fecha_de_nea,
+                fecha_de_registro: fecha_de_registro
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Creado con Exito..',
+                        // text: 'Presione Clik para cerrar!',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+            }
+            navigate('/neas-entradas')
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
-
-        navigate('/neas-entradas')
-
     }
 
     const getNeasEntradas = async () => {
@@ -128,7 +130,7 @@ const EditarNeasEntradas_cont = () => {
                                     onChange={selectAdministrativo}
                                     required
                                 />
-                               <FilterAdministrativos/>
+                                <FilterAdministrativos />
                             </div>
                             <div className='formInput'>
                                 <label>Sedes Id</label>

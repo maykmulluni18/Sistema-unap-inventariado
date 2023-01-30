@@ -30,30 +30,35 @@ const CrearObras_cont = () => {
 
     const Obras = async (event) => {
         event.preventDefault();
-        for (let i = 0; i < detailss.length; i++) {
-            const respon = await axios.post(URI,
-                {
-                    obras: detailss[i].obras,
-                },
+        try {
+            for (let i = 0; i < detailss.length; i++) {
+                const respon = await axios.post(URI,
+                    {
+                        obras: detailss[i].obras,
+                    },
 
-            )
-            if (respon.status === 200) {
-                Swal.fire(
-                    {
-                        title: 'Creado con Exito..',
-                        // text: 'Presione Clik para cerrar!',
-                        icon: 'success',
-                        timer: 5500
-                    }
                 )
-                navigate('/obras')
-            } else {
+                if (respon.status === 200) {
+                    Swal.fire(
+                        {
+                            title: 'Creado con Exito..',
+                            // text: 'Presione Clik para cerrar!',
+                            icon: 'success',
+                            timer: 5500
+                        }
+                    )
+                    navigate('/obras')
+                }
+
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
                 Swal.fire(
                     {
-                        title: 'Error!',
-                        // text: 'Presione Clik para cerrar!',
+                        title: 'Error',
+                        text: error.response.data.message,
                         icon: 'error',
-                        timer: 5500
+                        timer: 8500
                     }
                 )
             }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from "../../../../Layout";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
-import  FilterData  from './FilterData';
+import FilterData from './FilterData';
 import "./crearpecosapedidos.scss"
 import { DB_URL } from '../../../../../../config/config';
 
@@ -52,34 +52,38 @@ const CrearPecosaPedidos_cont = () => {
     const navigate = useNavigate()
     const Pecosa_Pedidos = async (e) => {
         e.preventDefault();
-        const respon = await axios.post(URI, {
-            dependencias: dependencias,
-            id_administrativos: id_administrativos,
-            id_sedes: id_sedes,
-            id_metas: id_metas,
-            fecha: fecha,
-            almacen: almacen
-        })
-        if (respon.status === 201) {
-            Swal.fire(
-                {
-                    title: 'Creado con Exito..',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-            navigate('/pecosa-pedidos')
+        try {
+            const respon = await axios.post(URI, {
+                dependencias: dependencias,
+                id_administrativos: id_administrativos,
+                id_sedes: id_sedes,
+                id_metas: id_metas,
+                fecha: fecha,
+                almacen: almacen
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Creado con Exito..',
+                        // text: 'Presione Clik para cerrar!',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+                navigate('/pecosa-pedidos')
 
-        } else if(respon.status === 400){
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
 
 
@@ -115,7 +119,7 @@ const CrearPecosaPedidos_cont = () => {
                                     onChange={(e) => setIdAdministrativos(e.target.value)}
                                     required
                                 />
-                                    <FilterData />
+                                <FilterData />
                             </div>
                             <div className='formInput'>
                                 <label>Sedes </label>

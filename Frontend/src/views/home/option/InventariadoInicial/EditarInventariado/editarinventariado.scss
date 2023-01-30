@@ -41,7 +41,7 @@
           justify-content: space-around;
   
           .formInput {
-            width: 80%;
+            width: 45%;
   
             label {
               display: flex;
@@ -67,9 +67,10 @@
   
             .selecunidad {
               width: 100%;
-              padding: -14px;
-              font-size: 16px;
-              color: #b4b4b4;
+              padding: 10px;
+              color: rgb(103, 103, 103);
+              font-size: 18px;
+              background: transparent;
             }
           }
   

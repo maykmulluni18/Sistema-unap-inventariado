@@ -35,7 +35,8 @@
 
             .formInput_title {
               width: 100%;
-              h4{
+
+              h4 {
                 font-size: 20px;
                 color: rgb(123, 122, 122);
                 text-align: center;
@@ -56,6 +57,7 @@
                   cursor: pointer;
                 }
               }
+
 
               input {
                 width: 100%;
@@ -84,6 +86,15 @@
                 }
               }
 
+              select {
+                background: transparent;
+                border: none;
+                color: rgb(95, 17, 104);
+                font-size: 20px;
+                text-align: center;
+                font-weight: bold;
+              }
+
               input {
                 width: 100%;
                 padding: 10px;
@@ -109,7 +120,7 @@
               width: 20%;
 
               .buttonA {
-               
+
                 font-weight: bold;
                 min-width: 130px;
                 height: 40px;
@@ -184,7 +195,7 @@
 
           .button1 {
             //right: 19px;
-            left:   20px;
+            left: 20px;
             width: 50%;
             font-weight: bold;
             min-width: 130px;

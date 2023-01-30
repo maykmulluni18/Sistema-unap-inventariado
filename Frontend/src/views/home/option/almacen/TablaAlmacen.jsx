@@ -83,7 +83,7 @@ const TablaAlmcen = () => {
   return (
     <div className="Table_almacen">
       <div className="top">
-        <h1>Almacenes de la Oficina  de abastecimiento</h1>
+        <h1><strong>Lista de Almacenes: </strong> de la Oficina  de abastecimiento</h1>
       </div>
       <div className="Tabledata">
         <div className="dataTitle">
@@ -95,6 +95,7 @@ const TablaAlmcen = () => {
           </div>
         </div>
         <DataGrid
+        
           className="datagrid"
           rows={almacen}
           columns={userColumns.concat(actionColumn)}

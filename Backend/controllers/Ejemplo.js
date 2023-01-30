@@ -1,40 +1,50 @@
 import util from "util"
 import db from "../database/db.js"
 //const query = util.promisify(db.query).bind(db)
-export const getCantidad = async (req, res)=>{
-    try{
+export const getCantidad = async (req, res) => {
+    try {
         const usuarios = await db.query(
-            'SELECT description, SUM(cantidad) AS cantidad FROM nea_bien INNER JOIN bienes ON nea_bien.bieneId = bienes.id GROUP BY nea_bien.bieneId')
-        res.json(usuarios)
-    } catch (error){
-        res.json({message: error.message})
+            `SELECT b.id, 
+            b.item,
+            b.unidad_de_medida AS Unidad_de_Medida,
+            b.description AS Descripcion,
+            i.cantidad AS Inventarido_Cantidad,
+            n.cantidad AS Nea_Cantidad,
+            i.cantidad_inicial + COALESCE(SUM(n.cantidad_inicial), 0) AS Cantidad_Inicial,
+            i.cantidad + COALESCE(SUM(n.cantidad), 0) AS stock
+        FROM bienes b
+        LEFT JOIN inventarido_inicial i ON i.idBienes = b.id 
+        LEFT JOIN nea_bien n ON n.idBienes = b.id
+        GROUP BY i.id`)
+        res.json(usuarios[0])
+    } catch (error) {
+        res.json({ message: error.message })
     }
 }
 
 export const getStock = async (req, res) => {
-    try{
-         let sql =   `SELECT i.id, i.fecha_registro, i.item,i.unidad, i.descripcion, 
+    try {
+        let sql = `SELECT i.id, i.fecha_registro, i.item,i.unidad, i.descripcion, 
          i.cantidad AS entrada, p.cantidad AS salida, i.cantidad - COALESCE(SUM(p.cantidad), 0) AS stock, 
          i.precio FROM inventarido_inicial i LEFT JOIN  
          pecosa_bienes p ON i.id = p.inventaridoInicialId GROUP BY i.id`
         const stock = await db.query(sql)
-         res.json(stock[0])
-    } catch (error){
-        res.json({message: error.message})
+        res.json(stock[0])
+    } catch (error) {
+        res.json({ message: error.message })
     }
 }
 
-
 export const getStockNea = async (req, res) => {
-    try{
-        let sql = `SELECT i.id, i.fecha, i.item, i.medida, i.descripcion, i.cantidad AS entrada, p.cantidad AS salida, i.cantidad - COALESCE(SUM(p.cantidad), 0) AS stock
+    try {
+        let sql = `SELECT p.updatedAt, i.fecha, i.item, i.medida, i.descripcion, i.cantidad AS entrada, p.cantidad AS salida, i.cantidad - COALESCE(SUM(p.cantidad), 0) AS stock
         FROM nea_bien i LEFT JOIN 
         pecosa_bienes p
         ON i.id = p.nea_bien_id
-        GROUP BY i.id`
+        GROUP BY p.updatedAt`
         const stocknea = await db.query(sql)
         res.json(stocknea[0])
-    } catch (error){
-        res.json({message: error.message})
+    } catch (error) {
+        res.json({ message: error.message })
     }
 }

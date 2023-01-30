@@ -14,29 +14,34 @@ const EditarObras_cont = () => {
 
     const updateeObras = async (e) => {
         e.preventDefault()
-        const respon = await axios.put(URI + id, {
-            obras: obras,
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Editado con Exito..',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-            navigate('/obras')
 
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+        try {
+            const respon = await axios.put(URI + id, {
+                obras: obras,
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Editado con Exito..',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+                navigate('/obras')
+
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
-
 
 
     }
@@ -71,7 +76,7 @@ const EditarObras_cont = () => {
                                     required
                                 />
                             </div>
-                          
+
                             <div className='crearButtom_B'>
                                 <button className='button1' type='submit'>Guardar</button>
                                 <Link to={'../'} >

@@ -36,6 +36,7 @@ import DetallesPecosa from "./views/home/option/Pecosa/Pecosa_reportes/Detalles_
 import PdfReporte from "./views/home/option/Pecosa/Pecosa_reportes/Pdf_pecosa/PdfReporte";
 
 import CreateAdministrativos from "./views/home/option/usuarios/modalnewusers/CreateAdministrativos";
+
 import "./app.css"
 
 
@@ -63,6 +64,7 @@ import ListaObras from "./views/home/option/obras/ListaObras";
 import CrearObras from "./views/home/option/obras/crearObras/CrearObras";
 import EditarObras from "./views/home/option/obras/editarObras/EditarObras";
 
+import ReporteTotal from "./views/home/stocks/CantTotal"
 import StocksNeas from "./views/home/stocks/StocksNeas";
 
 function App() {
@@ -78,6 +80,10 @@ function App() {
                 <Route path="/home" element={<Home />} />
 
                 <Route path="*" element={<Not_found_404 />} />
+
+                <Route path="/reportetotal">
+                  <Route index element={<ReporteTotal/>} />
+                </Route>
                 <Route path="/bienes">
                   <Route index element={<Bienes />} />
                   <Route path="created-bienes" element={<CreatedBienes />} />

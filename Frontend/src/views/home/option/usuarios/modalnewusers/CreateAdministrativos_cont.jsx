@@ -18,30 +18,36 @@ const CreateAdministrativos_cont = () => {
 
     const Administrativos = async (e) => {
         e.preventDefault();
-        const respon = await axios.post(URI, {
-            n_documento: n_documento,
-            apellido_paterno: apellido_paterno,
-            apellido_materno: apellido_materno,
-            nombres: nombres
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Creeado con Exito!',
-                    icon: 'success',
-                    timer: 5500
-                    
-                }
-            )
-            navigate('/administrativos')
-        } else {
-            Swal.fire(
-                {
-                    title: 'Good job!',
-                    text: 'You clicked the button!',
-                    icon: 'error'
-                }
-            )
+        try {
+            const respon = await axios.post(URI, {
+                n_documento: n_documento,
+                apellido_paterno: apellido_paterno,
+                apellido_materno: apellido_materno,
+                nombres: nombres
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Creeado con Exito!',
+                        icon: 'success',
+                        timer: 5500
+
+                    }
+                )
+                navigate('/administrativos')
+            }
+
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
 
     }
@@ -70,7 +76,7 @@ const CreateAdministrativos_cont = () => {
 
 
                                 />
-                                
+
                             </div>
                             <div className="formInput" >
                                 <label htmlFor='inputNombres'>NOMBRES</label>

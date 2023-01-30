@@ -1,13 +1,16 @@
 import ModelsBienes from "../models/ModelsBienes.js"
+import ModelsInvenInicial from "../models/ModelsInvenInicial.js"
 
 
 export const getBienes = async (req, res) => {
     try {
-        const bienes = await ModelsBienes.findAll()
+        const bienes = await ModelsBienes.findAll({
+            include:[ModelsInvenInicial]
+        })
         res.json(bienes)
 
     } catch (error) {
-        res.json( {message: error.message} )
+        res.status(400).json( {message: error.message} )
     }
 
 }
@@ -15,13 +18,15 @@ export const getBienes = async (req, res) => {
 
 export const getBienesID = async (req, res) =>{
     try{
-        const bienes = await ModelsBienes.findAll({
-            where:{id:req.params.id}
+        const bienes = await ModelsBienes.findOne({
+            where:{id:req.params.id},
+            include:[ModelsInvenInicial]
+
         })
-        res.json(bienes[0])
+        res.json(bienes)
         
     } catch (error){
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 

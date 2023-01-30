@@ -13,7 +13,7 @@ export const getPecosaPedidos = async(req, res)=>{
         })
         res.json(pecosapedidos)
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
         
     }
 } 
@@ -24,11 +24,10 @@ export const getPecosaPedidosId = async(req, res) => {
             where: {id: req.params.id},
             include: [ModelsAdministrativos, ModelsSedes, ModelsInvenInicial, ModelsMetas]
         })
-        console.log('respuesta',pecosapedido)
         res.json(pecosapedido[0])
         
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -36,7 +35,7 @@ export const getPecosaPedidosId = async(req, res) => {
 export const createPecosaPedidos = async(req, res) => {
     try {
         await ModelsPecosaPedidos.create(req.body)
-        res.status(201).json({'message':'Pecosa Pedidos creado con exito'})
+        res.status(200).json({'message':'Pecosa Pedidos creado con exito'})
     } catch (error) {
         res.status(400).json({message: error.message})
     }
@@ -47,9 +46,9 @@ export const updatePecosaPedidos = async(req, res) => {
         const pecosapedidos = await ModelsPecosaPedidos.update(req.body,{
             where: {id: req.params.id}
         })
-        res.json({'message':'Pecosa pedidos actualizado con exito'})
+        res.status(200).json({'message':'Pecosa pedidos actualizado con exito'})
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 

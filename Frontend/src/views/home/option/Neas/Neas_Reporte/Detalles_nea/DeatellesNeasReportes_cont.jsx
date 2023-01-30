@@ -12,7 +12,9 @@ const URI = DB_URL + 'neasentradas/'
 const URI1 = DB_URL + 'neasbienesentradas/'
 
 const columns = [
-    { field: 'cantidad', headerName: 'Cantidad', width: 100 },
+    { field: 'cantidad_inicial', headerName: 'Cantidad', width: 100 },
+    { field: 'cantidad', headerName: 'Stock', width: 100 },
+
     {
         field: 'Codigo',
         headerName: 'Codigo',
@@ -20,16 +22,16 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.item}`,
+            `${params.row.biene.item}`,
     },
     {
         field: 'Descripcion',
         headerName: 'Descripcion',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 600,
+        width: 450,
         valueGetter: (params) =>
-            `${params.row.description}`,
+            `${params.row.biene.description}`,
     },
     {
         field: 'U. Medida',
@@ -38,10 +40,10 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.medida}`,
+            `${params.row.biene.unidad_de_medida}`,
     },
     { field: 'fte_fto', headerName: 'Fte_Fto', width: 130 },
-    { field: 'cuenta', headerName: 'Cuenta Contable', width: 100 },
+    { field: 'cuenta_contable', headerName: 'Cuenta Contable', width: 100 },
     { field: 'p_unitario', headerName: 'P.Unitario', width: 100 },
     {
         field: 'P.Total',
@@ -50,7 +52,7 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.cantidad}` * `${params.row.p_unitario}`,
+        Number.parseFloat(`${params.row.cantidad_inicial || ''}` * `${params.row.p_unitario || ''}`).toFixed(2)
     },
 
 ];

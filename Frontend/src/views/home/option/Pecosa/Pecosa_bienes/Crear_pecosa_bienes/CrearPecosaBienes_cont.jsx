@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./crearpecosabienes.scss"
 import { DB_URL } from '../../../../../../config/config';
+import { Filter_Obs_Nea } from './filter_obs';
 
 const URI = DB_URL + 'pecosabienes/'
 
@@ -21,19 +22,22 @@ const CrearPecosaBienes_cont = () => {
     const [bienes, setBienes] = useState([])
     const [neasbien, setNeasdBieneId] = useState([])
 
+    const [error, setError] = useState(false)
+
+
     const getPecosaPedidos = async () => {
         const res = await axios.get(URI1)
-        setPecosaPedidos(res.data)
+        setPecosaPedidos(res.data.reverse())
     }
     const [cantInv, setCantInv] = useState('')
 
     const getBienes = async () => {
         const res = await axios.get(URI2)
-        setBienes(res.data)
+        setBienes(res.data.reverse())
     }
     const getNeasBien = async () => {
         const res = await axios.get(URI3)
-        setNeasdBieneId(res.data)
+        setNeasdBieneId(res.data.reverse())
     }
     useEffect(() => {
         getPecosaPedidos()
@@ -59,38 +63,74 @@ const CrearPecosaBienes_cont = () => {
     }
     const [pecosaPedidoId, setPecosaPedidosId] = useState('')
     const Pecosa_Bien = async (e) => {
+
         e.preventDefault();
-        for (let i = 0; i < detailsspecosabienes.length; i++) {
-            const respon = await axios.post(URI, {
-                pecosaPedidoId: pecosaPedidoId,
-                inventaridoInicialId: detailsspecosabienes[i].inventaridoInicialId || null,
-                nea_bien_id: detailsspecosabienes[i].nea_bien_id || null,
-                cantidad: detailsspecosabienes[i].cantidad,
-                observaciones: detailsspecosabienes[i].observaciones || detailsspecosabienes[i].nea_bien.neaEntradaId,
-                fecha: fecha,
-            })
-            if (respon.status === 200) {
+        try {
+            for (let i = 0; i < detailsspecosabienes.length; i++) {
+                const respon = await axios.post(URI, {
+                    pecosaPedidoId: pecosaPedidoId,
+                    inventaridoInicialId: detailsspecosabienes[i].inventaridoInicialId || null,
+                    nea_bien_id: detailsspecosabienes[i].nea_bien_id || null,
+                    cantidad: detailsspecosabienes[i].cantidad,
+                    observaciones: detailsspecosabienes[i].observaciones,
+                    fecha: fecha,
+                })
+                if (respon.status === 200) {
+                    Swal.fire(
+                        {
+                            title: 'Creado con Exito..',
+                            // text: 'Presione Clik para cerrar!',
+                            icon: 'success',
+                            timer: 5500
+                        }
+                    )
+                    navigate('/pecosa-bienes')
+                } else {
+                    Swal.fire(
+                        {
+                            title: 'Error!',
+                            // text: 'Presione Clik para cerrar!',
+                            icon: 'error',
+                            timer: 5500
+                        }
+                    )
+                }
+
+
+            }
+        } catch (error) {
+            console.log(error.response.status)
+            setError(error.response.data.message)
+            if (error.response.status == 500) {
                 Swal.fire(
                     {
-                        title: 'Creado con Exito..',
-                        // text: 'Presione Clik para cerrar!',
-                        icon: 'success',
-                        timer: 5500
-                    }
-                )
-                navigate('/pecosa-bienes')
-            } else {
-                Swal.fire(
-                    {
-                        title: 'Error!',
-                        // text: 'Presione Clik para cerrar!',
+                        title: 'Error',
+                        text: error.response.data.message,
                         icon: 'error',
-                        timer: 5500
+                        timer: 8500
                     }
                 )
             }
+            if (error.response.status === 400 || error.response.status === 404) {
+                Swal.fire(
+                    {
+                        title: error.response.data.message,
+                        icon: 'warning',
+                        timer: 8500
+                    }
+                )
 
-
+            }
+            if (error.response.status === 401) {
+                Swal.fire(
+                    {
+                        title: 'Campo [ Cantidad ]',
+                        text: error.response.data.message,
+                        icon: 'warning',
+                        timer: 8500
+                    }
+                )
+            }
         }
     }
     const handleAdd = () => {
@@ -121,7 +161,9 @@ const CrearPecosaBienes_cont = () => {
 
                 <div className="cont_form_bienes">
                     <div className="right">
+
                         <form onSubmit={Pecosa_Bien}>
+                            {/*  <p>EL error es: {error}</p>*/}
                             {
                                 detailsspecosabienes.map((value_cont, index) => (
                                     <div key={index} className='gen_fromImput'>
@@ -153,7 +195,7 @@ const CrearPecosaBienes_cont = () => {
                                             </div>
                                             <div className='formInput_title'>
                                                 <h4>Sección de Elegir Bienes de  Inventariado o de Neas (OJO SELECCIONE SOLO UNO)</h4>
-                                            </div>  
+                                            </div>
                                             <div className='formInput'>
                                                 <label>Bienes de Inventariado Inicial </label>
 
@@ -163,14 +205,14 @@ const CrearPecosaBienes_cont = () => {
                                                     name='inventaridoInicialId'
                                                     value={value_cont.inventaridoInicialId}
                                                     onChange={(e) => handleSubmit(e, index)}
-                                                    
+
                                                 />
                                                 <datalist id="bienesp">
                                                     {
                                                         bienes
                                                             .map(res => {
                                                                 return (
-                                                                    <option key={res.id} value={res.id}> {res.descripcion} </option>
+                                                                    <option key={res.id} value={res.id}> [ N°: {res.id} ] -- [ Stock = {res.cantidad} ] -- [ {res.biene.description} ] </option>
                                                                 )
                                                             })
                                                     }
@@ -195,7 +237,7 @@ const CrearPecosaBienes_cont = () => {
                                                         neasbien
                                                             .map(res => {
                                                                 return (
-                                                                    <option key={res.id} value={res.id}> NEA {res.id} - {res.descripcion} </option>
+                                                                    <option key={res.id} value={res.id}> [N° NEA: {res.neaEntradaId}] -- [ Stock: {res.cantidad} ] -- [ {res.biene.description}] </option>
                                                                 )
                                                             })
                                                     }
@@ -204,8 +246,8 @@ const CrearPecosaBienes_cont = () => {
                                             </div>
 
                                             <div className='formInput_title'>
-                                                <h4>Sección de Ingresar cantidad y observación</h4>
-                                            </div> 
+                                                <h4>Sección de Ingresar cantidad y observación (Si seleccion los materiales de neas, en observaciones aparecera un texto morado para ingresar el numero de NEA)</h4>
+                                            </div>
                                             <div className="formInput" >
                                                 <label>Cantidad</label>
                                                 <input
@@ -218,6 +260,17 @@ const CrearPecosaBienes_cont = () => {
                                             </div>
                                             <div className="formInput">
                                                 <label>Observaciones</label>
+                                                <select
+                                                    disabled
+                                                    type="text"
+                                                    placeholder='Select'
+                                                    name='nea_bien_id'
+                                                    value={value_cont.nea_bien_id}
+                                                    onChange={(e) => handleSubmit(e, index)}
+                                                >
+                                                    <option value=""> </option>
+                                                    <Filter_Obs_Nea />
+                                                </select>
                                                 <input
                                                     name='observaciones'
                                                     value={value_cont.observaciones.toUpperCase()}

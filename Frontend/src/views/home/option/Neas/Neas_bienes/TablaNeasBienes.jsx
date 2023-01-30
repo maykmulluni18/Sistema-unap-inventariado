@@ -99,10 +99,10 @@ const TablaNeasBienes = () => {
                 <div className="top">
                     <h1>Inventario de Neas de Oficina  de abastecimiento</h1>
                 </div>
-                <div className="top_1">
+                {/*<div className="top_1">
                     <ImportNeasExcel/>
 
-                </div>
+                </div>*/}
                 <div className="Tabledata">
                     <div className="dataTitle">
                         Inventario Oficina de de abastecimiento

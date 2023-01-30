@@ -15,20 +15,16 @@ const ModelsNeaBien = db.define('nea_bien', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    item: {
+    idBienes: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    descripcion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    medida: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    cantidad_inicial: {
+        type: DataTypes.DECIMAL(10,4),
+        allowNull: false
     },
     cantidad: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
 
     },
@@ -43,7 +39,7 @@ const ModelsNeaBien = db.define('nea_bien', {
 
     },
     p_unitario: {
-        type: DataTypes.DECIMAL(10,3),
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
 
     },
@@ -64,11 +60,11 @@ ModelsNeaEntradas.hasOne(ModelsNeaBien, {
     }
 })
 
-/*ModelsNeaBien.belongsTo(ModelsBienes, { foreignKey: "bieneId" })
+ModelsNeaBien.belongsTo(ModelsBienes, { foreignKey: "idBienes" })
 ModelsBienes.hasOne(ModelsNeaBien, {
     foreignKey: {
         name: 'id',
     }
-})*/
+})
 
 export default ModelsNeaBien

@@ -551,7 +551,7 @@ const PdfNeas_cont = () => {
                                     <Text fixed>TIPO DE CAMBIO </Text>     :<Text>   {tipo_de_cambio} </Text>
                                 </Text>
                                 <Text style={styles.tipo_uso} fixed>
-                                    <Text fixed>TIPO DE USO </Text>           :<Text>   {recibido_por} </Text>
+                                    <Text fixed>TIPO DE USO </Text>           :<Text>   {tipo_de_uso} </Text>
                                 </Text> 
                             </View>
                             <Text style={styles.Oficio} fixed>
@@ -609,10 +609,10 @@ const PdfNeas_cont = () => {
                                             <Text style={styles.tableCell}>{x.cantidad}</Text>
                                         </View>
                                         <View style={styles.tableCol_descripcion}>
-                                            <Text style={styles.tableCell}>{x.descripcion}</Text>
+                                            <Text style={styles.tableCell}>{x.biene.description}</Text>
                                         </View>
                                         <View style={styles.tableCol_unidad}>
-                                            <Text style={styles.tableCell_unidad}>{x.medida}</Text>
+                                            <Text style={styles.tableCell_unidad}>{x.biene.unidad_de_medida}</Text>
                                         </View>
                                         <View style={styles.tableCol_fte}>
                                             <Text style={styles.tableCell}>{x.fte_fto}</Text>

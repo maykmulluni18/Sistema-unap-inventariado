@@ -4,57 +4,46 @@ import excel from "exceljs"
 import path from 'path';
 const __dirname = path.resolve();
 
+
 export const Excelupload = async (req, res) => {
   try {
-    if (req.file == undefined) {
-      return res.status(400).send("Please upload an excel file!");
+    if (!req.file) {
+      return res.status(400).json({ message: "Cargue un archivo de Excel" });
     }
 
-    let path =
-    __dirname + "/uploads/" + req.file.filename;
+    const path = __dirname + "/uploads/" + req.file.filename;
+    const rows = await readXlsxFile(path);
+    // skip header
+    rows.shift();
 
-    readXlsxFile(path).then((rows) => {
-      // skip header
-      rows.shift();
-
-      let datas_invent = [];
-
-      rows.forEach((row) => {
-        let data_invent = {
-          item: row[0],
-          descripcion: row[1],
-          cuenta: row[2],
-          unidad: row[3],
-          cantidad: row[4],
-          precio: row[5],
-          fecha_registro: row[6],
-          createdAt: row[7],
-          updatedAt: row[8]
-        };
-
-        datas_invent.push(data_invent);
-      });
-
-      ModelsInvenInicial.bulkCreate(datas_invent)
-        .then(() => {
-          res.status(200).send({
-            message: "Uploaded the file successfully: " + req.file.originalname,
-          });
-        })
-        .catch((error) => {
-          res.status(500).send({
-            message: "Fail to import data into database!",
-            error: error.message,
-          });
-        });
+    // Use map instead of forEach to create the data array
+    const datas_invent = rows.map((row) => {
+      return {
+        item: row[0],
+        descripcion: row[1],
+        cuenta: row[2],
+        unidad: row[3],
+        cantidad_inicial: row[4],
+        cantidad: row[5],
+        precio: row[6],
+        fecha_registro: row[7],
+        createdAt: row[8],
+        updatedAt: row[9]
+      };
     });
+
+    await ModelsInvenInicial.bulkCreate(datas_invent);
+
+    res.status(200).json({ message: "El archivo se ha subido correctamente: " + req.file.originalname });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
-      message: "Could not upload the file: " + req.file.originalname,
+    res.status(500).json({
+      message: "No se pudo cargar el archivo: " + req.file.originalname,
+      error: error.message
     });
   }
 };
+
 
 export const getReporInventariado = (req, res) => {
     ModelsInvenInicial.findAll()

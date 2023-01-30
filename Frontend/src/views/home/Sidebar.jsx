@@ -28,7 +28,7 @@ import { SidebarDataMetas } from './SidebarDataMetas';
 import { SidebarDataInventariado } from './SidebarDataInventariado';
 import { SidebarDataAlmacen } from './SidebarDataAlmacen';
 import { SidebarDataObras } from './SidebarDataObras';
-
+import { SidebarDataReporteTotal } from './SidebarDataReporteTotal';
 import LabelIcon from '@mui/icons-material/Label';
 import SegmentIcon from '@mui/icons-material/Segment';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -147,7 +147,27 @@ function EjempSidebar(props) {
                         })
                     }
                 </List>
+                <List>
+                    {
+                        SidebarDataReporteTotal.map((item, index) => {
+                            return (
+                                <Link key={item.id} to={item.path} className="icon">
 
+                                    <div className="menu_div">
+                                        <ul className="menu_list grid">
+                                            <li className="list_item active">
+                                                <p className="menu_link flex">
+                                                    {item.icon} <span className="smallText">{item.title}</span>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </Link>
+                            )
+
+                        })
+                    }
+                </List>
                 <Divider className='lines' />
                 <List>
 
@@ -367,6 +387,31 @@ function EjempSidebar(props) {
                 </List>
                 <Divider className='lines' />
 
+                <List>
+                    {
+                        SidebarDataBienes.map((item, index) => {
+                            return (
+                                <Link key={item.id} to={item.path} className="icon">
+
+                                    <div className="menu_div">
+                                        <ul className="menu_list grid">
+
+                                            <li key={index} className="list_item">
+                                                <p className="menu_link flex">
+                                                    {item.icon}<span className="smallText">{item.title}</span>
+
+                                                </p>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </Link>
+                            )
+
+                        })
+                    }
+                </List>
+                <Divider className='lines' />
                 <List>
                     {
                         SidebarDataAdministrativos.map((item, index) => {

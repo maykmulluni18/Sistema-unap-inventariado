@@ -40,12 +40,13 @@ const Stocks = () => {
             width: 120,
             renderCell: (params) => {
                 return (
-                    <div className="cellAction">
-                        <Link to={`reporpdf/${params.row.fecha_registro}`} style={{ textDecoration: "none" }}>
+                   <div className="cellAction">
+                        {/* <Link to={`reporpdf/${params.row.fecha_registro}`} style={{ textDecoration: "none" }}>
                             <div className="pdfButton"><PictureAsPdfIcon /></div>
-                        </Link>
+                        </Link>*/}
 
                     </div>
+                
                 );
             },
         },
@@ -68,7 +69,7 @@ const Stocks = () => {
                         columns={userColumns.concat(actionColumn)}
                         pageSize={7}
                         rowsPerPageOptions={[5]}
-                        //getRowId={row => row[0].id}                        //checkboxSelection
+                        // getRowId={(row) => (row.id, row.updatedAt)}                     //checkboxSelection
                         disableColumnSelector
 
                         components={{

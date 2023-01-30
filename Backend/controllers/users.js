@@ -40,7 +40,7 @@ export const createUser = async (req, res) => {
             password: hashPassword
 
         });
-        res.status(201).json({ message: "Se registro exitosamente" });
+        res.status(200).json({ message: "Se registro exitosamente" });
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

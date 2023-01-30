@@ -48,6 +48,10 @@ const StocksNeas = () => {
             },
         },
     ];
+    let x = 0
+    for(let i = 0; i<getStock().length; i++){
+        x = x + 1;
+    }
     return (
         <>
 
@@ -66,6 +70,7 @@ const StocksNeas = () => {
                         columns={userColumns.concat(actionColumn)}
                         pageSize={7}
                         rowsPerPageOptions={[5]}
+                        getRowId={(row) => (row.id, row.fecha)}
                         //getRowId={row => row[0].id}                        //checkboxSelection
                         disableColumnSelector
 

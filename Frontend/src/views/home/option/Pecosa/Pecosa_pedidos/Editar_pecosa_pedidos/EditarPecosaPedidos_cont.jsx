@@ -48,36 +48,39 @@ const EditarPecosaPedidos_cont = () => {
 
     const Pecosa_Pedidos_E = async (e) => {
         e.preventDefault();
-        const respon = await axios.put(URI + id, {
-            dependencias: dependencias,
-            id_administrativos: id_administrativos,
-            id_sedes: id_sedes,
-            id_metas: id_metas,
-            fecha: fecha,
-            almacen: almacen
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Creado con Exito..',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-            navigate('/pecosa-pedidos')
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+        try {
+            const respon = await axios.put(URI + id, {
+                dependencias: dependencias,
+                id_administrativos: id_administrativos,
+                id_sedes: id_sedes,
+                id_metas: id_metas,
+                fecha: fecha,
+                almacen: almacen
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Creado con Exito..',
+                        // text: 'Presione Clik para cerrar!',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+                navigate('/pecosa-pedidos')
+            }
+
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
-
-
 
     }
 
@@ -121,7 +124,7 @@ const EditarPecosaPedidos_cont = () => {
                                     onChange={(e) => setIdAdministrativos(e.target.value)}
                                     required
                                 />
-                                <FilterDataEdit/>
+                                <FilterDataEdit />
                             </div>
                             <div className='formInput'>
                                 <label>Sedes </label>

@@ -12,7 +12,7 @@ export const getNeaEntradas = async (req, res) => {
         })
         res.json(modelsentradas)
     }catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -24,16 +24,16 @@ export const getNeaEntradasId = async (req, res) => {
         })
         res.json(NeasEntradas[0])
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
 export const createNeasEntradas = async (req, res) => {
     try {
         const NeasEntradas = await ModelsNeaEntradas.create(req.body)
-        res.json({'message':'Neas Entradas creado con exito'})
+        res.status(200).json({'message':'Neas Entradas creado con exito'})
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -42,9 +42,9 @@ export const updateNeasEntradas = async (req, res) => {
         const NeasEntradas = await ModelsNeaEntradas.update(req.body,{
             where: {id: req.params.id}
         })
-        res.json({'message':'Neas Entradas Actualizado creado con exito'})
+        res.status(200).json({'message':'Neas Entradas Actualizado creado con exito'})
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -53,8 +53,8 @@ export const deleteNeasEntradas = async (req, res) => {
         const NeasEntradas = await ModelsNeaEntradas.destroy({
             where: {id: req.params.id}
         })
-        res.json({'message': 'Neas Entradas Eliminado con exito'})
+        res.status(200).json({'message': 'Neas Entradas Eliminado con exito'})
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }

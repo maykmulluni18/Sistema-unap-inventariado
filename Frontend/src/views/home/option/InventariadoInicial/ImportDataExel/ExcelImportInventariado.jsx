@@ -11,7 +11,7 @@ const ExcelImportInventariado = () => {
   const [msg, setMsg] = useState()
   const [errorMsg, setErrorMsg] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  
+  const [error, setError] = useState(false);
   const [archivo, setArchivo] = useState(null)
   const subirArchivos = e => {
     setArchivo(e)
@@ -70,19 +70,19 @@ const ExcelImportInventariado = () => {
         )
         navigate('/reporte-inventariado')
 
-      } else if (respon.status === 500) {
-        Swal.fire(
-          {
-            title: 'Error!',
-            icon: 'error',
-            timer: 5500
-          }
-        )
-      }
+      } 
     } catch (error) {
-      if (error.respon) {
-        setMsg(error.respon.data.msg)
-      }
+        console.log(error.response.status)
+        setError(error.response.data.error)
+        if (error.response.status === 500) {
+          Swal.fire(
+            {
+              title: 'Error',
+              icon: 'error',
+              timer: 1500
+            }
+          )
+        }
     }
   }
   return (
@@ -90,7 +90,7 @@ const ExcelImportInventariado = () => {
     <p>{msg}</p>
       <div className="contend_ex">
       {isSuccess ? <p className="success-message">Error de datos</p> : null}
-          <p className="error-message">{errorMsg}</p>
+          <p className="error-message">{error}</p>
         <input
           type='file'
           name="file"

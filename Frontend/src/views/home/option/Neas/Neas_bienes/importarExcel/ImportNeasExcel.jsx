@@ -12,7 +12,9 @@ const ImportNeasExcel = () => {
   const [msg, setMsg] = useState()
   const [errorMsg, setErrorMsg] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  
+  const [error, setError] = useState(false);
+
+
   const [archivo, setArchivo] = useState(null)
   const subirArchivos = e => {
     setArchivo(e)
@@ -25,7 +27,7 @@ const ImportNeasExcel = () => {
       }
       const MIN_FILE_SIZE = 1024 // 1MB
       const MAX_FILE_SIZE = 5120 // 5MB
-  
+
       if (!archivo) {
         //setErrorMsg("Por favor elige un archivo");
         setIsSuccess(false)
@@ -38,15 +40,15 @@ const ImportNeasExcel = () => {
         )
         return
       }
-  
+
       const fileSizeKiloBytes = archivo.size / 1024
-  
-      if(fileSizeKiloBytes > MAX_FILE_SIZE){
+
+      if (fileSizeKiloBytes > MAX_FILE_SIZE) {
         setErrorMsg("El tamaño del archivo es mayor que el límite máximo");
         setIsSuccess(false)
         return
       }
-  
+
       setErrorMsg("")
       setIsSuccess(true)
       const respon = await axios.post(URI, ar)
@@ -71,7 +73,7 @@ const ImportNeasExcel = () => {
         )
         navigate('/reportes-neas')
 
-      } else if (respon.status === 500) {
+      } else if (respon.status === 400) {
         Swal.fire(
           {
             title: 'Error!',
@@ -81,25 +83,33 @@ const ImportNeasExcel = () => {
         )
       }
     } catch (error) {
-      if (error.respon) {
-        setMsg(error.respon.data.msg)
+      console.log(error.response.data)
+      setError(error.response.data.error)
+      if (error === 400) {
+        Swal.fire(
+          {
+            title: 'Error!',
+            icon: 'error',
+            timer: 5500
+          }
+        )
       }
     }
   }
   return (
     <>
-    <p>{msg}</p>
+      <p>{msg}</p>
       <div className="contend_ex_nea">
-      {isSuccess ? <p className="success-message">Error al subir el Archivos</p> : null}
-          <p className="error-message">{errorMsg}</p>
+        {isSuccess ? <p className="success-message">Error al subir el Archivos</p> : null}
+        <p className="error-message">{error}</p>
         <input
           type='file'
           name="file"
           onChange={(e) => subirArchivos(e.target.files)}
-          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
           required
         />
-        
+
         <button className="buttonE" onClick={() => getArchivo()}>Insertar datos por Excel</button>
       </div>
     </>

@@ -6,8 +6,10 @@ let swd = require("selenium-webdriver");
 let browser = new swd.Builder();
 let tab = browser.forBrowser("chrome").build();
 
+
 // Obtiene las credenciales del archivo JSON
 let { email, pass } = require("./credenciales.json");
+
 
 // Paso 1: abrir la página de inicio de sesión
 let tabToOpen =

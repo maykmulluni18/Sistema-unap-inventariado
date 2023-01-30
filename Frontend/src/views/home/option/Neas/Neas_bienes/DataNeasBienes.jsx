@@ -6,9 +6,15 @@ export const userColumns = [
     {
         field: 'descripcion',
         headerName: 'Descripcion',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
         width: 300,
+        valueGetter: (params) =>
+        `${params.row.biene.description || ''}`
+           
     },
-    { field: 'cantidad', headerName: 'Cantidad', width: 120 },
+    { field: 'cantidad_inicial', headerName: 'Cantidad', width: 100 }, 
+    { field: 'cantidad', headerName: 'Stock', width: 100 }, 
     { field: 'fte_fto', headerName: 'fte/fto', width: 120 },
     { field: 'cuenta_contable', headerName: 'Cuenta Contable', width: 150 },
     { field: 'p_unitario', headerName: 'P.Unitario', width: 110 },
@@ -20,6 +26,7 @@ export const userColumns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.cantidad || ''}` * `${params.row.p_unitario || ''}`,
+        Number.parseFloat(`${params.row.cantidad_inicial || ''}` * `${params.row.p_unitario || ''}`).toFixed(2)
+           
     },
 ];

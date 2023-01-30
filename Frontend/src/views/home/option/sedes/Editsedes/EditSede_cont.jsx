@@ -19,30 +19,35 @@ const EditSede_cont = () => {
 
     const updateeSede = async (e) => {
         e.preventDefault()
-        const respon = await axios.put(URI + id, {
-            cuenta_de_costo: cuenta_de_costo,
-            descripcion: descripcion,
-            sede: sede,
-            responsable: responsable,
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Editado con Exito!',
-                    icon: 'success',
-                    timer: 5500
-                    
-                }
-            )
-            navigate('/sedes')
-        } else {
-            Swal.fire(
-                {
-                    title: 'Good job!',
-                    text: 'You clicked the button!',
-                    icon: 'error'
-                }
-            )
+        try {
+            const respon = await axios.put(URI + id, {
+                cuenta_de_costo: cuenta_de_costo,
+                descripcion: descripcion,
+                sede: sede,
+                responsable: responsable,
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Editado con Exito!',
+                        icon: 'success',
+                        timer: 5500
+
+                    }
+                )
+                navigate('/sedes')
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
 
     }

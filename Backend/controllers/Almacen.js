@@ -6,31 +6,31 @@ export const getAlmacen = async (req, res) => {
         res.json(almacen)
 
     } catch (error) {
-        res.json( {message: error.message} )
+        res.status(400).json( {message: error.message} )
     }
 
 }
 
 export const getAlmacenID = async (req, res) =>{
     try{
-        const almacen = await ModelsAlmacen.findAll({
+        const almacen = await ModelsAlmacen.findOne({
             where:{id:req.params.id}
         })
-        res.json(almacen[0])
+        res.json(almacen)
         
     } catch (error){
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
 export const createAlmacen = async (req, res) => {
     try{
         await ModelsAlmacen.create(req.body)
-        res.json({
+        res.status(200).json({
             "message": "Almacen creado con exito.",
         })
     } catch (error){
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -39,11 +39,11 @@ export const updateAlmacen = async (req, res) => {
         await ModelsAlmacen.update(req.body,{
             where: {id: req.params.id}
         })
-        res.json({
+        res.status(200).json({
             "message": "Almacen actualizado con exito.",
     })
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }
 
@@ -52,10 +52,10 @@ export const deleteAlmacen = async (req, res) => {
         await ModelsAlmacen.destroy({
             where: {id: req.params.id}
         })
-        res.json({
+        res.status(200).json({
             "message":"Almacen eliminado con exito"
         })
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message})
     }
 }

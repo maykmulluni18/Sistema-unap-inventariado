@@ -12,13 +12,13 @@ export const userColumns = [
         valueGetter: (params) =>
             `${params.row.obra.obras + ' '}` 
     },
-    { field: 'fecha_de_registro', headerName: 'Fecha de Registro', width: 170 },
+    { field: 'fecha_de_registro', headerName: 'Fecha de Registro', width: 150 },
     {
         field: 'Responsble',
         headerName: 'Responsble',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 300,
+        width: 370,
         valueGetter: (params) =>
             `${params.row.usuario.nombres + ' '}` +  
             `${params.row.usuario.apellido_paterno + ' '}` + 
@@ -29,7 +29,7 @@ export const userColumns = [
         headerName: 'Sedes',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 150,
+        width: 180,
         valueGetter: (params) =>
             `${params.row.sede.sede || ''}`,
     },

@@ -24,36 +24,38 @@ const EditarMetas_cont = () => {
 
     const updateeMetas = async (e) => {
         e.preventDefault()
-        const respon = await axios.put(URI + id, {
-            meta_1: meta_1,
-            meta_2: meta_2,
-            obra: obra,
-            id_residente: id_residente,
-            id_almacenario: id_almacenario,
-            id_asistente_adm: id_asistente_adm
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Editado con Exito..',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-            navigate('/metas')
+        try {
+            const respon = await axios.put(URI + id, {
+                meta_1: meta_1,
+                meta_2: meta_2,
+                obra: obra,
+                id_residente: id_residente,
+                id_almacenario: id_almacenario,
+                id_asistente_adm: id_asistente_adm
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Editado con Exito..',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+                navigate('/metas')
 
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
-
-
-
     }
 
 
@@ -136,7 +138,7 @@ const EditarMetas_cont = () => {
                                     required
                                 />
                                 <FilterAlmacenario />
-                        
+
                             </div>
                             <div className='formInput'>
                                 <label>ASISTENTE_ADMINISTATIVO</label>

@@ -6,6 +6,8 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
+import { styled } from '@mui/material/styles';
+
 import { LoginUser, reset } from "../home/auth/Authen";
 
 import React, { useState, useEffect } from "react";
@@ -17,6 +19,12 @@ import "./Login_p.scss"
 import UNAP from "./img/unap_1.png";
 import Video from "./video/una.mp4";
 
+const Img = styled('img')({
+    margin: 'auto',
+    display: 'block',
+    maxWidth: 'auto',
+    maxHeight: 'auto',
+});
 
 const Login_inicio = () => {
     //const vid = useCallback((x) => x.volume = 0.5)
@@ -41,7 +49,6 @@ const Login_inicio = () => {
     const { user, isError, isSuccess, isLoading, message } = useSelector(
         (state) => state.auth
     );
-    console.log(username)
     useEffect(() => {
         if (user || isSuccess) {
             navigate("/home");
@@ -192,7 +199,7 @@ const Login_inicio = () => {
                                         <Grid item>
 
                                             <FormHelperText sx={{ mt: -2 }}>
-                                                Olvido su contraseña ?.
+
                                             </FormHelperText>
                                         </Grid>
 
@@ -220,9 +227,10 @@ const Login_inicio = () => {
                         className="car_sidebar"
                         xs={12}
                         lg={8}
+                        src={UNAP}
                         sx={{
                             alignItems: 'center',
-                            background: 'radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)',
+                            background: 'radial-gradient(50% 55% at 50% 50%, #122647 0%, #090E23 100%)',
                             color: 'white',
                             display: 'flex',
                             justifyContent: 'center',
@@ -232,8 +240,12 @@ const Login_inicio = () => {
 
 
                         }}
-                    >
 
+                    >
+                        {/*<Img alt="complex" src={UNAP} />
+
+                      */}
+                      
                         {/*   <video ref={vid} src={Video} autoplay width="1500" height="719" controls loop preload="auto">
                         
                         </video>  

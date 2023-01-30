@@ -29,30 +29,34 @@ const CrearAlmacen_cont = () => {
 
     const Almacen = async (event) => {
         event.preventDefault();
-        for (let i = 0; i < detailss.length; i++) {
-            const respon = await axios.post(URI,
-                {
-                    almacen: detailss[i].almacen,
-                },
+        try {
+            for (let i = 0; i < detailss.length; i++) {
+                const respon = await axios.post(URI,
+                    {
+                        almacen: detailss[i].almacen,
+                    },
 
-            )
-            if (respon.status === 200) {
-                Swal.fire(
-                    {
-                        title: 'Creado con Exito..',
-                        // text: 'Presione Clik para cerrar!',
-                        icon: 'success',
-                        timer: 5500
-                    }
                 )
-                navigate('/almacenes')
-            } else {
+                if (respon.status === 200) {
+                    Swal.fire(
+                        {
+                            title: 'Creado con Exito..',
+                            // text: 'Presione Clik para cerrar!',
+                            icon: 'success',
+                            timer: 5500
+                        }
+                    )
+                    navigate('/almacenes')
+                } 
+            }
+        } catch (error){
+            if (error.response.status === 400) {
                 Swal.fire(
                     {
-                        title: 'Error!',
-                        // text: 'Presione Clik para cerrar!',
+                        title: 'Error',
+                        text: error.response.data.message,
                         icon: 'error',
-                        timer: 5500
+                        timer: 8500
                     }
                 )
             }

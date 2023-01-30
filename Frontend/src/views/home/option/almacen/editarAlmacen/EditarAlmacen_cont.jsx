@@ -14,27 +14,32 @@ const EditarAlmacen_cont = () => {
 
     const updateeAlmacen = async (e) => {
         e.preventDefault()
-        const respon = await axios.put(URI + id, {
-            almacen: almacen,
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Editado con Exito..',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-            navigate('/almacenes')
+        try {
+            const respon = await axios.put(URI + id, {
+                almacen: almacen,
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Editado con Exito..',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+                navigate('/almacenes')
 
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
 
 
@@ -71,7 +76,7 @@ const EditarAlmacen_cont = () => {
                                     required
                                 />
                             </div>
-                          
+
                             <div className='crearButtom_B'>
                                 <button className='button1' type='submit'>Guardar</button>
                                 <Link to={'../'} >

@@ -37,35 +37,39 @@ const CrearMetas_cont = () => {
 
     const Metas = async (event) => {
         event.preventDefault();
-        for (let i = 0; i < detailss.length; i++) {
-            const respon = await axios.post(URI,
-                {
-                    meta_1: detailss[i].meta_1,
-                    meta_2: detailss[i].meta_2,
-                    obra: detailss[i].obra,
-                    id_residente: detailss[i].id_residente,
-                    id_almacenario: detailss[i].id_almacenario,
-                    id_asistente_adm: detailss[i].id_asistente_adm,
-                },
+        try {
+            for (let i = 0; i < detailss.length; i++) {
+                const respon = await axios.post(URI,
+                    {
+                        meta_1: detailss[i].meta_1,
+                        meta_2: detailss[i].meta_2,
+                        obra: detailss[i].obra,
+                        id_residente: detailss[i].id_residente,
+                        id_almacenario: detailss[i].id_almacenario,
+                        id_asistente_adm: detailss[i].id_asistente_adm,
+                    },
 
-            )
-            if (respon.status === 200) {
-                Swal.fire(
-                    {
-                        title: 'Creado con Exito..',
-                        // text: 'Presione Clik para cerrar!',
-                        icon: 'success',
-                        timer: 5500
-                    }
                 )
-                navigate('/metas')
-            } else {
+                if (respon.status === 200) {
+                    Swal.fire(
+                        {
+                            title: 'Creado con Exito..',
+                            // text: 'Presione Clik para cerrar!',
+                            icon: 'success',
+                            timer: 5500
+                        }
+                    )
+                    navigate('/metas')
+                }
+            }
+        } catch (error) {
+            if (error.response.status === 400) {
                 Swal.fire(
                     {
-                        title: 'Error!',
-                        // text: 'Presione Clik para cerrar!',
+                        title: 'Error',
+                        text: error.response.data.message,
                         icon: 'error',
-                        timer: 5500
+                        timer: 8500
                     }
                 )
             }

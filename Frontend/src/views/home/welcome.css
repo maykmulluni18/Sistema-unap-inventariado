@@ -5,24 +5,25 @@
   }
   
   .listtitle {
-    width: 38ch;
+    width: 100%;
     animation: typing 5s steps(22), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid;
     font-family: monospace;
-    font-size: 2em;
+    font-size: 1em;
+
   }
   .listtitle_1 {
-    width: 28ch;
+    width: 18ch;
     animation: typing 5s steps(22), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid;
     font-family: monospace;
-    font-size: 2em;
+    font-size: 1em;
   }
-  
+
   @keyframes typing {
     from {
       width: 0

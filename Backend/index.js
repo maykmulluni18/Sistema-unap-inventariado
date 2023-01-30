@@ -22,7 +22,7 @@ import RouteAlmacen from "./routers/almacen.js"
 import RouteImportExel from "./routers/ExelInventariado.js"
 import RouteNeasImportExel from "./routers/ExelNeas.js"
 
-import Ejemp from "./routers/Ejemp.js"
+import CantTotal from "./routers/CantTotal.js"
 import Stock from "./routers/stoks.js"
 import StockNea from "./routers/stocksneas.js"
 
@@ -88,7 +88,7 @@ app.use('/almacen',verifyUser, RouteAlmacen)
 app.use('/excelimport',RouteImportExel)
 app.use('/excelneasimport', RouteNeasImportExel)
 
-app.use('/ejmp', Ejemp)
+app.use('/cantidadtotal', CantTotal)
 app.use('/stock', Stock)
 app.use('/stocknea',StockNea)
 

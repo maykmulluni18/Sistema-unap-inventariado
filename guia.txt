@@ -16,6 +16,8 @@ npm i fast-csv
 npm i json2csv
 
 npm i exceljs
+npm install i18n
+
 
 2: Frontend
 yarn add react-router-dom
@@ -117,3 +119,35 @@ FROM inventarido_inicial i LEFT JOIN
 pecosa_bienes p
 ON i.id = p.inventaridoInicialId
 GROUP BY i.id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////
+
+
+SELECT i.id, i.fecha_registro, 
+		 i.item,i.unidad, i.descripcion, 
+         p.observaciones AS Observacion,
+         i.cantidad_inicial AS Cantidad_Inicial,
+         p.cantidad AS Cantidad_Salida,  
+         i.cantidad AS Stocks
+FROM  pecosa_bienes p
+LEFT JOIN  inventarido_inicial i ON i.id = p.inventaridoInicialId 
+GROUP BY p.pecosaPedidoId
+
+
+
+
+

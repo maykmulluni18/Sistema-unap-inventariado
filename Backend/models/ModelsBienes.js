@@ -1,5 +1,6 @@
 import db from '../database/db.js';
 import { Sequelize } from "sequelize";
+import ModelsInvenInicial from './ModelsInvenInicial.js';
 const {DataTypes} = Sequelize;
 const ModelsBienes = db.define('bienes',{
     item:{
@@ -20,6 +21,12 @@ const ModelsBienes = db.define('bienes',{
     freezeTableName: true
 });
 
+ModelsInvenInicial.belongsTo(ModelsBienes, { foreignKey: "idBienes" })
+ModelsBienes.hasOne(ModelsInvenInicial, {
+    foreignKey: {
+        name: 'id',
+    }
+})
 
 
 export default ModelsBienes

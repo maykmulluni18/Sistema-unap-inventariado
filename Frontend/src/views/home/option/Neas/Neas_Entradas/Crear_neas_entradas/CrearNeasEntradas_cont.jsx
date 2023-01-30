@@ -28,10 +28,10 @@ const CrearNeasEntradas_cont = () => {
         setSedes(res.data)
     }
     const getAlmacens = async () => {
-        const res =  await axios.get(URI5)
+        const res = await axios.get(URI5)
         setAlmacen(res.data)
     }
-    const getObrass = async () =>{
+    const getObrass = async () => {
         const res = await axios.get(URI4)
         setObras(res.data)
     }
@@ -45,57 +45,59 @@ const CrearNeasEntradas_cont = () => {
 
     const [id_administradores, setIdAdministradores] = useState('')
     const [id_sedes, setIdSedes] = useState('')
-    const [tipo_de_ingreso, setTipoDeIngreso] = useState('')
-    const [recibido_por, setRecibidoPor] = useState('VICTOR')
+    const [tipo_de_ingreso, setTipoDeIngreso] = useState('$')
+    const [recibido_por, setRecibidoPor] = useState('VICTOR FREDY VELASQUEZ JALLO')
     const [id_obras, setIdObras] = useState('')
-    const [tipo_de_moneda, setTipoDeMoneda] = useState('')
+    const [tipo_de_moneda, setTipoDeMoneda] = useState('S/')
     const [id_almacen, setIdAlmacen] = useState('')
-    const [documento, setDocumento] = useState('')
+    const [documento, setDocumento] = useState('ACTA DE INTERNAMIENTO DE MATERIALES')
     const [tipo_de_cambio, setTipoDeCambio] = useState('')
-    const [tipo_de_uso, setTipoDeUso] = useState('')
+    const [tipo_de_uso, setTipoDeUso] = useState('CONSUMO')
     const [fecha_de_nea, setFechaDeNea] = useState('')
     const [fecha_de_registro, setFechaDeRegristro] = useState('')
     const navigate = useNavigate()
 
     const Neas_Entradas = async (e) => {
         e.preventDefault();
+        try {
+            const respon = await axios.post(URI, {
+                id_administradores: id_administradores,
+                id_sedes: id_sedes,
+                tipo_de_ingreso: tipo_de_ingreso,
+                recibido_por: recibido_por,
+                id_obras: id_obras,
+                tipo_de_moneda: tipo_de_moneda,
+                id_almacen: id_almacen,
+                documento: documento,
+                tipo_de_cambio: tipo_de_cambio,
+                tipo_de_uso: tipo_de_uso,
+                fecha_de_nea: fecha_de_nea,
+                fecha_de_registro: fecha_de_registro
+            })
+            if (respon.status === 200) {
+                Swal.fire(
+                    {
+                        title: 'Creado con Exito..',
+                        // text: 'Presione Clik para cerrar!',
+                        icon: 'success',
+                        timer: 5500
+                    }
+                )
+            }
 
-        const respon = await axios.post(URI, {
-            id_administradores: id_administradores,
-            id_sedes: id_sedes,
-            tipo_de_ingreso: tipo_de_ingreso,
-            recibido_por: recibido_por,
-            id_obras: id_obras,
-            tipo_de_moneda: tipo_de_moneda,
-            id_almacen: id_almacen,
-            documento: documento,
-            tipo_de_cambio: tipo_de_cambio,
-            tipo_de_uso: tipo_de_uso,
-            fecha_de_nea: fecha_de_nea,
-            fecha_de_registro: fecha_de_registro
-        })
-        if (respon.status === 200) {
-            Swal.fire(
-                {
-                    title: 'Creado con Exito..',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'success',
-                    timer: 5500
-                }
-            )
-        } else {
-            Swal.fire(
-                {
-                    title: 'Error!',
-                    // text: 'Presione Clik para cerrar!',
-                    icon: 'error',
-                    timer: 5500
-                }
-            )
+            navigate('/neas-entradas')
+        } catch (error) {
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
+            }
         }
-
-        navigate('/neas-entradas')
-
     }
     const selectAdministrativo = (e) => {
         setIdAdministradores(e.target.value)
