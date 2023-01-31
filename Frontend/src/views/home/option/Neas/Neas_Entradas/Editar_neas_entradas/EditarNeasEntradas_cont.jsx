@@ -15,17 +15,31 @@ const URI1 = DB_URL + 'user/'
 const URI3 = DB_URL + 'sedes/'
 
 
+const URI4 = DB_URL + 'obras/'
+
+const URI5 = DB_URL + 'almacen/'
+
 const EditarNeasEntradas_cont = () => {
 
     const [sedes, setSedes] = useState([])
+    const [almacen, setAlmacen] = useState([])
+    const [obra, setObras] = useState([])
 
     const getSedes = async () => {
         const res = await axios.get(URI3)
         setSedes(res.data)
     }
-
+    const getAlmacens = async () => {
+        const res = await axios.get(URI5)
+        setAlmacen(res.data)
+    }
+    const getObrass = async () => {
+        const res = await axios.get(URI4)
+        setObras(res.data)
+    }
     useEffect(() => {
         getSedes()
+        getObrass()
         getNeasEntradas()
         Neas_Entradas()
     }, [])
@@ -175,14 +189,28 @@ const EditarNeasEntradas_cont = () => {
                                     required
                                 />
                             </div>
+           
                             <div className="formInput">
                                 <label>Tipo de Obra</label>
                                 <input
+                                    type="text" list="obras"
+                                    placeholder='filtrar'
                                     value={tipo_de_obra}
                                     onChange={(e) => setTipoDeObra(e.target.value.toUpperCase())}
-                                    type="text"
                                     required
                                 />
+                                <datalist id="obras">
+                                    {
+                                        obra
+
+                                            .map(res => {
+                                                return (
+                                                    <option key={res.id} value={res.id}> {res.obras} </option>
+                                                )
+                                            })
+                                    }
+
+                                </datalist>
                             </div>
                             <div className="formInput">
                                 <label>Tipo de Moneda</label>
