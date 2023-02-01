@@ -21,7 +21,7 @@ const Bienes_Cont = () => {
                     .map(res => {
                         return (
                             <option className='options' key={res.id} value={res.id}>'
-                                {res.item}' '
+                                {(res.item)}' '
                                 {res.description}' '
                             </option>
                         )

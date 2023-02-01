@@ -9,7 +9,7 @@ const Metas = db.define('Metas',{
     },
     meta_2:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
        
     },
     obra:{
@@ -18,15 +18,15 @@ const Metas = db.define('Metas',{
     },
     id_residente:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     id_almacenario:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     id_asistente_adm:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
 
     }
    

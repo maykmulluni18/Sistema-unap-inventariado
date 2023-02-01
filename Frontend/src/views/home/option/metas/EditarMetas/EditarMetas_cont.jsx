@@ -26,12 +26,12 @@ const EditarMetas_cont = () => {
         e.preventDefault()
         try {
             const respon = await axios.put(URI + id, {
-                meta_1: meta_1,
-                meta_2: meta_2,
+                meta_1: meta_1 || null,
+                meta_2: meta_2 || null,
                 obra: obra,
-                id_residente: id_residente,
-                id_almacenario: id_almacenario,
-                id_asistente_adm: id_asistente_adm
+                id_residente: id_residente || null,
+                id_almacenario: id_almacenario || null,
+                id_asistente_adm: id_asistente_adm || null
             })
             if (respon.status === 200) {
                 Swal.fire(
@@ -98,7 +98,7 @@ const EditarMetas_cont = () => {
                                     onChange={(e) => setMeta2(e.target.value.toUpperCase())}
                                     type="text"
                                     placeholder=""
-                                    required
+                                    //required
                                 />
                             </div>
                             <div className="formInput" >
@@ -121,7 +121,7 @@ const EditarMetas_cont = () => {
                                     value={id_residente}
                                     name='id_residente'
                                     onChange={(e) => setResidente(e.target.value)}
-                                    required
+                                    //required
                                 />
                                 <FilterResidente />
                             </div>
@@ -135,7 +135,7 @@ const EditarMetas_cont = () => {
                                     value={id_almacenario}
                                     name='id_residente'
                                     onChange={(e) => setAlmacenario(e.target.value)}
-                                    required
+                                    //required
                                 />
                                 <FilterAlmacenario />
 
@@ -149,7 +149,7 @@ const EditarMetas_cont = () => {
                                     value={id_asistente_adm}
                                     name='id_asistente_adm'
                                     onChange={(e) => setMeta2(e.target.value)}
-                                    required
+                                    //required
                                 />
                                 <FilterAsistente />
                             </div>

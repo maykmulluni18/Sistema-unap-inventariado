@@ -41,12 +41,12 @@ const CrearMetas_cont = () => {
             for (let i = 0; i < detailss.length; i++) {
                 const respon = await axios.post(URI,
                     {
-                        meta_1: detailss[i].meta_1,
-                        meta_2: detailss[i].meta_2,
-                        obra: detailss[i].obra,
-                        id_residente: detailss[i].id_residente,
-                        id_almacenario: detailss[i].id_almacenario,
-                        id_asistente_adm: detailss[i].id_asistente_adm,
+                        meta_1: detailss[i].meta_1 || null,
+                        meta_2: detailss[i].meta_2 || null,
+                        obra: detailss[i].obra.toUpperCase(),
+                        id_residente: detailss[i].id_residente || null,
+                        id_almacenario: detailss[i].id_almacenario || null,
+                        id_asistente_adm: detailss[i].id_asistente_adm || null,
                     },
 
                 )
@@ -131,7 +131,7 @@ const CrearMetas_cont = () => {
                                                     onChange={(e) => handleSubmit(e, index)}
                                                     type="text"
                                                     placeholder=''
-                                                    required
+                                                    //required
                                                 //pattern="[A-Z-0-9]+"
                                                 />
 
@@ -140,7 +140,7 @@ const CrearMetas_cont = () => {
                                                 <label htmlFor='meta_2'>OBRA</label>
                                                 <input
                                                     id='obra'
-                                                    value={valu_cont.obra.toLowerCase()}
+                                                    value={valu_cont.obra}
                                                     name='obra'
                                                     onChange={(e) => handleSubmit(e, index)}
                                                     type="text"
@@ -161,7 +161,7 @@ const CrearMetas_cont = () => {
                                                     value={valu_cont.id_residente}
                                                     name='id_residente'
                                                     onChange={(e) => handleSubmit(e, index)}
-                                                    required
+                                                    //required
                                                 />
                                                 <FiterResidente />
                                             </div>
@@ -176,7 +176,7 @@ const CrearMetas_cont = () => {
                                                     value={valu_cont.id_almacenario}
                                                     name='id_almacenario'
                                                     onChange={(e) => handleSubmit(e, index)}
-                                                    required
+                                                    //required
                                                 />
                                                 <FilterAlmacenario />
                                             </div>
@@ -190,7 +190,7 @@ const CrearMetas_cont = () => {
                                                     value={valu_cont.id_asistente_adm}
                                                     name='id_asistente_adm'
                                                     onChange={(e) => handleSubmit(e, index)}
-                                                    required
+                                                    //required
                                                 />
                                                 <FilterAsistente />
                                             </div>

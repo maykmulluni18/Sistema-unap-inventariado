@@ -110,8 +110,10 @@ const ImportBienesExcel_cont = () => {
       <div className="top">
         <p>{msg}</p>
         <div className="contend_ex_nea">
+         {/* 
           {isSuccess ? <p className="success-message">Error al subir el Archivos</p> : null}
           <p className="error-message">{error}</p>
+          */}
           <input
             type='file'
             name="file"
