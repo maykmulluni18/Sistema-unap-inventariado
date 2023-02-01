@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 import "./editarpecosabienes.scss"
 import { DB_URL } from '../../../../../../config/config';
 import { getGridNumericColumnOperators } from '@mui/x-data-grid';
+import EditFilterInventariado from './EditFilterInventariado';
+import EditFilterNeasBien from './EditFilterNeasBien';
 
 const URI = DB_URL + 'pecosabienes/'
 
@@ -36,8 +38,8 @@ const EditarPecosaBienes_cont = () => {
 
     useEffect(() => {
         getPecosaPedidos()
-        getNeasBien()
-        getBienes()
+        //getNeasBien()
+        //getBienes()
         getPecosaBienes()
         updatePecosaBienes()
 
@@ -137,19 +139,9 @@ const EditarPecosaBienes_cont = () => {
                                     placeholder='filtrar'
                                     value={inventaridoInicialId}
                                     onChange={(e) => setInventariadoInicialId(e.target.value)}
-                                    
-                                />
-                                <datalist id="bienesinv">
-                                    {
-                                        bienes
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> [ N°: {res.id} ] -- [ {res.descripcion} ] -- [ Stock = {res.cantidad} ] </option>
-                                                )
-                                            })
-                                    }
 
-                                </datalist>
+                                />
+                                <EditFilterInventariado />
                             </div>
                             <div className='formInput'>
                                 <label>Bienes Neas </label>
@@ -159,26 +151,16 @@ const EditarPecosaBienes_cont = () => {
                                     placeholder='filtrar'
                                     value={nea_bien_id}
                                     onChange={(e) => setNeasdBieneId(e.target.value)}
-                                    
+
 
                                 />
+                                <EditFilterNeasBien />
 
-                                <datalist id="bienesnea">
-                                    {
-                                        neasbien
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> [N° NEA: {res.neaEntradaId}] -- [ {res.descripcion}] -- [ Stock: {res.cantidad} ]</option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
                             </div>
                             <div className='formInput_title'>
                                 <h4>Sección de Ingresar cantidad y observación</h4>
                             </div>
-                            
+
                             <div className="formInput">
                                 <label>Observaciones</label>
                                 <input
@@ -195,7 +177,7 @@ const EditarPecosaBienes_cont = () => {
                                     onChange={(e) => setCantidad(e.target.value)}
                                     type="number"
                                     required
-                                    
+
                                 />
                             </div>
                             <div className="formInput">

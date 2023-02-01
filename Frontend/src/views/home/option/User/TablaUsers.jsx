@@ -12,7 +12,7 @@ import "./tablausers.scss"
 import { useSelector } from 'react-redux';
 import { DB_URL } from '../../../../config/config';
 
-const URI = DB_URL + 'admin/'
+const URI = DB_URL + 'createuseradmin/'
 
 
 const TablaUsers = () => {
@@ -96,11 +96,11 @@ const TablaUsers = () => {
 
             <div className="Tabledata_users">
                 <div className="top">
-                    <h1>Lista de Sub administradores</h1>
+                    <h1>Lista de Usuarios</h1>
                 </div>
                 <div className="Tabledata">
                     <div className="dataTitle">
-                        Inventario Oficina de de abastecimiento
+                        Lista de Usuarios
                         <Link to={'created-users'}>
                             <div className="CrearButton">
                                 <button className='crear_bienes'>Crear</button>
@@ -126,10 +126,10 @@ const TablaUsers = () => {
                         }}
                         componentsProps={{
                             toolbar: {
-                              showQuickFilter: true,
-                              quickFilterProps: { debounceMs: 500 },
+                                showQuickFilter: true,
+                                quickFilterProps: { debounceMs: 500 },
                             },
-                          }}
+                        }}
                         //experimentalFeatures={{ newEditingApi: true }}
                         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
                     />

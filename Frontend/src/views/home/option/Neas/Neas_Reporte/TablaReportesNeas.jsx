@@ -38,7 +38,7 @@ const TablaReportes = () => {
                         <Link to={`detalles/${params.id}`} style={{ textDecoration: "none" }}>
                             <div className="viewButton"><VisibilityIcon /></div>
                         </Link>
-                    
+
                         <Link to={`neaspdf/${params.id}`} style={{ textDecoration: "none" }}>
                             <div className="pdfButton"><PictureAsPdfIcon /></div>
                         </Link>
@@ -56,11 +56,11 @@ const TablaReportes = () => {
 
             <div className="Tabledata_neas">
                 <div className="top">
-                    <h1>Inventario de  Reportes de  Neas de la Oficina  de abastecimiento</h1>
+                    <h1><strong>Neas Reportes : </strong> Inventario de  Reportes de  Neas de la Oficina  de abastecimiento</h1>
                 </div>
                 <div className="Tabledata">
                     <div className="dataTitle">
-                        Inventario Oficina de de abastecimiento
+                        Neas Reportes
 
                     </div>
                     <DataGrid
@@ -80,15 +80,15 @@ const TablaReportes = () => {
                         }}
                         componentsProps={{
                             toolbar: {
-                              showQuickFilter: true,
-                              quickFilterProps: { debounceMs: 500 },
+                                showQuickFilter: true,
+                                quickFilterProps: { debounceMs: 500 },
                             },
-                          }}
+                        }}
                         //experimentalFeatures={{ newEditingApi: true }}
                         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
                     />
                 </div>
-        </div>
+            </div>
         </>
     );
 

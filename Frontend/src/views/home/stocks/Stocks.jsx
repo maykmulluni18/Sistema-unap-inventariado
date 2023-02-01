@@ -66,7 +66,7 @@ const Stocks = () => {
                     <DataGrid
                         className="datagrid"
                         rows={stocks}
-                        columns={userColumns.concat(actionColumn)}
+                        columns={userColumns}
                         pageSize={7}
                         rowsPerPageOptions={[5]}
                         // getRowId={(row) => (row.id, row.updatedAt)}                     //checkboxSelection

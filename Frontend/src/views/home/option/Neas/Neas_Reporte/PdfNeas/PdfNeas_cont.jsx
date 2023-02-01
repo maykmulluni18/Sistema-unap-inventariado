@@ -416,10 +416,10 @@ const PdfNeas_cont = () => {
     }, [])
 
     const [id_administradores, setIdAdministradores] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('')
     const [tipo_de_ingreso, setTipoDeIngreso] = useState('')
     const [recibido_por, setRecibidoPor] = useState('')
-    const [tipo_de_obra, setTipoDeObra] = useState('')
+    const [id_obras, setIdObras] = useState('')
     const [tipo_de_moneda, setTipoDeMoneda] = useState('')
     const [tipo_de_almacen, setTipoDeAlmacen] = useState('')
     const [documento, setDocumento] = useState('')
@@ -434,10 +434,10 @@ const PdfNeas_cont = () => {
         setIdAdministradores(res.data.usuario.nombres + ' ' +
             res.data.usuario.apellido_paterno + ' ' +
             res.data.usuario.apellido_materno)
-        setIdSedes(res.data.id_sedes)
+        setTipoDeSede(res.data.tipo_de_sede)
         setTipoDeIngreso(res.data.tipo_de_ingreso)
         setRecibidoPor(res.data.recibido_por)
-        setTipoDeObra(res.data.tipo_de_obra)
+        setIdObras(res.data.Meta.obra)
         setTipoDeMoneda(res.data.tipo_de_moneda)
         setTipoDeAlmacen(res.data.tipo_de_almacen)
         setDocumento(res.data.documento)
@@ -533,7 +533,7 @@ const PdfNeas_cont = () => {
                                 </Text>
 
                                 <Text style={styles.tipo_obra} fixed>
-                                    <Text fixed>OBRA </Text>                          :<Text>   {tipo_de_obra} </Text>
+                                    <Text fixed>OBRA </Text>                          :<Text>   {id_obras} </Text>
                                 </Text>
                                 <Text style={styles.tipo_moneda} fixed>
                                     <Text fixed>MONEDA </Text>             :<Text>   {tipo_de_moneda} </Text>

@@ -62,11 +62,11 @@ const TablaReportes = () => {
 
             <div className="Tabledata_pecosa_reportes">
                 <div className="top">
-                    <h1>Inventario de  Reportes de Pecosas de la Oficina  de abastecimiento</h1>
+                    <h1><strong>Reporte Pecosa : </strong> Inventario de  Reportes de Pecosas de la Oficina  de abastecimiento</h1>
                 </div>
                 <div className="Tabledata">
                     <div className="dataTitle">
-                        Inventario Oficina de de abastecimiento
+                    Reporte Pecosa
                         
                     </div>
                     <DataGrid

@@ -29,28 +29,28 @@ const TablaPecosaPedidos = () => {
 
 
     const deletePecosaPedidos = async (id) => {
-            Swal.fire({
-              title: 'Esta Seguro que Desea Eliminar?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#160a3d',
-              cancelButtonColor: '#3d0a0a',
-              confirmButtonText: 'Si, Eliminar!',
-              cancelButtonText: 'No, Canselar',
-              timer: 15500
-            }).then( async (result) => {
-              if (result.isConfirmed) {
+        Swal.fire({
+            title: 'Esta Seguro que Desea Eliminar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#160a3d',
+            cancelButtonColor: '#3d0a0a',
+            confirmButtonText: 'Si, Eliminar!',
+            cancelButtonText: 'No, Canselar',
+            timer: 15500
+        }).then(async (result) => {
+            if (result.isConfirmed) {
                 Swal.fire({
-                  title: 'Eliminado!',
-                  icon: 'success',
-                  timer: 5500
+                    title: 'Eliminado!',
+                    icon: 'success',
+                    timer: 5500
                 })
                 const res = await axios.delete(`${URI}${id}`)
                 getPecosaPedidos(res.data)
 
-              }
-            })
-       
+            }
+        })
+
     }
 
 
@@ -93,44 +93,44 @@ const TablaPecosaPedidos = () => {
         <>
 
             <div className="Tabledata_pecosa_pedidos">
-            <div className="top">
-                    <h1>Atencion a Pedidos de Pecosa</h1>
+                <div className="top">
+                    <h1><strong>Pecosa Pedidos : </strong> Atencion a Pedidos de Pecosa</h1>
                 </div>
                 <div className="Tabledata">
-                <div className="dataTitle">
-                    Inventario Oficina de de abastecimiento
-                    <Link to={'created-pecosa-pedidos'}>
-                        <div className="CrearButton">
-                            <button className='crear_bienes'>Crear</button>
-                        </div>
-                    </Link>
-                </div>
-                <DataGrid
-                    className="datagrid"
-                    rows={pecosapedidos}
-                    //getRowId={(row) => (row.id, row.neaEntradaId, row.bineneId)}
-                    columns={userColumns.concat(actionColumn)}
-                    pageSize={18}
-                    rowsPerPageOptions={[10]}
-                    //checkboxSelection
-                    disableSelectionOnClick
-                    experimentalFeatures={{ newEditingApi: true }}
-                    //checkboxSelection
-                    {...pecosapedidos}
-                    components={{
-                        Toolbar: GridToolbar,
-                    }}
-                    componentsProps={{
-                        toolbar: {
-                          showQuickFilter: true,
-                          quickFilterProps: { debounceMs: 500 },
-                        },
-                      }}
+                    <div className="dataTitle">
+                        Pecosa Pedidos
+                        <Link to={'created-pecosa-pedidos'}>
+                            <div className="CrearButton">
+                                <button className='crear_bienes'>Crear</button>
+                            </div>
+                        </Link>
+                    </div>
+                    <DataGrid
+                        className="datagrid"
+                        rows={pecosapedidos}
+                        //getRowId={(row) => (row.id, row.neaEntradaId, row.bineneId)}
+                        columns={userColumns.concat(actionColumn)}
+                        pageSize={18}
+                        rowsPerPageOptions={[10]}
+                        //checkboxSelection
+                        disableSelectionOnClick
+                        experimentalFeatures={{ newEditingApi: true }}
+                        //checkboxSelection
+                        {...pecosapedidos}
+                        components={{
+                            Toolbar: GridToolbar,
+                        }}
+                        componentsProps={{
+                            toolbar: {
+                                showQuickFilter: true,
+                                quickFilterProps: { debounceMs: 500 },
+                            },
+                        }}
 
-                    //experimentalFeatures={{ newEditingApi: true }}
-                    localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-                />
-            </div>
+                        //experimentalFeatures={{ newEditingApi: true }}
+                        localeText={esES.components.MuiDataGrid.defaultProps.localeText}
+                    />
+                </div>
             </div>
         </>
     );

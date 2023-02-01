@@ -3,9 +3,6 @@ import Metas from './ModelsMetas.js';
 import { Sequelize } from "sequelize";
 const { DataTypes } = Sequelize;
 const Models = db.define('usuarios',{
-    n_documento:{
-        type: DataTypes.INTEGER
-    },
     apellido_paterno:{
         type: DataTypes.STRING
     },

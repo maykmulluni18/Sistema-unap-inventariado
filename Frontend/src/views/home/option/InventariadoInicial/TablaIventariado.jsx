@@ -28,27 +28,27 @@ const TablaInventariado = () => {
   };
 
   const deleteInventariado = async (id) => {
-      Swal.fire({
-        title: 'Esta Seguro que Desea Eliminar?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#160a3d',
-        cancelButtonColor: '#3d0a0a',
-        confirmButtonText: 'Si, Eliminar!',
-        cancelButtonText: 'No, Cancelar',
-        timer: 15500
-      }).then( async (result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: 'Eliminado!',
-            icon: 'success',
-            timer: 5500
-          })
-          const res = await axios.delete(`${URI}${id}`)
-          getInventariado(res.data)
-          
-        }
-      })
+    Swal.fire({
+      title: 'Esta Seguro que Desea Eliminar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#160a3d',
+      cancelButtonColor: '#3d0a0a',
+      confirmButtonText: 'Si, Eliminar!',
+      cancelButtonText: 'No, Cancelar',
+      timer: 15500
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Eliminado!',
+          icon: 'success',
+          timer: 5500
+        })
+        const res = await axios.delete(`${URI}${id}`)
+        getInventariado(res.data)
+
+      }
+    })
   }
 
 
@@ -60,7 +60,7 @@ const TablaInventariado = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            
+
             <Link to={`edit/${params.id}`}>
               <div className="EditButton">
                 <EditIcon />
@@ -84,7 +84,7 @@ const TablaInventariado = () => {
   return (
     <div className="Table_inventariado_cont">
       <div className="top">
-        <h1>Inventario Inicial de Bienes de la Oficina de abastecimiento</h1>
+        <h1><strong>Inventario Inicial : </strong> De Bienes de la Oficina de abastecimiento</h1>
 
       </div>
       {/*<div className="top_1">
@@ -93,7 +93,7 @@ const TablaInventariado = () => {
       </div>*/}
       <div className="Tabledata">
         <div className="dataTitle">
-          Lista de Bienes
+          Inventario Inicial
           <div className="CrearButton">
             <Link to={'created-inventariado'}>
               <button className="crear_bienes">Crear</button>

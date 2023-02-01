@@ -64,7 +64,7 @@ export const NeasExcelupload = async (req, res) => {
     console.log(error);
     res.status(500).json({
       message: "No se pudo cargar el archivo: " + req.file.originalname,
-      error: error.message
+      error: error.messages
     });
   }
 };

@@ -50,11 +50,11 @@ const TablaReporte_Invet = () => {
   return (
     <div className="Table_inventariado">
       <div className="top">
-        <h1>Reportes de Inventario Inicial de Bienes de la Oficina de abastecimiento</h1>
+        <h1><strong>Reportes de Inventario : </strong> Inicial de Bienes de la Oficina de abastecimiento</h1>
       </div>
       <div className="Tabledata">
         <div className="dataTitle">
-          Lista de Bienes para el reporte
+          Reportes de Inventario
         </div>
         <DataGrid
           className="datagrid"

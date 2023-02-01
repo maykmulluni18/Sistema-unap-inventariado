@@ -38,15 +38,15 @@ const CrearPecosaPedidos_cont = () => {
     }
 
     useEffect(() => {
-        getSedes()
+        //getSedes()
         getMetas()
     }, [])
 
     const [dependencias, setDependencias] = useState('')
     const [id_administrativos, setIdAdministrativos] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('ALMACEN CENTRAL DE OBRAS')
     const [fecha, setFecha] = useState('')
-    const [almacen, setAlmacen] = useState('')
+    const [almacen, setAlmacen] = useState('ALMACEN CENTRAL DE OBRAS')
     const [id_metas, setIdMetas] = useState('')
 
     const navigate = useNavigate()
@@ -56,7 +56,7 @@ const CrearPecosaPedidos_cont = () => {
             const respon = await axios.post(URI, {
                 dependencias: dependencias,
                 id_administrativos: id_administrativos,
-                id_sedes: id_sedes,
+                tipo_de_sede: tipo_de_sede,
                 id_metas: id_metas,
                 fecha: fecha,
                 almacen: almacen
@@ -122,26 +122,15 @@ const CrearPecosaPedidos_cont = () => {
                                 <FilterData />
                             </div>
                             <div className='formInput'>
-                                <label>Sedes </label>
+                                <label>Tipo de Sedes</label>
 
                                 <input
                                     type="text" list="bienesp"
                                     placeholder=''
-                                    value={id_sedes}
-                                    onChange={(e) => setIdSedes(e.target.value)}
+                                    value={tipo_de_sede}
+                                    onChange={(e) => setTipoDeSede(e.target.value)}
                                     required
-                                />
-                                <datalist id="bienesp">
-                                    {
-                                        sedes
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> {res.descripcion} - {res.sede}</option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
+                             />
                             </div>
                             <div className='formInput'>
                                 <label>Metas Obras </label>
@@ -158,7 +147,7 @@ const CrearPecosaPedidos_cont = () => {
                                         metas
                                             .map(res => {
                                                 return (
-                                                    <option key={res.id} value={res.id}> {res.meta_1} - {res.obra}</option>
+                                                    <option key={res.id} value={res.id}>[Meta 1: {res.meta_1}] -- [Meta 2 :{res.meta_2}] -- [{res.obra}] </option>
                                                 )
                                             })
                                     }

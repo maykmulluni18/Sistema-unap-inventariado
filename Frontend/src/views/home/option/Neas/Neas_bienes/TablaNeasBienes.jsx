@@ -97,7 +97,7 @@ const TablaNeasBienes = () => {
 
             <div className="Tabledata_neas_bienes">
                 <div className="top">
-                    <h1>Inventario de Neas de Oficina  de abastecimiento</h1>
+                    <h1><strong>Neas Bienes : </strong> Inventario de Neas de Oficina  de abastecimiento</h1>
                 </div>
                 {/*<div className="top_1">
                     <ImportNeasExcel/>
@@ -105,7 +105,7 @@ const TablaNeasBienes = () => {
                 </div>*/}
                 <div className="Tabledata">
                     <div className="dataTitle">
-                        Inventario Oficina de de abastecimiento
+                        Neas Bienes
                         <Link to={'created-neas-bienes'}>
                             <div className="CrearButton">
                                 <button className="crear_bienes">Crear</button>

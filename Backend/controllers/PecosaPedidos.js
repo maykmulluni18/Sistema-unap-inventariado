@@ -9,7 +9,7 @@ import ModelsNeaBien from "../models/ModelsNeaBien.js";
 export const getPecosaPedidos = async(req, res)=>{
     try {
         const pecosapedidos = await ModelsPecosaPedidos.findAll({
-            include: [ModelsAdministrativos, ModelsSedes, ModelsInvenInicial, ModelsPecosaBienes, ModelsMetas],
+            include: [ModelsAdministrativos, ModelsInvenInicial, ModelsPecosaBienes, ModelsMetas],
         })
         res.json(pecosapedidos)
     } catch (error) {
@@ -22,7 +22,7 @@ export const getPecosaPedidosId = async(req, res) => {
     try {
         const pecosapedido = await ModelsPecosaPedidos.findAll({
             where: {id: req.params.id},
-            include: [ModelsAdministrativos, ModelsSedes, ModelsInvenInicial, ModelsMetas]
+            include: [ModelsAdministrativos, ModelsInvenInicial, ModelsMetas]
         })
         res.json(pecosapedido[0])
         

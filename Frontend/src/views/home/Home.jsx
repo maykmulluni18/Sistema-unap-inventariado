@@ -31,7 +31,7 @@ const Home = () => {
     <Layout>
       <Welcome />
       <Stocks />
-      <StocksNeas />
+     {/*  <StocksNeas />*/}
     </Layout>
 
   );

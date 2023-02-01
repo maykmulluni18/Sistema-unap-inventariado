@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 import "./crearpecosabienes.scss"
 import { DB_URL } from '../../../../../../config/config';
 import { Filter_Obs_Nea } from './filter_obs';
+import FilterInventariado from './FilterInventariado';
+import FilterNeasBien from './FilterNeasBien';
 
 const URI = DB_URL + 'pecosabienes/'
 
@@ -41,8 +43,8 @@ const CrearPecosaBienes_cont = () => {
     }
     useEffect(() => {
         getPecosaPedidos()
-        getBienes()
-        getNeasBien()
+        //getBienes()
+        //getNeasBien()
     }, [])
 
     const navigate = useNavigate()
@@ -207,17 +209,7 @@ const CrearPecosaBienes_cont = () => {
                                                     onChange={(e) => handleSubmit(e, index)}
 
                                                 />
-                                                <datalist id="bienesp">
-                                                    {
-                                                        bienes
-                                                            .map(res => {
-                                                                return (
-                                                                    <option key={res.id} value={res.id}> [ N°: {res.id} ] -- [ Stock = {res.cantidad} ] -- [ {res.biene.description} ] </option>
-                                                                )
-                                                            })
-                                                    }
-
-                                                </datalist>
+                                                <FilterInventariado />
                                             </div>
 
 
@@ -232,17 +224,7 @@ const CrearPecosaBienes_cont = () => {
                                                     value={value_cont.nea_bien_id}
                                                     onChange={(e) => handleSubmit(e, index)}
                                                 />
-                                                <datalist id="bienesn">
-                                                    {
-                                                        neasbien
-                                                            .map(res => {
-                                                                return (
-                                                                    <option key={res.id} value={res.id}> [N° NEA: {res.neaEntradaId}] -- [ Stock: {res.cantidad} ] -- [ {res.biene.description}] </option>
-                                                                )
-                                                            })
-                                                    }
-
-                                                </datalist>
+                                                <FilterNeasBien />
                                             </div>
 
                                             <div className='formInput_title'>
@@ -268,7 +250,7 @@ const CrearPecosaBienes_cont = () => {
                                                     value={value_cont.nea_bien_id}
                                                     onChange={(e) => handleSubmit(e, index)}
                                                 >
-                                                    <option value=""> </option>
+                                                    <option value="">INVENTARIADO</option>
                                                     <Filter_Obs_Nea />
                                                 </select>
                                                 <input

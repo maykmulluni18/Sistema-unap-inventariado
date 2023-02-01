@@ -22,7 +22,7 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.biene.item}`,
+            `${params.row.biene?.item}`,
     },
     {
         field: 'Descripcion',
@@ -31,7 +31,7 @@ const columns = [
         sortable: false,
         width: 450,
         valueGetter: (params) =>
-            `${params.row.biene.description}`,
+            `${params.row.biene?.description}`,
     },
     {
         field: 'U. Medida',
@@ -40,7 +40,7 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.biene.unidad_de_medida}`,
+            `${params.row.biene?.unidad_de_medida}`,
     },
     { field: 'fte_fto', headerName: 'Fte_Fto', width: 130 },
     { field: 'cuenta_contable', headerName: 'Cuenta Contable', width: 100 },
@@ -52,7 +52,7 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-        Number.parseFloat(`${params.row.cantidad_inicial || ''}` * `${params.row.p_unitario || ''}`).toFixed(2)
+        Number.parseFloat(`${params.row?.cantidad_inicial || ''}` * `${params.row?.p_unitario || ''}`).toFixed(2)
     },
 
 ];
@@ -66,7 +66,7 @@ const DeatellesNeasReportes_cont = () => {
     }, [])
 
     const [id_administradores, setIdAdministradores] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('')
     const [tipo_de_ingreso, setTipoDeIngreso] = useState('')
     const [recibido_por, setRecibidoPor] = useState('')
     const [tipo_de_obra, setTipoDeObra] = useState('')
@@ -83,10 +83,10 @@ const DeatellesNeasReportes_cont = () => {
         setIdAdministradores(res.data.usuario.nombres + ' ' +
             res.data.usuario.apellido_paterno + ' ' +
             res.data.usuario.apellido_materno)
-        setIdSedes(res.data.id_sedes)
+        setTipoDeSede(res.data.tipo_de_sede)
         setTipoDeIngreso(res.data.tipo_de_ingreso)
         setRecibidoPor(res.data.recibido_por)
-        setTipoDeObra(res.data.tipo_de_obra)
+        setTipoDeObra(res.data.Meta.obra)
         setTipoDeMoneda(res.data.tipo_de_moneda)
         setTipoDeAlmacen(res.data.tipo_de_almacen)
         setDocumento(res.data.documento)

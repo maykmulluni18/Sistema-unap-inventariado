@@ -15,7 +15,7 @@ const URI = DB_URL + 'bienes/'
 
 const Table = () => {
 
-  
+
   const [bienes, setBienes] = useState([])
 
   useEffect(() => {
@@ -28,27 +28,27 @@ const Table = () => {
   };
 
   const deleteBienes = async (id) => {
-      Swal.fire({
-        title: 'Esta Seguro que Desea Eliminar?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#160a3d',
-        cancelButtonColor: '#3d0a0a',
-        confirmButtonText: 'Si, Eliminar!',
-        cancelButtonText: 'No, Cancelar',
-        timer: 15500
-      }).then( async (result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: 'Eliminado!',
-            icon: 'success',
-            timer: 5500
-          })
-          const res = await axios.delete(`${URI}${id}`)
-          getBienes(res.data)
+    Swal.fire({
+      title: 'Esta Seguro que Desea Eliminar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#160a3d',
+      cancelButtonColor: '#3d0a0a',
+      confirmButtonText: 'Si, Eliminar!',
+      cancelButtonText: 'No, Cancelar',
+      timer: 15500
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Eliminado!',
+          icon: 'success',
+          timer: 5500
+        })
+        const res = await axios.delete(`${URI}${id}`)
+        getBienes(res.data)
 
-        }
-      })
+      }
+    })
   }
 
   const actionColumn = [
@@ -82,16 +82,21 @@ const Table = () => {
   return (
     <div className="Table_bienes">
       <div className="top">
-        <h1>Inventario de Bienes de Oficina  de abastecimiento</h1>
+        <h1><strong>Lista de Bienes : </strong> Inventario de Bienes de Oficina  de abastecimiento</h1>
       </div>
       <div className="Tabledata">
         <div className="dataTitle">
           Lista de Bienes
-          <div className="CrearButton">
-            <Link to={'created-bienes'}>
-              <button className="crear_bienes">Crear</button>
-            </Link>
-          </div>
+            <div className="CrearButton_1" >
+              <Link to={'importbienes'}>
+                <button className="crear_bienes" >Insertar_por_Excel</button>
+              </Link>
+            </div>
+            <div className="CrearButton">
+              <Link to={'created-bienes'}>
+                <button className="crear_bienes">Crear</button>
+              </Link>
+            </div>
         </div>
         <DataGrid
           className="datagrid"

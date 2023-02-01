@@ -10,7 +10,7 @@ const URI = DB_URL + 'user/'
 
 const CreateAdministrativos_cont = () => {
 
-    const [n_documento, setNdocumento] = useState('')
+    //const [n_documento, setNdocumento] = useState('')
     const [apellido_paterno, setApellidopaterno] = useState('')
     const [apellido_materno, setApellidomaterno] = useState('')
     const [nombres, setNombres] = useState('')
@@ -20,7 +20,7 @@ const CreateAdministrativos_cont = () => {
         e.preventDefault();
         try {
             const respon = await axios.post(URI, {
-                n_documento: n_documento,
+                //n_documento: n_documento,
                 apellido_paterno: apellido_paterno,
                 apellido_materno: apellido_materno,
                 nombres: nombres
@@ -63,6 +63,7 @@ const CreateAdministrativos_cont = () => {
                 <div className="cont_form_bienes">
                     <div className="right">
                         <form onSubmit={Administrativos}>
+                            {/* 
                             <div className="formInput" >
                                 <label htmlFor='inputDocumento'>Documento</label>
                                 <input
@@ -76,8 +77,9 @@ const CreateAdministrativos_cont = () => {
 
 
                                 />
-
+                                
                             </div>
+                            */}
                             <div className="formInput" >
                                 <label htmlFor='inputNombres'>NOMBRES</label>
                                 <input

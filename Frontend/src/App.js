@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import Listinfo from "./views/home/option/usuarios/ListInfo";
 import Bienes from "./views/home/option/bienes/Listinfobienes";
 import EditBienes from "./views/home/option/bienes/EditBienes/EditBienes";
-import Sedes from "./views/home/option/sedes/Listinfosedes";
-import EditSede from "./views/home/option/sedes/Editsedes/EditSede";
-import CreateSedes from "./views/home/option/sedes/CreateSedes/CreateSedes";
+//import Sedes from "./views/home/option/sedes/Listinfosedes";
+//import EditSede from "./views/home/option/sedes/Editsedes/EditSede";
+//import CreateSedes from "./views/home/option/sedes/CreateSedes/CreateSedes";
 import Editusers from "./views/home/option/usuarios/modaleditusers/Editusers";
 
 import CreatedBienes from "./views/home/option/bienes/modalnew/CreateBienes";
@@ -57,15 +57,18 @@ import ListaReporteInventariado from "./views/home/option/InventariadoInicial/In
 import DetallesInventariado from "./views/home/option/InventariadoInicial/Invetario_Reporte/DetallesInvetario/DetallesInventariado";
 import Reporte_inventariado from "./views/home/option/InventariadoInicial/Invetario_Reporte/PdfInventario/Reporte_inventariado";
 
-import ListaAlmacen from "./views/home/option/almacen/ListaAlmacen"
-import CrearAlmacen from "./views/home/option/almacen/crearAlmacen/CrearAlmacen";
-import EditarAlmacen from "./views/home/option/almacen/editarAlmacen/EditarAlmacen";
-import ListaObras from "./views/home/option/obras/ListaObras";
-import CrearObras from "./views/home/option/obras/crearObras/CrearObras";
-import EditarObras from "./views/home/option/obras/editarObras/EditarObras";
+//import ListaAlmacen from "./views/home/option/almacen/ListaAlmacen"
+//import CrearAlmacen from "./views/home/option/almacen/crearAlmacen/CrearAlmacen";
+//import EditarAlmacen from "./views/home/option/almacen/editarAlmacen/EditarAlmacen";
+//import ListaObras from "./views/home/option/obras/ListaObras";
+//import CrearObras from "./views/home/option/obras/crearObras/CrearObras";
+//import EditarObras from "./views/home/option/obras/editarObras/EditarObras";
 
 import ReporteTotal from "./views/home/stocks/CantTotal"
-import StocksNeas from "./views/home/stocks/StocksNeas";
+//import StocksNeas from "./views/home/stocks/StocksNeas";
+//import ImportNeasExcel from "./views/home/option/Neas/Neas_bienes/importarExcel/ImportNeasExcel";
+import ImportBienesExcel from "./views/home/option/bienes/importarExcel/ImportBienesExcel";
+import ImportUsersExcel from "./views/home/option/usuarios/importarExcel/ImportUsersExcel";
 
 function App() {
   console.log(process.env.REACT_APP_TOKEN)
@@ -84,10 +87,12 @@ function App() {
                 <Route path="/reportetotal">
                   <Route index element={<ReporteTotal/>} />
                 </Route>
+
                 <Route path="/bienes">
                   <Route index element={<Bienes />} />
                   <Route path="created-bienes" element={<CreatedBienes />} />
                   <Route path="edit/:id" element={<EditBienes />} />
+                  <Route path="importbienes" element={<ImportBienesExcel/>} />
                 </Route>
 
                 <Route path="/metas">
@@ -96,19 +101,22 @@ function App() {
                   <Route path="edit/:id" element={<EditMetas/>}/>
                 </Route>
 
-                <Route path="/sedes">
+               {/*  <Route path="/sedes">
                   <Route index element={<Sedes />} />
                   <Route path="edit/:id" element={<EditSede />} />
                   <Route path="create-sedes" element={<CreateSedes />} />
 
                 </Route>
+              */}
 
                 <Route path="/administrativos" >
                   <Route index element={<Listinfo />} />
                   <Route path="create-administrativos" element={<CreateAdministrativos />} />
                   <Route path="edit/:id" element={<Editusers />} />
+                  <Route path="insert-excel" element={<ImportUsersExcel/>} />
+
                 </Route>
-                
+              {/* 
                 <Route path="/almacenes">
                   <Route index element={<ListaAlmacen />}/>
                   <Route path="created-almacen" element={<CrearAlmacen />}/>
@@ -120,17 +128,20 @@ function App() {
                   <Route path="created-obras" element={<CrearObras />}/>
                   <Route path="edit/:id" element={<EditarObras />}/>
                 </Route>
+              */}
 
                 <Route path="/neas-bienes" >
                   <Route index element={<ListaNeasBienes />} />
                   <Route path="created-neas-bienes" element={<CrearNeasBienes />} />
                   <Route path="edit/:id" element={<EditNeasBienes />} />
                 </Route>
+
                 <Route path="/neas-entradas" >
                   <Route index element={<ListaNeasEntradas />} />
                   <Route path="created-neas-entrada" element={<CrearNeasEntradas />} />
                   <Route path="edit/:id" element={<EditNeasEntradas />} />
                 </Route>
+
                 <Route path="/reportes-neas" >
                   <Route index element={<ListaReportesNeas />} />
                   <Route path="detalles/:id" element={<DestallesReportesNeas />} />
@@ -142,11 +153,13 @@ function App() {
                   <Route path="created-pecosa-bienes" element={<CrearPecosaBienes />} />
                   <Route path="edit/:id" element={<EditarPecosaBienes />} />
                 </Route>
+
                 <Route path="/pecosa-pedidos">
                   <Route index element={<ListaPecosaPedidos />} />
                   <Route path="created-pecosa-pedidos" element={<CrearPecosaPedidos />} />
                   <Route path="edit/:id" element={<EditarPecosaPedidos />} />
                 </Route>
+
                 <Route path="/reportes-pecosa">
                   <Route index element={<ListaReportes />} />
                   <Route path="detalles/:id" element={<DetallesPecosa />} />
@@ -164,6 +177,7 @@ function App() {
                   <Route path="created-inventariado" element={<CreatedInventarido />} /> 
                   <Route path="edit/:id" element={<EditarInventarido />}/>
                 </Route>
+                
                 <Route path="/reporte-inventariado">
                   <Route index element={<ListaReporteInventariado/>}/>
                   <Route path="detalles/:fecha_registro" element={<DetallesInventariado />}/>

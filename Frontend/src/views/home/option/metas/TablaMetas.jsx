@@ -83,7 +83,7 @@ const TablaMetas = () => {
   return (
     <div className="Table_bienes">
       <div className="top">
-        <h1>Metas de la Oficina  de abastecimiento</h1>
+        <h1><strong>Lista de Metas : </strong> De la Oficina  de abastecimiento</h1>
       </div>
       <div className="Tabledata">
         <div className="dataTitle">

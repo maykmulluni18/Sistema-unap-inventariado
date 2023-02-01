@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import "./createusers.scss"
 import { DB_URL } from '../../../../../config/config';
 
-const URI = DB_URL + 'admin/'
+const URI = DB_URL + 'createuseradmin/'
 
 const CreateUsers_cont = () => {
     const [values, setValues] = useState({
@@ -75,8 +75,15 @@ const CreateUsers_cont = () => {
                 )
             }
         } catch (error) {
-            if (error.respon) {
-                setMsg(error.respon.data.msg)
+            if (error.response.status === 400) {
+                Swal.fire(
+                    {
+                        title: 'Error',
+                        text: error.response.data.message,
+                        icon: 'error',
+                        timer: 8500
+                    }
+                )
             }
         }
     }

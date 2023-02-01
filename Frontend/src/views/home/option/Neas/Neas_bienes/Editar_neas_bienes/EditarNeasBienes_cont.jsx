@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Swal from 'sweetalert2'
 import { DB_URL } from '../../../../../../config/config';
 import Edit_Bienes_cont from './Edit_Bienes_cont';
-import { EditFilterDescBien } from './EditFilterDescBien';
+import  EditFilterDescBien  from './EditFilterDescBien';
 
 const URI = DB_URL + 'neasbienes/'
 

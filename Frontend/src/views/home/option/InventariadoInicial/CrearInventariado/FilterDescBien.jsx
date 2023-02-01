@@ -4,7 +4,7 @@ import "./crearinventariado.scss"
 import { DB_URL } from '../../../../../config/config';
 const URI1 = DB_URL + 'bienes/'
 
-export const FilterDescBien = () => {
+const FilterDescBien = () => {
 
     const [bienes, setBienes] = useState([])
     const getBienes = async () => {
@@ -24,3 +24,5 @@ export const FilterDescBien = () => {
         </>
     )
 }
+
+export default React.memo(FilterDescBien)

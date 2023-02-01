@@ -417,7 +417,7 @@ const PdfReporte_cont = () => {
 
 
     const [dependencias, setDependencias] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('')
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('')
     const [id_administradores, setIdAdministradores] = useState('')
@@ -426,7 +426,7 @@ const PdfReporte_cont = () => {
 
         const res = await axios.get(URI + id,)
         setDependencias(res.data.dependencias)
-        setIdSedes(res.data.sede.sede)
+        setTipoDeSede(res.data.tipo_de_sede)
         setAlmacen(res.data.almacen)
         setFecha(res.data.fecha)
         setIdAdministradores(res.data.usuario.nombres + ' ' +
@@ -524,7 +524,7 @@ const PdfReporte_cont = () => {
                                     <Text fixed>SOLICITANTE                              :</Text>    {id_administradores}
                                 </Text>
                                 <Text style={styles.destino_a} fixed>
-                                <Text>CON DESTINO A                         :</Text>   {id_sedes}
+                                <Text>ALMACEN                                    :</Text>   {tipo_de_sede}
                                 </Text>
                                 <Text style={styles.entregar_a} fixed>
                                 <Text>SOLICITO ENTREGAR A </Text>           :<Text>   {id_administradores} </Text>

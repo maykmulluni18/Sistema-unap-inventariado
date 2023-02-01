@@ -1,30 +1,30 @@
 import {
     Box, Button, FormHelperText, Grid,
-    Container, Paper, IconButton, InputAdornment,
+    IconButton, InputAdornment,
     TextField, Typography
 } from '@mui/material';
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-import { styled } from '@mui/material/styles';
+//import { styled } from '@mui/material/styles';
 
 import { LoginUser, reset } from "../home/auth/Authen";
 
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useCallback } from "react"
+//import { useCallback } from "react"
 
 import "./Login_p.scss"
 import UNAP from "./img/unap_1.png";
-import Video from "./video/una.mp4";
+//import Video from "./video/una.mp4";
 
-const Img = styled('img')({
+/*const Img = styled('img')({
     margin: 'auto',
     display: 'block',
     maxWidth: 'auto',
     maxHeight: 'auto',
-});
+});*/
 
 const Login_inicio = () => {
     //const vid = useCallback((x) => x.volume = 0.5)

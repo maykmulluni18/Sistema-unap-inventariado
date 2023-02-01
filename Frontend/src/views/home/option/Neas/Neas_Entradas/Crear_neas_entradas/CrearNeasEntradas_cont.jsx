@@ -12,7 +12,7 @@ const URI = DB_URL + 'neasentradas/'
 
 const URI3 = DB_URL + 'sedes/'
 
-const URI4 = DB_URL + 'obras/'
+const URI4 = DB_URL + 'metas/'
 
 const URI5 = DB_URL + 'almacen/'
 
@@ -37,19 +37,19 @@ const CrearNeasEntradas_cont = () => {
     }
 
     useEffect(() => {
-        getSedes()
-        getAlmacens()
+        //getSedes()
+        // getAlmacens()
         getObrass()
     }, [])
 
 
     const [id_administradores, setIdAdministradores] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('ALMACEN CENTRAL DE OBRAS')
     const [tipo_de_ingreso, setTipoDeIngreso] = useState('NEA - TRANSFERENCIA')
     const [recibido_por, setRecibidoPor] = useState('VICTOR FREDY VELASQUEZ JALLO')
     const [id_obras, setIdObras] = useState('')
     const [tipo_de_moneda, setTipoDeMoneda] = useState('S/')
-    const [id_almacen, setIdAlmacen] = useState('')
+    const [tipo_de_almacen, setTipoDeAlmacen] = useState('ALMACEN CENTRAL DE OBRAS')
     const [documento, setDocumento] = useState('ACTA DE INTERNAMIENTO DE MATERIALES')
     const [tipo_de_cambio, setTipoDeCambio] = useState('S/')
     const [tipo_de_uso, setTipoDeUso] = useState('CONSUMO')
@@ -62,12 +62,12 @@ const CrearNeasEntradas_cont = () => {
         try {
             const respon = await axios.post(URI, {
                 id_administradores: id_administradores,
-                id_sedes: id_sedes,
+                tipo_de_sede: tipo_de_sede,
                 tipo_de_ingreso: tipo_de_ingreso,
                 recibido_por: recibido_por,
                 id_obras: id_obras,
                 tipo_de_moneda: tipo_de_moneda,
-                id_almacen: id_almacen,
+                tipo_de_almacen: tipo_de_almacen,
                 documento: documento,
                 tipo_de_cambio: tipo_de_cambio,
                 tipo_de_uso: tipo_de_uso,
@@ -102,13 +102,15 @@ const CrearNeasEntradas_cont = () => {
     const selectAdministrativo = (e) => {
         setIdAdministradores(e.target.value)
     }
-    const selectSedes = (e) => {
+
+    {/*const selectSedes = (e) => {
         setIdSedes(e.target.value)
     }
 
     const selectAlamcen = (e) => {
         setIdAlmacen(e.target.value)
     }
+    */}
 
     const selectObras = (e) => {
         setIdObras(e.target.value)
@@ -122,7 +124,7 @@ const CrearNeasEntradas_cont = () => {
                 <div className="cont_form_bienes">
                     <div className="right">
                         <form onSubmit={Neas_Entradas}>
-
+        
                             <div className='formInput'>
                                 <label>Solicitante Id</label>
                                 <input
@@ -136,27 +138,16 @@ const CrearNeasEntradas_cont = () => {
                                 <FilterAdministrativos />
                             </div>
                             <div className='formInput'>
-                                <label>Sedes Id</label>
+                                <label>Tipo de Sede</label>
 
                                 <input
                                     type="text" list="bienes"
-                                    placeholder='filtrar'
-                                    value={id_sedes}
-                                    onChange={selectSedes}
+                                    //placeholder='filtrar'
+                                    value={tipo_de_sede}
+                                    onChange={(e) => setTipoDeSede(e.target.value.toUpperCase())}
                                     required
                                 />
-                                <datalist id="bienes">
-                                    {
-                                        sedes
 
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> {res.sede} </option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
                             </div>
 
                             <div className="formInput" >
@@ -193,7 +184,7 @@ const CrearNeasEntradas_cont = () => {
 
                                             .map(res => {
                                                 return (
-                                                    <option key={res.id} value={res.id}> {res.obras} </option>
+                                                    <option key={res.id} value={res.id}> [Meta 1: {res.meta_1}] -- [Meta 2 :{res.meta_2}] -- [{res.obra}] </option>
                                                 )
                                             })
                                     }
@@ -213,23 +204,12 @@ const CrearNeasEntradas_cont = () => {
                                 <label>Tipo de Almacen</label>
                                 <input
                                     type="text" list="almacens"
-                                    placeholder='filtrar'
-                                    value={id_almacen}
-                                    onChange={selectAlamcen}
+                                    //placeholder='filtrar'
+                                    value={tipo_de_almacen}
+                                    onChange={(e) => setTipoDeAlmacen(e.target.value.toUpperCase())}
                                     required
                                 />
-                                <datalist id="almacens">
-                                    {
-                                        almacen
 
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> {res.almacen} </option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
                             </div>
                             <div className="formInput">
                                 <label>Tipo de Documento</label>

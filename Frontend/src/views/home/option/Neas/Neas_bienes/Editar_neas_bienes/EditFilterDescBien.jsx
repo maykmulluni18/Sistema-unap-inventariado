@@ -3,7 +3,7 @@ import axios from 'axios';
 import { DB_URL } from '../../../../../../config/config';
 const URI1 = DB_URL + 'bienes/'
 
-export const EditFilterDescBien = () => {
+const EditFilterDescBien = () => {
 
     const [bienes, setBienes] = useState([])
     const getBienes = async () => {
@@ -23,3 +23,5 @@ export const EditFilterDescBien = () => {
         </>
     )
 }
+
+export default React.memo(EditFilterDescBien)

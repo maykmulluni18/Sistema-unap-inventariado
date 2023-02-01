@@ -1,17 +1,17 @@
         
 export const userColumns = [
 
-    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'id', headerName: 'PECOSA', width: 100 },
     {
         field: 'Responsble',
         headerName: 'Responsble',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 350,
+        width: 300,
         valueGetter: (params) =>
-            `${params.row.usuario.nombres + ' '}` +  
-            `${params.row.usuario.apellido_paterno + ' '}` + 
-            `${params.row.usuario.apellido_materno || ' '}`,
+            `${params.row.usuario?.nombres + ' '}` +  
+            `${params.row.usuario?.apellido_paterno + ' '}` + 
+            `${params.row.usuario?.apellido_materno || ' '}`,
     },
     {
         field: 'Sedes',
@@ -20,17 +20,18 @@ export const userColumns = [
         sortable: false,
         width: 550,
         valueGetter: (params) =>
-            `${params.row.sede?.sede || ''}` + '  ' +  ' ' + `${params.row.sede?.descripcion || ''}`,
+            `${params.row?.tipo_de_sede || ''}` + '  ' +  ' ' + `${params.row.sede?.descripcion || ''}`,
     },
 
     { field: 'fecha', headerName: 'Fecha de Pedido', width: 140 },
     {
-        field: 'Bienes',
-        headerName: 'Cantidad Bienes',
+        field: 'Metas',
+        headerName: 'Obra',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-            `${params.row.inventarido_inicials?.length}`,
-    }
+            `${params.row.Meta?.obra || ''}`,
+    },
+
 ];

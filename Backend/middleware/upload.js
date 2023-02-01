@@ -23,5 +23,5 @@ const storage = multer.diskStorage({
   },
 });
 
-export const uploadExel = multer({ storage, limits: {fileSize: 200000000}, fileFilter: excelFilter });
+export const uploadExel = multer({ storage, fileFilter: excelFilter });
 

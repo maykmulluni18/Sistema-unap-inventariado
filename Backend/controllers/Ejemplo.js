@@ -24,10 +24,21 @@ export const getCantidad = async (req, res) => {
 
 export const getStock = async (req, res) => {
     try {
-        let sql = `SELECT i.id, i.fecha_registro, i.item,i.unidad, i.descripcion, 
-         i.cantidad AS entrada, p.cantidad AS salida, i.cantidad - COALESCE(SUM(p.cantidad), 0) AS stock, 
-         i.precio FROM inventarido_inicial i LEFT JOIN  
-         pecosa_bienes p ON i.id = p.inventaridoInicialId GROUP BY i.id`
+        let sql = `
+        SELECT b.id, 
+            b.item,
+            b.unidad_de_medida AS Unidad_de_Medida,
+            b.description AS Descripcion,
+            i.cantidad AS Inventarido_Cantidad,
+            n.cantidad AS Nea_Cantidad,
+            SUM(p.cantidad) salida
+        FROM bienes b
+        LEFT JOIN inventarido_inicial i ON i.idBienes = b.id 
+        LEFT JOIN nea_bien n ON n.idBienes = b.id
+        LEFT JOIN pecosa_bienes p ON p.inventaridoInicialId = i.id
+        LEFT JOIN pecosa_bienes ON p.nea_bien_id = b.id
+        GROUP BY i.id
+        `
         const stock = await db.query(sql)
         res.json(stock[0])
     } catch (error) {

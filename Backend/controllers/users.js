@@ -28,7 +28,7 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
     const { username, nombre, apellido_paterno, apellido_materno, role, password, confPassword } = req.body;
-    if (password !== confPassword) return res.status(400).json({ message: "Confirme el password" });
+    if (password !== confPassword) return res.status(400).json({ message: "La contraseña no coincide" });
     const hashPassword = await argon2.hash(password);
     try {
         await ModelsUser.create({
@@ -75,7 +75,7 @@ export const updateUser = async (req, res) => {
                 id: user.id
             }
         });
-        res.status(200).json({ message: "Uusuario actualizado" })
+        res.status(200).json({ message: "Usuario actualizado" })
     } catch (error) {
         res.status(400).json({ message: error.message })
     }

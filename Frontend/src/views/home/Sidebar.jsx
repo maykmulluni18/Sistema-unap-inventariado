@@ -245,6 +245,7 @@ function EjempSidebar(props) {
                 </List>
                 <Divider className='lines' />
 
+                {/* 
                 <List>
                     {
                         SidebarDataSedes.map((item, index) => {
@@ -323,7 +324,7 @@ function EjempSidebar(props) {
                     }
                 </List>
                 <Divider className='lines' />
-
+    */}
                 <List>
                     {
                         SidebarDataMetas.map((item, index) => {

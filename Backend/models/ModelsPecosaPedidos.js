@@ -16,7 +16,7 @@ const ModelsPecosaPedidos = db.define('pecosa_pedidos', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    id_sedes: {
+    tipo_de_sede: {
         type: DataTypes.INTEGER,
         allowNull: false,
 
@@ -51,13 +51,14 @@ ModelsAdministrativos.hasOne(ModelsPecosaPedidos, {
     }
 })
 
+{/*
 ModelsPecosaPedidos.belongsTo(ModelsSedes, { foreignKey: "id_sedes"})
 ModelsSedes.hasOne(ModelsPecosaPedidos,{
     foreignKey: {
         name: 'id',
     }
 })
-
+*/}
 
 
 ModelsPecosaPedidos.belongsTo(ModelsMetas, { foreignKey: "id_metas" })

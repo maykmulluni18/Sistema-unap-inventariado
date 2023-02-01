@@ -84,11 +84,16 @@ const TableData = () => {
 
       <div className="Table_administrativos">
         <div className="top">
-          <h1>Administrativos de Oficina de  abastecimiento</h1>
+          <h1><strong>Lista de Administrativos : </strong> De Oficina de  abastecimiento</h1>
         </div>
         <div className="Tabledata">
           <div className="dataTitle">
             Lista de Administrativos
+            <div className="CrearButton_1" >
+              <Link to={'insert-excel'}>
+                <button className="crear_bienes" >Insertar_por_Excel</button>
+              </Link>
+            </div>
             <div className="CrearButton">
               <Link to={'create-administrativos'}>
                 <button className="crear_bienes">Crear</button>

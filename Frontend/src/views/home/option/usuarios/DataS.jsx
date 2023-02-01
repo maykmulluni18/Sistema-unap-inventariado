@@ -2,9 +2,9 @@
 export const userColumns = [
 
   { field: 'id', headerName: 'ID', width: 120 },
-  { field: 'n_documento', headerName: 'Documento', width: 250 },
-  { field: 'apellido_paterno', headerName: 'Paterno', width: 280 },
-  { field: 'apellido_materno', headerName: 'Materno', width: 280 },
+  //{ field: 'n_documento', headerName: 'Identidicador', width: 250 },
+  { field: 'apellido_paterno', headerName: 'Paterno', width: 320 },
+  { field: 'apellido_materno', headerName: 'Materno', width: 320 },
   { field: 'nombres', headerName: 'Nombres', width: 360 },
  /* {
     field: "status",

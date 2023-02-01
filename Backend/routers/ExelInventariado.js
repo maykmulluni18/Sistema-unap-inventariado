@@ -1,4 +1,3 @@
-
 import express from 'express'
 import { Excelupload, getReporInventariado } from '../controllers/ExelCsvInventariado.js';
 import { uploadExel } from '../middleware/upload.js'

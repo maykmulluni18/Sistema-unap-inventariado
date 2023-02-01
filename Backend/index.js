@@ -21,6 +21,8 @@ import RouteAlmacen from "./routers/almacen.js"
 
 import RouteImportExel from "./routers/ExelInventariado.js"
 import RouteNeasImportExel from "./routers/ExelNeas.js"
+import RouteBienesImportExel from "./routers/Excelbienes.js"
+import RouteAdministrativosExel from "./routers/ExcelAdministrativos.js"
 
 import CantTotal from "./routers/CantTotal.js"
 import Stock from "./routers/stoks.js"
@@ -60,7 +62,7 @@ app.use(session({
         httpOnly: false,
         secure: 'auto',
         //maxAge: 60000,
-        //expires: 60000
+        //expires: 8.64e+7 
 
     }
 })
@@ -68,7 +70,7 @@ app.use(session({
 
 app.use('/login', RoutesLogin)
 app.use('/user', verifyUser, router)
-app.use('/admin',verifyUser, adminOnly, RoutesUsers)
+app.use('/createuseradmin', RoutesUsers)
 app.use('/sedes', verifyUser, RouteSedes)
 app.use('/bienes', verifyUser, RouteBienes)
 app.use('/neasbienes', verifyUser, RouteNeabienes)
@@ -85,12 +87,15 @@ app.use('/obras',verifyUser, RouteObras)
 app.use('/almacen',verifyUser, RouteAlmacen)
 
 
-app.use('/excelimport',RouteImportExel)
-app.use('/excelneasimport', RouteNeasImportExel)
+app.use('/excelimport',verifyUser, RouteImportExel)
+app.use('/excelneasimport', verifyUser, RouteNeasImportExel)
+app.use('/excelimportbienes',verifyUser, RouteBienesImportExel)
+app.use('/excelimportadministrativos',verifyUser, RouteAdministrativosExel
+)
 
-app.use('/cantidadtotal', CantTotal)
-app.use('/stock', Stock)
-app.use('/stocknea',StockNea)
+app.use('/cantidadtotal',verifyUser, CantTotal)
+app.use('/stock',verifyUser, Stock)
+app.use('/stocknea',verifyUser, StockNea)
 
 
 try {

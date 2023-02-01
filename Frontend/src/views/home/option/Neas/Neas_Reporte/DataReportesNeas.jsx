@@ -11,9 +11,9 @@ export const userColumns = [
         sortable: false,
         width: 320,
         valueGetter: (params) =>
-            `${params.row.usuario.nombres + ' '}` +  
-            `${params.row.usuario.apellido_paterno + ' '}` + 
-            `${params.row.usuario.apellido_materno || ' '}`,
+            `${params.row.usuario?.nombres + ' '}` +  
+            `${params.row.usuario?.apellido_paterno + ' '}` + 
+            `${params.row.usuario?.apellido_materno || ' '}`,
     },
     {
         field: 'Sedes',
@@ -22,7 +22,7 @@ export const userColumns = [
         sortable: false,
         width: 190,
         valueGetter: (params) =>
-            `${params.row.sede.sede || ''}`,
+            `${params.row?.tipo_de_sede || ''}`,
     },
 
 ];

@@ -73,7 +73,7 @@ const DetallesPecosa_cont = () => {
         getPecosaBienes()
     }, [])
     const [dependencias, setDependencias] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('')
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('')
     const [id_administradores, setIdAdministradores] = useState('')
@@ -87,7 +87,7 @@ const DetallesPecosa_cont = () => {
 
         const res = await axios.get(URI + id,)
         setDependencias(res.data.dependencias)
-        setIdSedes(res.data.sede.sede)
+        setTipoDeSede(res.data.tipo_de_sede)
         setAlmacen(res.data.almacen)
         setFecha(res.data.fecha)
         setIdAdministradores(res.data.usuario.nombres + ' ' +
@@ -148,10 +148,10 @@ const DetallesPecosa_cont = () => {
                         </div>
                         <div className='formInput'>
 
-                            <strong>Con Destino a: </strong>
+                            <strong>Sede : </strong>
                             <input
-                                value={id_sedes}
-                                onChange={(e) => setIdSedes(e.target.value)}
+                                value={tipo_de_sede}
+                                onChange={(e) => setTipoDeSede(e.target.value)}
                             />
                         </div>
                         <div className='formInput'>

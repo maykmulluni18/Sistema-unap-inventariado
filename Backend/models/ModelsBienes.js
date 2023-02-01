@@ -4,7 +4,7 @@ import ModelsInvenInicial from './ModelsInvenInicial.js';
 const {DataTypes} = Sequelize;
 const ModelsBienes = db.define('bienes',{
     item:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     description:{
@@ -13,7 +13,7 @@ const ModelsBienes = db.define('bienes',{
        
     },
     unidad_de_medida:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     }
    

@@ -10,7 +10,7 @@ export const userColumns = [
         sortable: false,
         width: 200,
         valueGetter: (params) =>
-            `${params.row.obra.obras + ' '}` 
+            `${params.row.Meta?.obra + ' '}` 
     },
     { field: 'fecha_de_registro', headerName: 'Fecha de Registro', width: 150 },
     {
@@ -20,9 +20,9 @@ export const userColumns = [
         sortable: false,
         width: 370,
         valueGetter: (params) =>
-            `${params.row.usuario.nombres + ' '}` +  
-            `${params.row.usuario.apellido_paterno + ' '}` + 
-            `${params.row.usuario.apellido_materno || ' '}`,
+            `${params.row.usuario?.nombres + ' '}` +  
+            `${params.row.usuario?.apellido_paterno + ' '}` + 
+            `${params.row.usuario?.apellido_materno || ' '}`,
     },
     {
         field: 'Sedes',
@@ -31,7 +31,7 @@ export const userColumns = [
         sortable: false,
         width: 180,
         valueGetter: (params) =>
-            `${params.row.sede.sede || ''}`,
+            `${params.row?.tipo_de_sede || ''}`,
     },
 
 ];

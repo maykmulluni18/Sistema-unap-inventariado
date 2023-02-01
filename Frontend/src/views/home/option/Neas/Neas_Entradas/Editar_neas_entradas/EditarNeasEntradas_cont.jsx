@@ -38,15 +38,15 @@ const EditarNeasEntradas_cont = () => {
         setObras(res.data)
     }
     useEffect(() => {
-        getSedes()
-        getObrass()
+        //getSedes()
+        //getObrass()
         getNeasEntradas()
         Neas_Entradas()
     }, [])
 
 
     const [id_administradores, setIdAdministradores] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('')
     const [tipo_de_ingreso, setTipoDeIngreso] = useState('')
     const [recibido_por, setRecibidoPor] = useState('')
     const [tipo_de_obra, setTipoDeObra] = useState('')
@@ -65,7 +65,7 @@ const EditarNeasEntradas_cont = () => {
         try {
             const respon = await axios.put(URI + id, {
                 id_administradores: id_administradores,
-                id_sedes: id_sedes,
+                tipo_de_sede: tipo_de_sede,
                 tipo_de_ingreso: tipo_de_ingreso,
                 recibido_por: recibido_por,
                 tipo_de_obra: tipo_de_obra,
@@ -105,7 +105,7 @@ const EditarNeasEntradas_cont = () => {
     const getNeasEntradas = async () => {
         const res = await axios.get(URI + id,)
         setIdAdministradores(res.data.id_administradores)
-        setIdSedes(res.data.id_sedes)
+        setTipoDeSede(res.data.tipo_de_sede)
         setTipoDeIngreso(res.data.tipo_de_ingreso)
         setRecibidoPor(res.data.recibido_por)
         setTipoDeObra(res.data.tipo_de_obra)
@@ -121,9 +121,12 @@ const EditarNeasEntradas_cont = () => {
     const selectAdministrativo = (e) => {
         setIdAdministradores(e.target.value)
     }
+    {/*
     const selectSedes = (e) => {
         setIdSedes(e.target.value)
     }
+    */}
+
     return (
         <>
             <div className='cont_editar_neas_entradas'>
@@ -152,22 +155,11 @@ const EditarNeasEntradas_cont = () => {
                                 <input
                                     type="text" list="bienes"
                                     placeholder='filtrar'
-                                    value={id_sedes}
-                                    onChange={selectSedes}
+                                    value={tipo_de_sede}
+                                    onChange={(e) => setTipoDeSede(e.target.value.toUpperCase())}
                                     required
                                 />
-                                <datalist id="bienes">
-                                    {
-                                        sedes
 
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> {res.sede} </option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
                             </div>
 
                             <div className="formInput" >
@@ -189,7 +181,7 @@ const EditarNeasEntradas_cont = () => {
                                     required
                                 />
                             </div>
-           
+
                             <div className="formInput">
                                 <label>Tipo de Obra</label>
                                 <input

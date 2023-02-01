@@ -1,10 +1,11 @@
 import db from '../database/db.js';
 import { Sequelize } from "sequelize";
 import ModelsAdministrdores from "./Models.js";
-import ModelsSedes from './ModelsSedes.js';
-import ModelsAlmacen from './ModelsAlmacen.js';
-import ModelsObras from './ModelsObras.js';
-import ModelsBienes from './ModelsBienes.js';
+import ModelsMetas from "./ModelsMetas.js"
+//import ModelsSedes from './ModelsSedes.js';
+//import ModelsAlmacen from './ModelsAlmacen.js';
+//import ModelsObras from './ModelsObras.js';
+//import ModelsBienes from './ModelsBienes.js';
 const { DataTypes } = Sequelize;
 const ModelsNeaEntradas = db.define('nea_entradas', {
 
@@ -12,7 +13,7 @@ const ModelsNeaEntradas = db.define('nea_entradas', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    id_sedes: {
+    tipo_de_sede: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
@@ -35,7 +36,7 @@ const ModelsNeaEntradas = db.define('nea_entradas', {
         allowNull: false,
 
     },
-    id_almacen: {
+    tipo_de_almacen: {
         type: DataTypes.INTEGER,
         allowNull: false,
 
@@ -77,14 +78,15 @@ ModelsAdministrdores.hasOne(ModelsNeaEntradas, {
     }
 })
 
+{/*
 ModelsNeaEntradas.belongsTo(ModelsSedes, { foreignKey: "id_sedes"})
 ModelsSedes.hasOne(ModelsNeaEntradas,{foreignKey: "id" })
 
 ModelsNeaEntradas.belongsTo(ModelsAlmacen, { foreignKey: "id_almacen"})
 ModelsAlmacen.hasOne(ModelsNeaEntradas,{foreignKey: "id" })
-
-ModelsNeaEntradas.belongsTo(ModelsObras, { foreignKey: "id_obras"})
-ModelsObras.hasOne(ModelsNeaEntradas,{foreignKey: "id" })
+*/}
+ModelsNeaEntradas.belongsTo(ModelsMetas, { foreignKey: "id_obras"})
+ModelsMetas.hasOne(ModelsNeaEntradas,{foreignKey: "id" })
 
 
 export default ModelsNeaEntradas

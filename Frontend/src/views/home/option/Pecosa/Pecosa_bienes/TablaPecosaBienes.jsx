@@ -28,28 +28,28 @@ const TablaPecosaBienes = () => {
 
 
     const deletePecosaBienes = async (id) => {
-            Swal.fire({
-              title: 'Esta Seguro que Desea Eliminar?',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#160a3d',
-              cancelButtonColor: '#3d0a0a',
-              confirmButtonText: 'Si, Eliminar!',
-              cancelButtonText: 'No, Canselar',
-              timer: 15500
-            }).then( async (result) => {
-              if (result.isConfirmed) {
+        Swal.fire({
+            title: 'Esta Seguro que Desea Eliminar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#160a3d',
+            cancelButtonColor: '#3d0a0a',
+            confirmButtonText: 'Si, Eliminar!',
+            cancelButtonText: 'No, Canselar',
+            timer: 15500
+        }).then(async (result) => {
+            if (result.isConfirmed) {
                 Swal.fire({
-                  title: 'Eliminado!',
-                  icon: 'success',
-                  timer: 5500
+                    title: 'Eliminado!',
+                    icon: 'success',
+                    timer: 5500
                 })
                 const res = await axios.delete(`${URI}${id}`)
                 getPecosaBienes(res.data)
 
-              }
-            })
-          
+            }
+        })
+
     }
 
 
@@ -93,11 +93,11 @@ const TablaPecosaBienes = () => {
 
             <div className="Tabledata_pecosa_bienes">
                 <div className="top">
-                    <h1>Añadir bienes a la Pecosas de la Oficina  de abastecimiento</h1>
+                    <h1><strong>Pecosa Bienes : </strong> Añadir bienes a la Pecosas de la Oficina  de abastecimiento</h1>
                 </div>
                 <div className="Tabledata">
                     <div className="dataTitle">
-                        Inventario Oficina de de abastecimiento
+                        Pecosa Bienes
                         <Link to={'created-pecosa-bienes'}>
                             <div className="CrearButton">
                                 <button className='crear_bienes'>Crear</button>
@@ -121,10 +121,10 @@ const TablaPecosaBienes = () => {
                         }}
                         componentsProps={{
                             toolbar: {
-                              showQuickFilter: true,
-                              quickFilterProps: { debounceMs: 500 },
+                                showQuickFilter: true,
+                                quickFilterProps: { debounceMs: 500 },
                             },
-                          }}
+                        }}
                         //experimentalFeatures={{ newEditingApi: true }}
                         localeText={esES.components.MuiDataGrid.defaultProps.localeText}
                     />

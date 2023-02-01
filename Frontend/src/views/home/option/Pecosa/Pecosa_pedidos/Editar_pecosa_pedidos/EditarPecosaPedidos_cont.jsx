@@ -31,14 +31,14 @@ const EditarPecosaPedidos_cont = () => {
     }
 
     useEffect(() => {
-        getSedes()
+        //getSedes()
         getPedidosPecosa()
         getMetas()
     }, [])
 
     const [dependencias, setDependencias] = useState('')
     const [id_administrativos, setIdAdministrativos] = useState('')
-    const [id_sedes, setIdSedes] = useState('')
+    const [tipo_de_sede, setTipoDeSede] = useState('')
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('')
     const [id_metas, setIdMetas] = useState('')
@@ -52,7 +52,7 @@ const EditarPecosaPedidos_cont = () => {
             const respon = await axios.put(URI + id, {
                 dependencias: dependencias,
                 id_administrativos: id_administrativos,
-                id_sedes: id_sedes,
+                tipo_de_sede: tipo_de_sede,
                 id_metas: id_metas,
                 fecha: fecha,
                 almacen: almacen
@@ -88,7 +88,7 @@ const EditarPecosaPedidos_cont = () => {
         const res = await axios.get(URI + id,)
         setDependencias(res.data.dependencias)
         setIdAdministrativos(res.data.id_administrativos)
-        setIdSedes(res.data.id_sedes)
+        setTipoDeSede(res.data.tipo_de_sede)
         setIdMetas(res.data.id_metas)
         setAlmacen(res.data.almacen)
         setFecha(res.data.fecha)
@@ -119,7 +119,7 @@ const EditarPecosaPedidos_cont = () => {
                                 <input
                                     type="text"
                                     list="datap"
-                                    placeholder='FILTRAR ADDMINISTRATIVOS'
+                                    //placeholder='FILTRAR ADDMINISTRATIVOS'
                                     value={id_administrativos}
                                     onChange={(e) => setIdAdministrativos(e.target.value)}
                                     required
@@ -132,21 +132,10 @@ const EditarPecosaPedidos_cont = () => {
                                 <input
                                     type="text" list="bienesp"
                                     placeholder='FILTRAR SEDES'
-                                    value={id_sedes}
-                                    onChange={(e) => setIdSedes(e.target.value)}
+                                    value={tipo_de_sede}
+                                    onChange={(e) => setTipoDeSede(e.target.value)}
                                     required
                                 />
-                                <datalist id="bienesp">
-                                    {
-                                        sedes
-                                            .map(res => {
-                                                return (
-                                                    <option key={res.id} value={res.id}> {res.descripcion} - {res.sede}</option>
-                                                )
-                                            })
-                                    }
-
-                                </datalist>
                             </div>
                             <div className='formInput'>
                                 <label>Metas Obras </label>

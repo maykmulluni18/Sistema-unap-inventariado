@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import "./crearneasbienes.scss"
 import { DB_URL } from '../../../../../../config/config';
 import Bienes_cont from './Bienes_cont';
-import { FilterDescBien } from './FilterDescBien';
+import  FilterDescBien  from './FilterDescBien';
 
 const URI = DB_URL + 'neasbienes/'
 

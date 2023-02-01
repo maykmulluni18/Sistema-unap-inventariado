@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Swal from 'sweetalert2'
 import { DB_URL } from '../../../../../config/config';
 import Bienes_cont from './Bienes_cont';
-import { FilterDescBien } from './FilterDescBien';
+import  FilterDescBien  from './FilterDescBien';
 
 const URI = DB_URL + 'invetinicial/'
 
@@ -99,7 +99,7 @@ const CrearIneventariado_cont = () => {
     const navigate = useNavigate()
     const [detailss, setDetaills] = useState([{
         idBienes: "",
-        cuenta: "",
+        cuenta: "1501070203",
         cantidad_inicial: "",
         cantidad: "",
         precio: "",

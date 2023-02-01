@@ -11,7 +11,7 @@ import { DB_URL } from '../../../../../config/config';
 const URI = DB_URL + 'user/'
 
 const Editusers_cont = () => {
-    const [n_documento, setNdocumento] = useState('')
+    //const [n_documento, setNdocumento] = useState('')
     const [apellido_paterno, setApellidopaterno] = useState('')
     const [apellido_materno, setApellidomaterno] = useState('')
     const [nombres, setNombres] = useState('')
@@ -23,7 +23,7 @@ const Editusers_cont = () => {
         try {
             const respon = await axios.put(URI + id, {
 
-                n_documento: n_documento,
+                //n_documento: n_documento,
                 apellido_paterno: apellido_paterno,
                 apellido_materno: apellido_materno,
                 nombres: nombres,
@@ -57,7 +57,7 @@ const Editusers_cont = () => {
 
     const getUsariosId = async () => {
         const res = await axios.get(URI + id,)
-        setNdocumento(res.data.n_documento)
+        //setNdocumento(res.data.n_documento)
         setApellidopaterno(res.data.apellido_materno)
         setApellidomaterno(res.data.apellido_materno)
         setNombres(res.data.nombres)
@@ -75,7 +75,8 @@ const Editusers_cont = () => {
                 <div className="cont_form_bienes">
                     <div className="right">
                         <form onSubmit={updateAdministrativos}>
-                            <div className="formInput" >
+                            {/* 
+                           <div className="formInput" >
                                 <label>DNI</label>
                                 <input
                                     value={n_documento}
@@ -85,7 +86,8 @@ const Editusers_cont = () => {
                                     required
 
                                 />
-                            </div>
+                            </div> 
+                            */}
                             <div className="formInput" >
                                 <label>NOMBRES</label>
                                 <input
