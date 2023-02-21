@@ -51,7 +51,7 @@ const app = express()
 app.use(express.json())
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: 'http://10.4.1.116:3000'
 }))
 app.use(session({
     secret: process.env.SECRET_KEY || '28392mcdslskkkks',
@@ -68,6 +68,7 @@ app.use(session({
 })
 )
 
+//app.use(cors)
 app.use('/login', RoutesLogin)
 app.use('/user', verifyUser, router)
 app.use('/createuseradmin', RoutesUsers)

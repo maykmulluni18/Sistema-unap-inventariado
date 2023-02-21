@@ -269,8 +269,9 @@ const EditInventariado_cont = () => {
                                     value={fecha_registro}
                                     name='fecha_registro'
                                     onChange={(e) => setFechaRegistro(e.target.value)}
-                                    type="date"
-                                    placeholder=""
+                                    type="number"
+                                    placeholder="YYYY"
+                                    min="1999" max="2030"
                                     required
 
 

@@ -68,6 +68,9 @@ const columnsb = [
 
 
 const DetallesPecosa_cont = () => {
+
+    console.log( '234'.padStart(6, 0) );
+
     useEffect(() => {
         getPedidosPecosa()
         getPecosaBienes()
@@ -77,6 +80,7 @@ const DetallesPecosa_cont = () => {
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('')
     const [id_administradores, setIdAdministradores] = useState('')
+    const [id_administrativo2, setIdAdministrativo2] = useState('')
     const [id_metas, setIdMetas] = useState('')
     const { id } = useParams()
 
@@ -93,6 +97,9 @@ const DetallesPecosa_cont = () => {
         setIdAdministradores(res.data.usuario.nombres + ' ' +
             res.data.usuario.apellido_paterno + ' ' +
             res.data.usuario.apellido_materno)
+        setIdAdministrativo2(res.data.usuario.nombres + ' ' +
+        res.data.usuario.apellido_paterno + ' ' +
+        res.data.usuario.apellido_materno)
         setIdMetas(res.data.Meta.obra + '  => Meta: ' +res.data.Meta.meta_1)    
     }
 
@@ -158,8 +165,8 @@ const DetallesPecosa_cont = () => {
 
                             <strong>Solicitante Entrgar a: </strong>
                             <input
-                                value={almacen}
-                                onChange={(e) => setAlmacen(e.target.value)}
+                                value={id_administrativo2}
+                                onChange={(e) => setIdAdministrativo2(e.target.value)}
                             />
                         </div>
                         <div className='formInput'>

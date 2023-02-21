@@ -101,7 +101,7 @@ const TablaMetas = () => {
           pageSize={9}
           rowsPerPageOptions={[5]}
           //disableColumnFilter
-          disableColumnSelector
+          //disableColumnSelector
           //disableDensitySelector
           components={{ Toolbar: GridToolbar }}
           {...metas}

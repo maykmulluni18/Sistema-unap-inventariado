@@ -9,7 +9,10 @@ import MenuItem from '@mui/material/MenuItem';
 import "./crearneasbienes.scss"
 import { DB_URL } from '../../../../../../config/config';
 import Bienes_cont from './Bienes_cont';
-import  FilterDescBien  from './FilterDescBien';
+import FilterDescBien from './FilterDescBien';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+
 
 const URI = DB_URL + 'neasbienes/'
 
@@ -107,20 +110,20 @@ const Medida = [
 
 const CrearNeasBienes_cont = () => {
     const [neasentradas, setNeasEntradas] = useState([])
-    //const [bienes, setBienes] = useState([])
+    // const [bienes, setBienes] = useState([])
 
     const getNeasEntradas = async () => {
         const res = await axios.get(URI1)
         setNeasEntradas(res.data.reverse())
     }
-    /* const getBienes = async () => {
-         const res = await axios.get(URI2)
-         setBienes(res.data)
-     }*/
+    // const getBienes = async () => {
+    //     const res = await axios.get(URI2)
+    //     setBienes(res.data)
+    // }
 
     useEffect(() => {
         getNeasEntradas()
-        // getBienes()
+        //getBienes()
     }, [])
 
 
@@ -139,7 +142,7 @@ const CrearNeasBienes_cont = () => {
         medida: "",
         cantidad_inicial: "",
         cantidad: "",
-        fte_fto: "",
+        fte_fto: "9",
         cuenta_contable: "1501070203",
         p_unitario: "",
         fecha: "",
@@ -151,6 +154,8 @@ const CrearNeasBienes_cont = () => {
         setDetaillsNeasBienes(list)
     }
     const [neaEntradaId, setNeaEntradaId] = useState('')
+    const [fecha, setFecha] = useState('')
+
     const Neas_Bienes = async (e) => {
         e.preventDefault();
         try {
@@ -163,7 +168,7 @@ const CrearNeasBienes_cont = () => {
                     fte_fto: detailssneasbienes[i].fte_fto,
                     cuenta_contable: detailssneasbienes[i].cuenta_contable,
                     p_unitario: detailssneasbienes[i].p_unitario,
-                    fecha: detailssneasbienes[i].fecha
+                    fecha: fecha
                 })
                 if (respon.status === 200) {
                     Swal.fire(
@@ -199,7 +204,7 @@ const CrearNeasBienes_cont = () => {
             idBienes: "",
             cantidad_inicial: "",
             cantidad: "",
-            fte_fto: "",
+            fte_fto: "9",
             cuenta_contable: "1501070203",
             p_unitario: "",
             fecha: "",
@@ -227,10 +232,10 @@ const CrearNeasBienes_cont = () => {
                                     <div key={index} className='gen_fromImput'>
                                         <div className='prin_formImput'>
                                             <div className='formInput_i'>
-                                                <label>Neas</label>
+                                                <label title='neas'>Neas</label>
 
                                                 <input
-                                                    type="text"
+                                                    type="search"
                                                     list="data1"
                                                     placeholder='filtrar'
                                                     name='neaEntradaId'
@@ -238,24 +243,65 @@ const CrearNeasBienes_cont = () => {
                                                     onChange={(e) => setNeaEntradaId(e.target.value, index)}
                                                     required
                                                 />
-                                                <datalist className='datalistt' id="data1">
+                                                <datalist className='datalistt' title='lista' id="data1">
                                                     {
                                                         neasentradas
                                                             .reverse()
                                                             .map(res => {
                                                                 return (
-                                                                    <option className='options' key={res.id} value={res.id}> NEA {res.id} : {res.fecha_de_registro} {res.neaEntradaId}</option>
+                                                                    <option className='options' title={res.fecha_de_registro} key={res.id} value={res.id}> NEA {res.id} : {res.fecha_de_registro} {res.neaEntradaId}</option>
                                                                 )
                                                             })
                                                     }
                                                 </datalist>
                                             </div>
+                                           {/*  <div className='formInpu_i'>
+                                                <Autocomplete
+                                                    name='neaEntradaId'
+                                                    value={neaEntradaId}
+                                                    onChange={(e, index) => setNeaEntradaId(e.target.value, index)}
+                                                    id="free-solo-demo"
+                                                    freeSolo
+                                                    options={neasentradas.map(option => option.fecha_de_registro)}
+                                                    getOptionLabel={(option) => option}
+                                                    renderInput={(params) => <TextField {...params} label="Fecha de registro" />}
+                                                />
 
+                                            </div>*/}
                                             <div className='formInput_i'>
                                                 <h1>Parte del Contenido de Bienes: </h1>
 
                                             </div>
+                                            <div className="formInput_i" >
+                                                <label htmlFor='residente'>BIENES</label>
+                                                <input
+                                                    id='residente'
+                                                    type="search"
+                                                    list="dataBB"
+                                                    placeholder=''
+                                                    value={value_cont.idBienes}
+                                                    name='idBienes'
+                                                    onChange={(e) => handleSubmit(e, index)}
+                                                    required
+                                                />
+                                                <Bienes_cont />
+                                            </div>
+                                            <div className="formInput_i" >
+                                                <label htmlFor='residente'>DESCRIPCION DE BIENES</label>
 
+                                                <select
+                                                    disabled
+                                                    type="text"
+                                                    className='selecunidad'
+                                                    placeholder='Select'
+                                                    name='idBienes'
+                                                    value={value_cont.idBienes}
+                                                    onChange={(e) => handleSubmit(e, index)}
+                                                >
+                                                    <option value=""> </option>
+                                                    <FilterDescBien />
+                                                </select>
+                                            </div>
                                             <div className="formInput" >
 
                                                 <label>Cantidad Inicial</label>
@@ -280,36 +326,7 @@ const CrearNeasBienes_cont = () => {
                                                     required
                                                 />
                                             </div>
-                                            <div className="formInput" >
-                                                <label htmlFor='residente'>BIENES</label>
-                                                <input
-                                                    id='residente'
-                                                    type="text"
-                                                    list="dataBB"
-                                                    placeholder=''
-                                                    value={value_cont.idBienes}
-                                                    name='idBienes'
-                                                    onChange={(e) => handleSubmit(e, index)}
-                                                    required
-                                                />
-                                                <Bienes_cont />
-                                            </div>
-                                            <div className="formInput" >
-                                                <label htmlFor='residente'>DESCRIPCION DE BIENES</label>
 
-                                                <select
-                                                    disabled
-                                                    type="text"
-                                                    className='selecunidad'
-                                                    placeholder='Select'
-                                                    name='idBienes'
-                                                    value={value_cont.idBienes}
-                                                    onChange={(e) => handleSubmit(e, index)}
-                                                >
-                                                    <option value=""> </option>
-                                                    <FilterDescBien />
-                                                </select>
-                                            </div>
 
                                             <div className="formInput" >
                                                 <label>Fte/Fto</label>
@@ -346,8 +363,8 @@ const CrearNeasBienes_cont = () => {
                                                 <label>FECHA DE REGISTRO</label>
                                                 <input
                                                     name='fecha'
-                                                    value={value_cont.fecha}
-                                                    onChange={(e) => handleSubmit(e, index)}
+                                                    value={fecha}
+                                                    onChange={(e) => setFecha(e.target.value, index)}
                                                     type="date"
                                                     required
                                                 />

@@ -8,6 +8,8 @@ import { DB_URL } from '../../../../../../config/config';
 import { Filter_Obs_Nea } from './filter_obs';
 import FilterInventariado from './FilterInventariado';
 import FilterNeasBien from './FilterNeasBien';
+import { FilterNea_des } from './FilterNea_des';
+import { FilterInventario_des } from './FilterInventario_des';
 
 const URI = DB_URL + 'pecosabienes/'
 
@@ -52,6 +54,7 @@ const CrearPecosaBienes_cont = () => {
         pecosaPedidoId: "",
         inventaridoInicialId: "",
         nea_bien_id: "",
+        descripcion: "",
         cantidad: "",
         observaciones: "INVENTARIADO",
         fecha: "",
@@ -73,6 +76,7 @@ const CrearPecosaBienes_cont = () => {
                     pecosaPedidoId: pecosaPedidoId,
                     inventaridoInicialId: detailsspecosabienes[i].inventaridoInicialId || null,
                     nea_bien_id: detailsspecosabienes[i].nea_bien_id || null,
+                    descripcion: detailsspecosabienes[i].descripcion || null,
                     cantidad: detailsspecosabienes[i].cantidad,
                     observaciones: detailsspecosabienes[i].observaciones,
                     fecha: fecha,
@@ -140,6 +144,7 @@ const CrearPecosaBienes_cont = () => {
             pecosaPedidoId: "",
             inventaridoInicialId: "",
             nea_bien_id: "",
+            descripcion: "",
             cantidad: "",
             p_unitario: "",
             cuenta_contable: "",
@@ -225,6 +230,48 @@ const CrearPecosaBienes_cont = () => {
                                                     onChange={(e) => handleSubmit(e, index)}
                                                 />
                                                 <FilterNeasBien />
+                                            </div>
+                                            <div className="formInput" >
+                                                <label htmlFor='residente'>DESCRIPCION DE BIENES DE INVENTARIADO</label>
+
+                                                <select
+                                                    disabled
+                                                    type="text"
+                                                    //className='selecunidad'
+                                                    placeholder='Select'
+                                                    name='inventaridoInicialId'
+                                                    value={value_cont.inventaridoInicialId}
+                                                    onChange={(e) => handleSubmit(e, index)}
+                                                >
+                                                    <option value=""> </option>
+                                                    <FilterInventario_des />
+                                                </select>
+                                            </div>
+                                            <div className="formInput" >
+                                                <label htmlFor='residente'>DESCRIPCION DE BIENES DE NEAS</label>
+
+                                                <select
+                                                    disabled
+                                                    type="text"
+                                                    placeholder='Select'
+                                                    name='nea_bien_id'
+                                                    value={value_cont.nea_bien_id}
+                                                    onChange={(e) => handleSubmit(e, index)}
+                                                >
+                                                    <option value=""> </option>
+                                                    <FilterNea_des />
+                                                </select>
+                                            </div>
+                                            <div className='formInput'>
+                                                <label>AGREGAR DESCRIPCION </label>
+                                                <input
+                                                    name='descripcion'
+                                                    value={value_cont.descripcion}
+                                                    onChange={(e) => handleSubmit(e, index)} 
+                                                    type="textera"
+                                                    placeholder=''
+                                                    //required
+                                                />
                                             </div>
 
                                             <div className='formInput_title'>

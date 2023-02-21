@@ -53,7 +53,7 @@ const CreateUsers_cont = () => {
                 confPassword: confPassword,
             })
 
-            if (respon.status === 201) {
+            if (respon.status === 200) {
                 Swal.fire(
                     {
                         title: 'Creado con Exito..',
@@ -154,7 +154,7 @@ const CreateUsers_cont = () => {
 
                             </div>
                             <div className="formInput" >
-                                <label>U. DE MEDIDA</label>
+                                <label>Rol</label>
                                 <Select
                                     name='role'
                                     labelId="demo-simple-select-autowidth-label"
@@ -163,7 +163,7 @@ const CreateUsers_cont = () => {
                                     //labelId="demo-simple-select-label"
                                     //id="demo-simple-select"
                                     value={role}
-                                    label="Medida"
+                                    label="role"
                                     onChange={(e) => setRole(e.target.value)}
                                     placeholder=""
                                     required

@@ -27,6 +27,10 @@ const ModelsPecosaBienes = db.define('pecosa_bienes', {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
+    descripcion: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     cantidad: {
         type: DataTypes.DECIMAL(10,4),
         allowNull: false,

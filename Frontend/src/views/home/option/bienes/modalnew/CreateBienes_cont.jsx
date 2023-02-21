@@ -103,6 +103,7 @@ const CreatedBienes_cont = () => {
     const [detailss, setDetaills] = useState([{
         item: "",
         description: "",
+        marca: "",
         unidad_de_medida: "",
     },
     ])
@@ -128,6 +129,7 @@ const CreatedBienes_cont = () => {
                     {
                         item: detailss[i].item,
                         description: detailss[i].description.toUpperCase(),
+                        marca: detailss[i].marca,
                         unidad_de_medida: detailss[i].unidad_de_medida,
                     },
 
@@ -162,6 +164,7 @@ const CreatedBienes_cont = () => {
         setDetaills([...detailss, {
             item: "",
             description: "",
+            marca: "",
             unidad_de_medida: "",
         }])
     }
@@ -192,7 +195,7 @@ const CreatedBienes_cont = () => {
                                                 value={valu_cont.item}
                                                 name='item'
                                                 onChange={(e) => handleSubmit(e, index)}
-                                                type="number"
+                                                type="text"
                                                 placeholder="INGRESE UN CODIGO"
                                                 required
 
@@ -213,7 +216,21 @@ const CreatedBienes_cont = () => {
                                             />
 
                                         </div>
+                                        <div className="formInput" >
 
+                                            <label htmlFor='marca'>MARCA</label>
+                                            <input
+                                                id="marca"
+                                                value={valu_cont.marca}
+                                                name='marca'
+                                                onChange={(e) => handleSubmit(e, index)}
+                                                type="text"
+                                                placeholder=""
+                                                //required
+
+
+                                            />
+                                        </div>
                                         <div className="formInput" >
                                             <label htmlFor='unidad_de_medida'>U. DE MEDIDA</label>
 
@@ -224,8 +241,8 @@ const CreatedBienes_cont = () => {
                                                 value={valu_cont.unidad_de_medida}
                                                 label="Medida"
                                                 onChange={(e) => handleSubmit(e, index)}
-                                                placeholder="INGRESE UNA MEDIDA"
-                                                required
+                                                placeholder=""
+                                                //required
                                             />
                                             <datalist className='datalistm' id="data1m">
                                                 {

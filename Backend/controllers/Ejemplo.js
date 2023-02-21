@@ -4,18 +4,21 @@ import db from "../database/db.js"
 export const getCantidad = async (req, res) => {
     try {
         const usuarios = await db.query(
-            `SELECT b.id, 
-            b.item,
-            b.unidad_de_medida AS Unidad_de_Medida,
-            b.description AS Descripcion,
-            i.cantidad AS Inventarido_Cantidad,
-            n.cantidad AS Nea_Cantidad,
-            i.cantidad_inicial + COALESCE(SUM(n.cantidad_inicial), 0) AS Cantidad_Inicial,
-            i.cantidad + COALESCE(SUM(n.cantidad), 0) AS stock
-        FROM bienes b
+            `
+        SELECT  b.id, 
+		    b.item AS Codigo, 
+		    b.unidad_de_medida AS Unidad, 
+		    b.description AS Descripcion, 
+            COALESCE(SUM(i.cantidad_inicial), 0) + COALESCE(SUM(n.cantidad_inicial), 0) AS Cantidad_Inicial, 
+		    SUM(i.cantidad) AS Inventarido_Cantidad, 
+		    SUM(n.cantidad) AS Nea_Cantidad, 
+		    COALESCE(SUM(i.cantidad), 0) + COALESCE(SUM(n.cantidad), 0) AS Stock
+        FROM bienes b 
         LEFT JOIN inventarido_inicial i ON i.idBienes = b.id 
         LEFT JOIN nea_bien n ON n.idBienes = b.id
-        GROUP BY i.id`)
+        GROUP BY n.idBienes, i.idBienes
+
+            `)
         res.json(usuarios[0])
     } catch (error) {
         res.json({ message: error.message })
@@ -25,19 +28,21 @@ export const getCantidad = async (req, res) => {
 export const getStock = async (req, res) => {
     try {
         let sql = `
-        SELECT b.id, 
-            b.item,
-            b.unidad_de_medida AS Unidad_de_Medida,
-            b.description AS Descripcion,
-            i.cantidad AS Inventarido_Cantidad,
-            n.cantidad AS Nea_Cantidad,
-            SUM(p.cantidad) salida
-        FROM bienes b
+        SELECT  b.id, 
+		    b.item AS Codigo, 
+		    b.unidad_de_medida AS Unidad, 
+		    b.description AS Descripcion, 
+            COALESCE(SUM(i.cantidad_inicial), 0) + COALESCE(SUM(n.cantidad_inicial), 0) AS Cantidad_Inicial, 
+		    COALESCE(SUM(i.cantidad), 0) + COALESCE(SUM(n.cantidad), 0) AS Stock,
+            COALESCE(SUM(p.cantidad), 0) AS Salida_Nea,
+            COALESCE(SUM(pp.cantidad), 0) AS Salida_Invet,
+            COALESCE(SUM(p.cantidad), 0) + COALESCE(SUM(pp.cantidad), 0) AS Salida
+        FROM bienes b 
         LEFT JOIN inventarido_inicial i ON i.idBienes = b.id 
         LEFT JOIN nea_bien n ON n.idBienes = b.id
         LEFT JOIN pecosa_bienes p ON p.inventaridoInicialId = i.id
-        LEFT JOIN pecosa_bienes ON p.nea_bien_id = b.id
-        GROUP BY i.id
+        LEFT JOIN pecosa_bienes pp ON pp.nea_bien_id = n.id
+        GROUP BY n.idBienes, i.idBienes;
         `
         const stock = await db.query(sql)
         res.json(stock[0])

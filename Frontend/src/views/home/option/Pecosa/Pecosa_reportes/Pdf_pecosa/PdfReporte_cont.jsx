@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     header_subtitle_oficina: {
         color: "grey",
         fontSize: 7,
-        left: 95,
+        left: 80,
         top: 14,
         paddingHorizontal: 35,
     },
@@ -188,6 +188,13 @@ const styles = StyleSheet.create({
         //border: "1px solid gray",
 
     },
+    fecha_actual: {
+        width: "8%",
+        left: "80.5%",
+        height: "10%",
+        top: "-28%",
+        fontSize: "10px",
+    },
     fecha_title: {
         fontSize: 8,
         color: "#212121",
@@ -196,7 +203,7 @@ const styles = StyleSheet.create({
     },
     fecha: {
         borderTop: "1px solid gray",
-        fontSize: 8,
+        fontSize: 8.5,
         color: "#212121",
         top: "1px",
         textAlign: "center",
@@ -252,7 +259,7 @@ const styles = StyleSheet.create({
     },
     tableCol_unidad: {
         width: "8%",
-        
+
         borderStyle: "solid",
         border: "1px solid gray",
 
@@ -312,10 +319,13 @@ const styles = StyleSheet.create({
         textAlign: "center",
 
     },
-    tableCell_unidad: {
+    tableCell_des: {
         //color: "red",
+        marginTop: 4,
         fontSize: 8,
-        textAlign: "center",
+        left: 2,
+        height: 18.7,
+        fontSize: 8,
         //margin: "auto",
     },
     tableCol_subtotal: {
@@ -333,8 +343,8 @@ const styles = StyleSheet.create({
     Oficio: {
         fontSize: 8,
         color: "#212121",
-        left: 10,
-        top: 15,
+        left: 5,
+        top: 12,
         paddingHorizontal: 18,
         fontWeight: "bold"
     },
@@ -359,7 +369,7 @@ const styles = StyleSheet.create({
         fontSize: 8,
         color: "#212121",
         left: 240,
-        top: 40,
+        top: 41,
         fontWeight: "bold"
     },
     jefe_abast_1: {
@@ -375,7 +385,7 @@ const styles = StyleSheet.create({
         color: "#212121",
         //left: 10,
         left: 446,
-        top: 24,
+        top: 25,
         fontWeight: "bold"
     },
     jefe_alm_1: {
@@ -389,7 +399,7 @@ const styles = StyleSheet.create({
         fontSize: 8,
         color: "#212121",
         left: 636,
-        top:  10,
+        top: 10,
         fontWeight: "bold"
     },
     recibi_con_1: {
@@ -405,7 +415,12 @@ const styles = StyleSheet.create({
 
 const PdfReporte_cont = () => {
     //const [contend,getContent] = useState([])
+    var today = new Date();
+    var now = today.toLocaleTimeString('en-US');
+    console.log(now);
 
+    var date = today.toLocaleDateString()
+    console.log(date);
 
     useEffect(() => {
         getPedidosPecosa_p()
@@ -421,6 +436,7 @@ const PdfReporte_cont = () => {
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('')
     const [id_administradores, setIdAdministradores] = useState('')
+    const [id_administrativo2, setIdAdministrativo2] = useState('')
     const [id_metas, setIdMetas] = useState('')
     const getPedidosPecosa_p = async () => {
 
@@ -432,7 +448,10 @@ const PdfReporte_cont = () => {
         setIdAdministradores(res.data.usuario.nombres + ' ' +
             res.data.usuario.apellido_paterno + ' ' +
             res.data.usuario.apellido_materno)
-        setIdMetas(res.data.Meta.meta_1 + '  y  ' + res.data.Meta.meta_1 )
+        setIdAdministrativo2(res.data.usuario.nombres + ' ' +
+            res.data.usuario.apellido_paterno + ' ' +
+            res.data.usuario.apellido_materno)
+        setIdMetas(res.data.Meta.meta_1 + '  y  ' + res.data.Meta.meta_1)
     }
 
     const [pecosaPedidoId, setPecosaPedidosId] = useState([])
@@ -500,16 +519,16 @@ const PdfReporte_cont = () => {
                                 UNIVERSIDAD NACIONAL DEL ALTIPLANO
                             </Text>
                             <Text style={styles.header_subtitle_oficina} fixed>
-                                OFICINA DE LOGISTICA
+                                OFICINA DE ABASTECIMIENTO
                             </Text>
                             <Text style={styles.header_subtitle_almacen} fixed>
                                 ALMACEN CENTRAL
                             </Text>
                             <Text style={styles.header_title_principal} fixed>
-                            PEDIDO DE COMPROBANTE DE SALIDA (PECOSA)
+                                PEDIDO DE COMPROBANTE DE SALIDA (PECOSA)
                             </Text>
                             <Text style={styles.header_title_principal_2} fixed>
-                                Nro Salida: 0{id}
+                                Nro Salida: {id.padStart(8, 0)}
                             </Text>
 
                             {/* <Image style={styles.image} src={LebronStretch} />*/}
@@ -518,22 +537,25 @@ const PdfReporte_cont = () => {
                             </Text>
                             <View style={styles.gen_depen} fixed>
                                 <Text style={styles.dependencias} fixed>
-                                <Text>DEPENDENCIA SOLICITANTE   :</Text>   {dependencias}
+                                    <Text>DEPENDENCIA SOLICITANTE   :</Text>   {dependencias}
                                 </Text>
                                 <Text style={styles.usuario} fixed>
                                     <Text fixed>SOLICITANTE                              :</Text>    {id_administradores}
                                 </Text>
                                 <Text style={styles.destino_a} fixed>
-                                <Text>ALMACEN                                    :</Text>   {tipo_de_sede}
+                                    <Text>ALMACEN                                    :</Text>   {tipo_de_sede}
                                 </Text>
                                 <Text style={styles.entregar_a} fixed>
-                                <Text>SOLICITO ENTREGAR A </Text>           :<Text>   {id_administradores} </Text>
+                                    <Text>SOLICITO ENTREGAR A </Text>           :<Text>   {id_administrativo2} </Text>
                                 </Text>
 
                                 <Text style={styles.tipo_moneda} fixed>
                                     <Text fixed>CADENA FUNCIONAL </Text>   :<Text>   {id_metas} </Text>
                                 </Text>
-                              
+                                <Text style={styles.fecha_nea} fixed>
+                                    <Text fixed>FECHA PECOSA          </Text>   :<Text>   {fecha} </Text>
+                                </Text>
+
                             </View>
                             <Text style={styles.Oficio} fixed>
                                 REFERENCIA: OFICIO N° 037-2022-SUMAP/USG-UNA-P
@@ -545,7 +567,7 @@ const PdfReporte_cont = () => {
                                     Año Mes Dia
                                 </Text>
                                 <Text style={styles.fecha} fixed>
-                                    {fecha}
+                                    {date} {now}
                                 </Text>
                             </View>
 
@@ -590,21 +612,21 @@ const PdfReporte_cont = () => {
                                             <Text style={styles.tableCell}>{x?.cantidad}</Text>
                                         </View>
                                         <View style={styles.tableCol_descripcion}>
-                                            <Text style={styles.tableCell}>{x.inventarido_inicial?.biene.description || x.nea_bien?.biene.description}</Text>
+                                            <Text style={styles.tableCell_des}>{x.inventarido_inicial?.biene.description.toUpperCase() || x.nea_bien?.biene.description.toUpperCase()} - {x.descripcion.toUpperCase()}</Text>
                                         </View>
                                         <View style={styles.tableCol_unidad}>
-                                            <Text style={styles.tableCell_unidad}>{x.inventarido_inicial?.biene.unidad_de_medida || x.nea_bien?.biene.unidad_de_medida}</Text>
+                                            <Text style={styles.tableCell}>{x.inventarido_inicial?.biene.unidad_de_medida || x.nea_bien?.biene.unidad_de_medida}</Text>
                                         </View>
                                         <View style={styles.tableCol_fte}>
                                             <Text style={styles.tableCell}>{x.inventarido_inicial?.cuenta || x.nea_bien?.cuenta_contable}</Text>
                                         </View>
-                                       
+
                                         <View style={styles.tableCol_unitario}>
                                             <Text style={styles.tableCell}>{x.inventarido_inicial?.precio || x.nea_bien?.p_unitario}</Text>
                                         </View>
                                         <View style={styles.tableCol_total}>
                                             <Text style={styles.tableCell}>{Number.parseFloat(x.cantidad * x.inventarido_inicial?.precio || x.nea_bien?.p_unitario).toFixed(3)}</Text>
-                                        </View> 
+                                        </View>
                                         <View style={styles.tableCol_codigo}>
                                             <Text style={styles.tableCell}>{x?.observaciones}</Text>
                                         </View>
@@ -629,9 +651,6 @@ const PdfReporte_cont = () => {
 
                             </View>
 
-                            <Text style={styles.Oficio} >
-                                REFERENCIA: OFICIO N° 037-2022-SUMAP/USG-UNA-P
-                            </Text>
                             <Text style={styles.solicitante} fixed>
                                 ___________________________
                             </Text>
@@ -661,6 +680,7 @@ const PdfReporte_cont = () => {
 
                             <Text
                                 style={styles.pageNumber}
+
                                 render={({ pageNumber, totalPages }) =>
                                     `${pageNumber} / ${totalPages}`
                                 }

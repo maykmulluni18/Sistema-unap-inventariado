@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DB_URL } from '../../../../../../config/config';
+
 const URI2 = DB_URL + 'invetinicial/'
 
 const FilterInventariado = () => {
@@ -22,7 +23,8 @@ const FilterInventariado = () => {
                     bienes
                         .map(res => {
                             return (
-                                <option key={res.id} value={res.id}> [ N°: {res.id} ] -- [ Stock = {res.cantidad} ] -- [ {res.biene.description} ] </option>
+                                <option key={res.id} value={res.id}>[ Stock = {res.cantidad} ]
+                                 -- [ {res.biene.description} ] </option>
                             )
                         })
                 }

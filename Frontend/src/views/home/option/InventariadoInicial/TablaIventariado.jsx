@@ -107,7 +107,7 @@ const TablaInventariado = () => {
           pageSize={7}
           rowsPerPageOptions={[5]}
           //disableColumnFilter
-          disableColumnSelector
+          //disableColumnSelector
           //disableDensitySelector
           components={{ Toolbar: GridToolbar }}
           {...inventariado}

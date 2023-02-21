@@ -52,7 +52,7 @@ const columns = [
         sortable: false,
         width: 150,
         valueGetter: (params) =>
-        Number.parseFloat(`${params.row?.cantidad_inicial || ''}` * `${params.row?.p_unitario || ''}`).toFixed(2)
+            Number.parseFloat(`${params.row?.cantidad_inicial || ''}` * `${params.row?.p_unitario || ''}`).toFixed(2)
     },
 
 ];
@@ -64,7 +64,7 @@ const DeatellesNeasReportes_cont = () => {
         getNeasEntradas()
         getNeasBienesEntradas()
     }, [])
-
+    
     const [id_administradores, setIdAdministradores] = useState('')
     const [tipo_de_sede, setTipoDeSede] = useState('')
     const [tipo_de_ingreso, setTipoDeIngreso] = useState('')
@@ -101,7 +101,11 @@ const DeatellesNeasReportes_cont = () => {
         const res = await axios.get(URI1 + id,)
         setNeasBienesEntradas(res.data)
     }
-
+    let numero = 0
+    for (let i = 0; i < getNeasEntradas.length; i++) {
+        numero = numero + i
+    }
+    console.log(numero)
     return (
         <>
             <div className="Tabledata_neas_deatlls">

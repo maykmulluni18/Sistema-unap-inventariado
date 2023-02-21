@@ -21,9 +21,10 @@ export const BienesExcelupload = async (req, res) => {
       return {
         item: row[0],
         description: row[1],
-        unidad_de_medida: row[2],
-        createdAt: row[3],
-        updatedAt: row[4]
+        marca: row[2],
+        unidad_de_medida: row[3],
+        createdAt: row[4],
+        updatedAt: row[5]
       };
     });
 

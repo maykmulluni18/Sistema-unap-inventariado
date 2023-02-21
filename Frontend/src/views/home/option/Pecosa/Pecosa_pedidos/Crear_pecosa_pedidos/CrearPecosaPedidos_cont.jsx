@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import FilterData from './FilterData';
 import "./crearpecosapedidos.scss"
 import { DB_URL } from '../../../../../../config/config';
+import FilterData2 from './FilterData2';
 
 const URI = DB_URL + 'pecosapedidos/'
 
@@ -42,8 +43,9 @@ const CrearPecosaPedidos_cont = () => {
         getMetas()
     }, [])
 
-    const [dependencias, setDependencias] = useState('')
+    const [dependencias, setDependencias] = useState('ALMACEN CENTRAL')
     const [id_administrativos, setIdAdministrativos] = useState('')
+    const [id_administrativo2, setIdAdministrativo2] = useState('')
     const [tipo_de_sede, setTipoDeSede] = useState('ALMACEN CENTRAL DE OBRAS')
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('ALMACEN CENTRAL DE OBRAS')
@@ -56,6 +58,7 @@ const CrearPecosaPedidos_cont = () => {
             const respon = await axios.post(URI, {
                 dependencias: dependencias,
                 id_administrativos: id_administrativos,
+                id_administrativo2: id_administrativo2,
                 tipo_de_sede: tipo_de_sede,
                 id_metas: id_metas,
                 fecha: fecha,
@@ -110,7 +113,7 @@ const CrearPecosaPedidos_cont = () => {
                             </div>
 
                             <div className='formInput'>
-                                <label>Administrativos</label>
+                                <label>Solicitante</label>
                                 <input
                                     type="text"
                                     list="datap"
@@ -120,6 +123,18 @@ const CrearPecosaPedidos_cont = () => {
                                     required
                                 />
                                 <FilterData />
+                            </div>
+                            <div className='formInput'>
+                                <label>Entregar A</label>
+                                <input
+                                    type="text"
+                                    list="datap2"
+                                    placeholder=''
+                                    value={id_administrativo2}
+                                    onChange={(e) => setIdAdministrativo2(e.target.value)}
+                                    required
+                                />
+                                <FilterData2 />
                             </div>
                             <div className='formInput'>
                                 <label>Tipo de Sedes</label>

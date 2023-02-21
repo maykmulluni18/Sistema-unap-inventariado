@@ -355,12 +355,12 @@ const styles = StyleSheet.create({
 
 const Reporte_inventariado_cont = () => {
 
-    var today = new Date();
-    var now = today.toLocaleTimeString('en-US');
-    console.log(now);
+    let today = new Date();
+    let now = today.toLocaleTimeString('en-US');
+    //console.log(now);
 
-    var year = today.getFullYear()
-    console.log(year);
+    let year = today.toLocaleDateString()
+    //console.log(year);
 
 
     useEffect(() => {
@@ -368,12 +368,13 @@ const Reporte_inventariado_cont = () => {
     }, [])
 
     const { fecha_registro } = useParams()
-
+    
+ 
 
     const [fecha, setFecha] = useState('')
     const getPedidosPecosa_p = async () => {
         const res = await axios.get(URI + fecha_registro,)
-        console.log(res.data)
+        //console.log(res.data)
         setFecha(res.data)
     }
 

@@ -22,9 +22,12 @@ const styles = StyleSheet.create({
         height: window.innerHeight - 130,
     },
     body: {
+        fontStyle: 'italic',
         paddingTop: 5,
         paddingBottom: 20,
         paddingHorizontal: 20,
+        fontStyle: 'oblique',
+
 
     },
     title: {
@@ -47,7 +50,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginBottom: 20,
         textAlign: "center",
-        color: "red",
     },
     header_subtitle: {
         color: "grey",
@@ -55,12 +57,13 @@ const styles = StyleSheet.create({
         left: 50,
         top: 5,
         paddingHorizontal: 35,
+       //fontFamily: "OpenSans sans-serif",        
 
     },
     header_subtitle_oficina: {
         color: "grey",
         fontSize: 7,
-        left: 95,
+        left: 80,
         top: 14,
         paddingHorizontal: 35,
     },
@@ -73,6 +76,7 @@ const styles = StyleSheet.create({
     },
     header_title_principal: {
         fontWeight: 'bold',
+        fontStyle: 'italic',
         fontSize: 12,
         textAlign: "center",
         color: "#212121",
@@ -200,7 +204,7 @@ const styles = StyleSheet.create({
     },
     fecha: {
         borderTop: "1px solid gray",
-        fontSize: 8,
+        fontSize: 8.5,
         color: "#212121",
         top: "1px",
         textAlign: "center",
@@ -316,10 +320,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
 
     },
-    tableCell_unidad: {
+
+    tableCell_des: {
         //color: "red",
+        marginTop: 4,
         fontSize: 8,
-        textAlign: "center",
+        left: 2,   
+        height: 18.7,
+        fontSize: 8,
         //margin: "auto",
     },
     tableCol_subtotal: {
@@ -371,7 +379,7 @@ const styles = StyleSheet.create({
         color: "#212121",
         //left: 10,
         left: 220,
-        top: 22.5,
+        top: 22,
         fontWeight: "bold"
     },
     jefe_alm: {
@@ -409,6 +417,12 @@ const styles = StyleSheet.create({
 
 const PdfNeas_cont = () => {
     //const [contend,getContent] = useState([])
+    var today = new Date();
+    var now = today.toLocaleTimeString('en-US');
+    console.log(now);
+
+    var date = today.toLocaleDateString()
+    console.log(date);
 
     useEffect(() => {
         getNeasEntradas()
@@ -487,7 +501,7 @@ const PdfNeas_cont = () => {
                 </div>
             </div>
             <div>
-                <PDFViewer style={styles.viewer}>
+                <PDFViewer style={styles.viewer} >
 
                     <Document>
                         <Page size="A4" orientation="landscape" style={styles.body}>
@@ -502,7 +516,7 @@ const PdfNeas_cont = () => {
                                 UNIVERSIDAD NACIONAL DEL ALTIPLANO
                             </Text>
                             <Text style={styles.header_subtitle_oficina} fixed>
-                                OFICINA DE LOGISTICA
+                                OFICINA DE ABASTECIMIENTO
                             </Text>
                             <Text style={styles.header_subtitle_almacen} fixed>
                                 ALMACEN CENTRAL
@@ -511,7 +525,7 @@ const PdfNeas_cont = () => {
                                 NEA - TRANSFERENCIA
                             </Text>
                             <Text style={styles.header_title_principal_2} fixed>
-                                Nro Entrada: 0{id}
+                                Nro : {id.padStart(8,0)}
                             </Text>
 
                             {/* <Image style={styles.image} src={LebronStretch} />*/}
@@ -564,7 +578,7 @@ const PdfNeas_cont = () => {
                                     Año Mes Dia
                                 </Text>
                                 <Text style={styles.fecha} fixed>
-                                    {fecha_de_registro}
+                                    {date}  {now}
                                 </Text>
                             </View>
 
@@ -609,13 +623,13 @@ const PdfNeas_cont = () => {
                                             <Text style={styles.tableCell}>{x.cantidad}</Text>
                                         </View>
                                         <View style={styles.tableCol_descripcion}>
-                                            <Text style={styles.tableCell}>{x.biene.description}</Text>
+                                            <Text style={styles.tableCell_des}>{x.biene.description.toUpperCase()}</Text>
                                         </View>
                                         <View style={styles.tableCol_unidad}>
-                                            <Text style={styles.tableCell_unidad}>{x.biene.unidad_de_medida}</Text>
+                                            <Text style={styles.tableCell}>{x.biene.unidad_de_medida.toLowerCase()}</Text>
                                         </View>
                                         <View style={styles.tableCol_fte}>
-                                            <Text style={styles.tableCell}>{x.fte_fto}</Text>
+                                            <Text style={styles.tableCell}>0{x.fte_fto}</Text>
                                         </View>
                                         <View style={styles.tableCol_codigo}>
                                             <Text style={styles.tableCell}>{x.cuenta_contable}</Text>
@@ -647,32 +661,29 @@ const PdfNeas_cont = () => {
 
                             </View>
 
-                            <Text style={styles.Oficio} >
-                                REFERENCIA: OFICIO N° 037-2022-SUMAP/USG-UNA-P
-                            </Text>
-                            <Text style={styles.solicitante} fixed>
+                            <Text style={styles.solicitante} >
                                 ___________________________
                             </Text>
-                            <Text style={styles.solicitante_1} fixed>
+                            <Text style={styles.solicitante_1} >
                                 SOLICITANTE
 
                             </Text>
-                            <Text style={styles.jefe_abast} fixed>
+                            <Text style={styles.jefe_abast} >
                                 JEFE DE ABASTECIMIENTO
                             </Text>
-                            <Text style={styles.jefe_abast_1} fixed>
+                            <Text style={styles.jefe_abast_1} >
                                 ____________________________
                             </Text>
-                            <Text style={styles.jefe_alm} fixed>
+                            <Text style={styles.jefe_alm} >
                                 JEFE DE ALMACEN
                             </Text>
-                            <Text style={styles.jefe_alm_1} fixed>
+                            <Text style={styles.jefe_alm_1} >
                                 ___________________________
                             </Text>
-                            <Text style={styles.recibi_con} fixed>
+                            <Text style={styles.recibi_con} >
                                 RECIBI CONFORME
                             </Text>
-                            <Text style={styles.recibi_con_1} fixed>
+                            <Text style={styles.recibi_con_1} >
                                 ___________________________
                             </Text>
 

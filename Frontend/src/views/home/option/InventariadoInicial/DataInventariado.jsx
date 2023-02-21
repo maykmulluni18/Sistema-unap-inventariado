@@ -52,7 +52,7 @@ export const userColumns = [
     sortable: false,
     width: 120,
     valueGetter: (params) =>
-    Number.parseFloat(`${params.row.cantidad_inicial}` * `${params.row.precio}`).toFixed(2),  
+    Number.parseFloat(`${params.row.cantidad}` * `${params.row.precio}`).toFixed(2),  
 
 }
   

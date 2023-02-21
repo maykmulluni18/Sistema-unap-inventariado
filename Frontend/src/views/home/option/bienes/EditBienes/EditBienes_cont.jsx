@@ -90,13 +90,15 @@ const Medida = [
     { id: 77, medida: 'Tonelada larga (t)' },
     { id: 78, medida: 'Tonelada métrica (t)' },
     { id: 79, medida: 'Tonelada métrica (t)' },
-    { id: 80, medida: '' },
+    { id: 80, medida: 'Unidad' },
+    {id: 81, medida: 'Varilla (v)'}
 
 ];
 
 const EditBienes_cont = () => {
     const [item, setItem] = useState('')
     const [description, setDescription] = useState('')
+    const [marca, setMarca] = useState('')
     const [unidad_de_medida, setUnidadDeMedida] = useState('')
     const navigate = useNavigate()
     const { id } = useParams()
@@ -107,6 +109,7 @@ const EditBienes_cont = () => {
             const respon = await axios.put(URI + id, {
                 item: item,
                 description: description,
+                marca: marca,
                 unidad_de_medida: unidad_de_medida
             })
             if (respon.status === 200) {
@@ -141,6 +144,7 @@ const EditBienes_cont = () => {
         const resb = await axios.get(URI + id,)
         setItem(resb.data.item)
         setDescription(resb.data.description)
+        setMarca(resb.data.marca)
         setUnidadDeMedida(resb.data.unidad_de_medida)
         console.log(resb)
     }
@@ -164,7 +168,7 @@ const EditBienes_cont = () => {
                                     id='item'
                                     value={item}
                                     onChange={(e) => setItem(e.target.value)}
-                                    type="number"
+                                    type="text"
                                     placeholder=""
                                     required
                                 />
@@ -178,6 +182,17 @@ const EditBienes_cont = () => {
                                     type="text"
                                     placeholder=""
                                     required
+                                />
+                            </div>
+                            <div className="formInput" >
+                                <label htmlFor='marca'>MARCA</label>
+                                <input
+                                    id='marca'
+                                    value={marca}
+                                    onChange={(e) => setMarca(e.target.value)}
+                                    type="text"
+                                    placeholder=""
+                                    //required
                                 />
                             </div>
                             <div className="formInput" >

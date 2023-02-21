@@ -21,7 +21,6 @@ const Edit_Bienes_cont = () => {
                     .map(res => {
                         return (
                             <option className='options' key={res.id} value={res.id}>'
-                                {res.item}' '
                                 {res.description}' '
                             </option>
                         )

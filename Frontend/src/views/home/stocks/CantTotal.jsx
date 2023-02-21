@@ -25,7 +25,7 @@ const StocksNeas = () => {
     const getStock = async () => {
         const res = await axios.get(URI)
         //console.log(res)
-        setStocks(res.data.reverse())
+        setStocks(res.data)
     }
     const stado = () => {
         if (stocks.map((item) => (item.stock)) <= 0) {
@@ -66,11 +66,11 @@ const StocksNeas = () => {
                             className="datagrid"
                             rows={stocks}
                             columns={userColumns}
-                            pageSize={7}
+                            pageSize={10}
                             rowsPerPageOptions={[5]}
-                            getRowId={(row) => (row.id, row.item)}
+                           // getRowId={(row) => (row.id, row.id)}
                             //getRowId={row => row[0].id}                        //checkboxSelection
-                            disableColumnSelector
+                            //disableColumnSelector
 
                             components={{
                                 Toolbar: GridToolbar,

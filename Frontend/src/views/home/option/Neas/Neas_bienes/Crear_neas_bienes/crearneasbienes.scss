@@ -6,6 +6,9 @@
     border-radius: 15px;
     margin: 25px;
     display: flex;
+    h1{
+      cursor: pointer;
+    }
   }
 
   .cont_form_bienes {
@@ -46,6 +49,7 @@
                 .icon {
                   cursor: pointer;
                 }
+               
               }
 
               input {
@@ -58,11 +62,16 @@
                 //border-bottom: 0.1px solid gray;
               }
 
-              .selecunidad {
+              datalist{
+                cursor: pointer;
+              }
+              .selecunidad{
                 width: 100%;
-                padding: -14px;
-                font-size: 16px;
-                color: #b4b4b4;
+                padding: 10px;
+                color: rgb(29, 28, 28);
+                font-size: 20px;
+                background: transparent;
+                font-weight: 900;
               }
 
               h1 {
@@ -73,7 +82,6 @@
 
               }
             }
-
             .formInput {
               width: 48%;
 
@@ -102,9 +110,10 @@
               .selecunidad {
                 width: 100%;
                 padding: 10px;
-                color: rgb(103, 103, 103);
-                font-size: 18px;
+                color: rgb(0, 0, 0);
+                font-size: 20px;
                 background: transparent;
+                font-weight: 900;
               }
             }
 

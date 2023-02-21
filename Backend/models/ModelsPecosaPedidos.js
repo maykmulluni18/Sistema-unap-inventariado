@@ -16,6 +16,10 @@ const ModelsPecosaPedidos = db.define('pecosa_pedidos', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    id_administrativo2: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     tipo_de_sede: {
         type: DataTypes.INTEGER,
         allowNull: false,

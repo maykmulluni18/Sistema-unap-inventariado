@@ -119,7 +119,7 @@ const TablaNeasBienes = () => {
                         columns={userColumns.concat(actionColumn)}
                         pageSize={9}
                         rowsPerPageOptions={[10]}
-                        checkboxSelection
+                        //checkboxSelection
 
 
                         experimentalFeatures={{ newEditingApi: true }}

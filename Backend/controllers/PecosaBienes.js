@@ -51,7 +51,7 @@ export const getPecosaBienesId = async (req, res) => {
 
 export const createPecosaBienes = async (req, res) => {
     try {
-        const { pecosaPedidoId, inventaridoInicialId, nea_bien_id, cantidad, observaciones, fecha, createdAt, updatedAt } = req.body;
+        const { pecosaPedidoId, inventaridoInicialId, nea_bien_id, descripcion, cantidad, observaciones, fecha, createdAt, updatedAt } = req.body;
 
         const inventarioInicial = await ModelsInvenInicial.findOne({
             where: { id: inventaridoInicialId }
@@ -66,10 +66,10 @@ export const createPecosaBienes = async (req, res) => {
             if (!inventarioInicial) {
                 return res.status(404).json({ message: 'No se encontró el inventario inicial especificado.' });
             }
-            if (cantidad == 0) {
+            if (parseFloat(cantidad) == 0) {
                 return res.status(401).json({ message: 'La cantidad especificada no puede ser 0' });
             }
-            if (parseFloat(cantidad) >= inventarioInicial.cantidad) {
+            if (parseFloat(cantidad) > inventarioInicial.cantidad) {
                 return res.status(400).json({ message: 'La cantidad especificada es mayor al stock disponible.' });
             }
 
@@ -80,10 +80,10 @@ export const createPecosaBienes = async (req, res) => {
             if (!NeasBienes) {
                 return res.status(404).json({ message: 'No se encontró la nea especificado.' });
             }
-            if (cantidad == 0) {
+            if (parseFloat(cantidad) == 0) {
                 return res.status(401).json({ message: 'La cantidad especificada no puede ser 0' });
             }
-            if (parseFloat(cantidad) >= NeasBienes.cantidad) {
+            if (parseFloat(cantidad) > parseFloat(NeasBienes.cantidad)) {
                 return res.status(400).json({ message: 'La cantidad especificada es mayor al stock disponible.' });
             }
 
@@ -94,6 +94,7 @@ export const createPecosaBienes = async (req, res) => {
             pecosaPedidoId: pecosaPedidoId,
             inventaridoInicialId: inventaridoInicialId || null,
             nea_bien_id: nea_bien_id || null,
+            descripcion: descripcion || null,
             cantidad: parseFloat(cantidad),
             observaciones: observaciones,
             fecha: fecha,

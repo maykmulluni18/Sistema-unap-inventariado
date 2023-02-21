@@ -2,6 +2,7 @@
   "name": "frontend_almacen",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://10.4.1.116:8000/",
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -28,7 +29,6 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "react-select": "^5.4.0",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.4.37",
     "web-vitals": "^2.1.4"
@@ -54,10 +54,10 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version",
-      "last 1 op_mini version"
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version",
+      "last 2 op_mini version"
     ]
   },
   "devDependencies": {

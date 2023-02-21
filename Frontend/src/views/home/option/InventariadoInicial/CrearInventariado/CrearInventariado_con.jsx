@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import "./crearinventariado.scss"
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Swal from 'sweetalert2'
 import { DB_URL } from '../../../../../config/config';
@@ -10,93 +9,22 @@ import Bienes_cont from './Bienes_cont';
 import  FilterDescBien  from './FilterDescBien';
 
 const URI = DB_URL + 'invetinicial/'
+const URI1 = DB_URL + 'bienes/'
 
-
-const Medida = [
-    { id: 1, medida: 'Pulgada cúbica (in³)' },
-    { id: 2, medida: 'Pie cúbico(ft³)' },
-    { id: 3, medida: 'Metro cúbico(m³)' },
-    { id: 4, medida: 'Decámetro(dam)' },
-    { id: 5, medida: 'Hectómetro(hm)' },
-    { id: 6, medida: 'Decímetro(dm)' },
-    { id: 7, medida: 'Centímetro(cm)' },
-    { id: 8, medida: 'Milímetro(mm)' },
-    { id: 9, medida: 'Micrómetro(µm)' },
-    { id: 10, medida: 'Nanómetro(nm)' },
-    { id: 11, medida: 'Angstrom(Å)' },
-    { id: 12, medida: 'Años luz(ly)' },
-    { id: 13, medida: 'Legua(lea)' },
-    { id: 14, medida: 'Millas(mi)' },
-    { id: 15, medida: 'Kilómetro(km)' },
-    { id: 16, medida: 'Metro(m)' },
-    { id: 17, medida: 'Yarda(yd)' },
-    { id: 18, medida: 'Pie(ft)' },
-    { id: 19, medida: 'Pulgada(in)' },
-    { id: 20, medida: 'Yarda cúbica (yd³)' },
-    { id: 21, medida: 'Litro (L)' },
-    { id: 22, medida: 'Metro cúbico (m³)' },
-    { id: 23, medida: 'Centímetro cúbico (cm³)' },
-    { id: 24, medida: 'Pulgada cúbica (in³)' },
-    { id: 25, medida: 'Galón (gal)' },
-    { id: 26, medida: 'Pinta (pt)' },
-    { id: 27, medida: 'Onza líquida (oz)' },
-    { id: 28, medida: 'Barril (bbl)' },
-    { id: 29, medida: 'Cucharada (tbsp)' },
-    { id: 30, medida: 'Cucharadita (tsp)' },
-    { id: 31, medida: 'Pinta estadounidense (US pt)' },
-    { id: 32, medida: 'Galón estadounidense (US gal)' },
-    { id: 33, medida: 'Bushel (bu)' },
-    { id: 34, medida: 'Peck (pk)' },
-    { id: 35, medida: 'Cuarto (qt)' },
-    { id: 36, medida: 'Decimetro cubico (dm³)' },
-    { id: 37, medida: 'Acre-pie (ac-ft)' },
-    { id: 38, medida: 'Barril de petróleo (bbl)' },
-    { id: 39, medida: 'Centilitro (cl)' },
-    { id: 40, medida: 'Decilitro (dl)' },
-    { id: 41, medida: 'Hectolitro (hl)' },
-    { id: 42, medida: 'Kilolitro (kl)' },
-    { id: 43, medida: 'Litro sistema métrico (L)' },
-    { id: 44, medida: 'Metro cúbico sistema métrico (m³)' },
-    { id: 45, medida: 'Microlitro (µL)' },
-    { id: 46, medida: 'Mililitro (mL)' },
-    { id: 47, medida: 'Pinta imperial (pt)' },
-    { id: 48, medida: 'Pinta estadounidense (US pt)' },
-    { id: 49, medida: 'Yarda cúbica (yd³)' },
-    { id: 50, medida: 'Kilogramo (kg)' },
-    { id: 51, medida: 'Gramo (g)' },
-    { id: 52, medida: 'Miligramo (mg)' },
-    { id: 53, medida: 'Tonelada (t)' },
-    { id: 54, medida: 'Onza (oz)' },
-    { id: 55, medida: 'Libra (lb)' },
-    { id: 56, medida: 'Tonelada métrica (t)' },
-    { id: 57, medida: 'Quintal (q)' },
-    { id: 58, medida: 'Stone (st)' },
-    { id: 59, medida: 'Libras del sistema inglés (lbs)' },
-    { id: 60, medida: 'Onzas del sistema inglés (oz)' },
-    { id: 61, medida: 'Toneladas cortas del sistema inglés (short ton)' },
-    { id: 62, medida: 'Toneladas largas del sistema inglés (long ton)' },
-    { id: 63, medida: 'Microgramo (µg)' },
-    { id: 64, medida: 'Nanogramo (ng)' },
-    { id: 65, medida: 'Carat (ct)' },
-    { id: 66, medida: 'Centigramo (cg)' },
-    { id: 67, medida: 'Decigramo (dg)' },
-    { id: 68, medida: 'Dekagramo (dag)' },
-    { id: 69, medida: 'Hectogramo (hg)' },
-    { id: 70, medida: 'Megagramo (Mg)' },
-    { id: 71, medida: 'Microgramo (µg)' },
-    { id: 72, medida: 'Punto (dwt)' },
-    { id: 73, medida: 'Picogramo (pg)' },
-    { id: 74, medida: 'Scruple (s.ap)' },
-    { id: 75, medida: 'Tola' },
-    { id: 76, medida: 'Tonelada corta (t)' },
-    { id: 77, medida: 'Tonelada larga (t)' },
-    { id: 78, medida: 'Tonelada métrica (t)' },
-    { id: 79, medida: 'Tonelada métrica (t)' },
-    { id: 80, medida: '' },
-
-];
 const CrearIneventariado_cont = () => {
+   {/**  const loadOptions = async (inputValue) => {
+        try {
+          const response = await axios.get(URI1);
+          return response.data.map((item) => ({ value: item.id, label: item.description }));
+        } catch (error) {
+          console.error(error);
+          return [];
+        }
+      };*/}
     const navigate = useNavigate()
+
+    const [fecha_registro, setFechaRegistro] = useState('')
+
     const [detailss, setDetaills] = useState([{
         idBienes: "",
         cuenta: "1501070203",
@@ -125,7 +53,7 @@ const CrearIneventariado_cont = () => {
                         cantidad_inicial: detailss[i].cantidad_inicial,
                         cantidad: detailss[i].cantidad,
                         precio: detailss[i].precio,
-                        fecha_registro: detailss[i].fecha_registro,
+                        fecha_registro: fecha_registro,
 
                     },
 
@@ -279,11 +207,12 @@ const CrearIneventariado_cont = () => {
                                             <label htmlFor='fecha_registro'>FECHA DE REGISTRO</label>
                                             <input
                                                 id='fecha_registro'
-                                                value={valu_cont.fecha_registro}
+                                                value={fecha_registro}
                                                 name='fecha_registro'
-                                                onChange={(e) => handleSubmit(e, index)}
-                                                type="date"
-                                                placeholder=''
+                                                onChange={(e) => setFechaRegistro(e.target.value, index)}
+                                                type="number" 
+                                                placeholder="YYYY" 
+                                                min="1999" max="2030"
                                                 required
                                             //pattern="[A-Z-0-9]+"
                                             />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DB_URL } from '../../../../../../config/config';
-
+import "./datalist.scss"
 const URI1 = DB_URL + 'bienes/'
 
 const Bienes_Cont = () => {
@@ -14,21 +14,18 @@ const Bienes_Cont = () => {
         getBienes()
     }, [])
     return(
-        <>
         <datalist className='datalistt' id="dataBB">
             {
                 bienes
                     .map(res => {
                         return (
-                            <option className='options' key={res.id} value={res.id}>'
-                                {(res.item)}' '
-                                {res.description}' '
+                            <option className='options' key={res.id} value={res.id}>
+                               {res.item} - {res.description}
                             </option>
                         )
                     })
             }
         </datalist>
-    </>
     )
 }
 

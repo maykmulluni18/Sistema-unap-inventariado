@@ -72,7 +72,7 @@ const StocksNeas = () => {
                         rowsPerPageOptions={[5]}
                         getRowId={(row) => (row.id, row.fecha)}
                         //getRowId={row => row[0].id}                        //checkboxSelection
-                        disableColumnSelector
+                        //disableColumnSelector
 
                         components={{
                             Toolbar: GridToolbar,

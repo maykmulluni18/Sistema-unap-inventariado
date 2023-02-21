@@ -225,7 +225,7 @@ const EditarNeasBienes_cont = () => {
                                 </datalist>
                             </div>
 
-                            <div className="formInput" >
+                            <div className="formInput_i" >
                                 <label htmlFor='residente'>BIENES</label>
                                 <input
                                     id='residente'
@@ -239,7 +239,7 @@ const EditarNeasBienes_cont = () => {
                                 />
                                 <Edit_Bienes_cont />
                             </div>
-                            <div className="formInput" >
+                            <div className="formInput_i" >
                                 <label htmlFor='residente'>DESCRIPCION DE BIENES</label>
 
                                 <select

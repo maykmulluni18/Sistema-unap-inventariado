@@ -22,7 +22,7 @@ export const getPecosaPedidosId = async(req, res) => {
     try {
         const pecosapedido = await ModelsPecosaPedidos.findAll({
             where: {id: req.params.id},
-            include: [ModelsAdministrativos, ModelsInvenInicial, ModelsMetas]
+            include: [ModelsAdministrativos ,ModelsAdministrativos ,ModelsInvenInicial, ModelsMetas]
         })
         res.json(pecosapedido[0])
         

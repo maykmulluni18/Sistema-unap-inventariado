@@ -6,15 +6,20 @@ const ModelsBienes = db.define('bienes',{
     item:{
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
     },
     description:{
         type: DataTypes.STRING,
         allowNull: false,
        
     },
+    marca:{
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     unidad_de_medida:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     }
    
 },{

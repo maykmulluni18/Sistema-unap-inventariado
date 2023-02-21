@@ -7,6 +7,8 @@ export const getBienes = async (req, res) => {
         const bienes = await ModelsBienes.findAll({
             include:[ModelsInvenInicial]
         })
+        
+        //console.log(bienes)
         res.json(bienes)
 
     } catch (error) {
@@ -32,12 +34,16 @@ export const getBienesID = async (req, res) =>{
 
 export const createBienes = async (req, res) => {
     try{
+        const bienes = await ModelsBienes.findAll()
+            console.log(bienes.item)
+
+    
         await ModelsBienes.create(req.body)
-        res.json({
+        res.status(200).json({
             "message": "Bien creado con exito.",
         })
     } catch (error){
-        res.json({message: error.message})
+        res.status(400).json({message: error.message + 'o rebice que el - codigo del bien - que no sea igual al resto de bienes'})
     }
 }
 
@@ -46,11 +52,11 @@ export const updateBienes = async (req, res) => {
         await ModelsBienes.update(req.body,{
             where: {id: req.params.id}
         })
-        res.json({
+        res.status(200).json({
             "message": "Bienes actualizado con exito.",
     })
     } catch (error) {
-        res.json({message: error.message})
+        res.status(400).json({message: error.message + 'o rebice que el - codigo del bien - que no sea igual al resto de bienes'})
     }
 }
 

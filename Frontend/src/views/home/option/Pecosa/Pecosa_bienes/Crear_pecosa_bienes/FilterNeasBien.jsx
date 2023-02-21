@@ -22,7 +22,7 @@ const FilterNeasBien = () => {
                     neasbien
                         .map(res => {
                             return (
-                                <option key={res.id} value={res.id}> [N° NEA: {res.neaEntradaId}] -- [ Stock: {res.cantidad} ] -- [ {res.biene.description}] </option>
+                                <option key={res.id} value={res.id}>[ Stock= {res.cantidad} ] -- [ {res.biene.description}] </option>
                             )
                         })
                 }

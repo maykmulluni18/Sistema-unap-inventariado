@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./editarpecosabienes.scss"
 import { DB_URL } from '../../../../../../config/config';
-import { getGridNumericColumnOperators } from '@mui/x-data-grid';
 import EditFilterInventariado from './EditFilterInventariado';
 import EditFilterNeasBien from './EditFilterNeasBien';
 
@@ -41,19 +40,19 @@ const EditarPecosaBienes_cont = () => {
         //getNeasBien()
         //getBienes()
         getPecosaBienes()
-        updatePecosaBienes()
+        //updatePecosaBienes()
 
     }, [])
 
     const [pecosaPedidoId, setPecosaPedidoId] = useState('')
     const [inventaridoInicialId, setInventariadoInicialId] = useState('')
     const [nea_bien_id, setNeasdBieneId] = useState('')
+    const [descripcion, setDescripcion] = useState('')
     const [cantidad, setCantidad] = useState('')
     const [observaciones, set_Observaciones] = useState('')
     const [fecha, setFecha] = useState('')
     const navigate = useNavigate()
     const { id } = useParams()
-    const [cantidadi, setCantidadI] = useState('')
 
     const updatePecosaBienes = async (e) => {
         e.preventDefault();
@@ -61,6 +60,7 @@ const EditarPecosaBienes_cont = () => {
             pecosaPedidoId: pecosaPedidoId,
             inventaridoInicialId: inventaridoInicialId || null,
             nea_bien_id: nea_bien_id || null,
+            descripcion: descripcion || null,
             cantidad: cantidad,
             observaciones: observaciones,
             fecha: fecha
@@ -93,6 +93,7 @@ const EditarPecosaBienes_cont = () => {
         setPecosaPedidoId(res.data.pecosaPedidoId)
         setInventariadoInicialId(res.data.inventaridoInicialId)
         setNeasdBieneId(res.data.nea_bien_id)
+        setDescripcion(res.data.descripcion)
         setCantidad(res.data.cantidad)
         set_Observaciones(res.data.observaciones)
         setFecha(res.data.fecha)
@@ -156,6 +157,15 @@ const EditarPecosaBienes_cont = () => {
                                 />
                                 <EditFilterNeasBien />
 
+                            </div>
+                            <div className='formInput'>
+                                <label>Descripcion</label>
+                                <input
+                                    value={descripcion}
+                                    onChange={(e) => setDescripcion(e.target.value)}
+                                    type="textera"
+                                    //required
+                                />
                             </div>
                             <div className='formInput_title'>
                                 <h4>Sección de Ingresar cantidad y observación</h4>

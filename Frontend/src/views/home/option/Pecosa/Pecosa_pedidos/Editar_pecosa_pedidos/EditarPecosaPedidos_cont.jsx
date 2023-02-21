@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import "./editarpecosapedidos.scss"
 import FilterDataEdit from './FilterDataEdit';
 import { DB_URL } from '../../../../../../config/config';
+import FilterDataEdit2 from './FilterDataEdit2';
 
 const URI = DB_URL + 'pecosapedidos/'
 
@@ -38,6 +39,7 @@ const EditarPecosaPedidos_cont = () => {
 
     const [dependencias, setDependencias] = useState('')
     const [id_administrativos, setIdAdministrativos] = useState('')
+    const [id_administrativo2, setIdAdministrativo2] = useState('')
     const [tipo_de_sede, setTipoDeSede] = useState('')
     const [fecha, setFecha] = useState('')
     const [almacen, setAlmacen] = useState('')
@@ -52,6 +54,7 @@ const EditarPecosaPedidos_cont = () => {
             const respon = await axios.put(URI + id, {
                 dependencias: dependencias,
                 id_administrativos: id_administrativos,
+                id_administrativo2: id_administrativo2,
                 tipo_de_sede: tipo_de_sede,
                 id_metas: id_metas,
                 fecha: fecha,
@@ -88,6 +91,7 @@ const EditarPecosaPedidos_cont = () => {
         const res = await axios.get(URI + id,)
         setDependencias(res.data.dependencias)
         setIdAdministrativos(res.data.id_administrativos)
+        setIdAdministrativo2(res.data.id_administrativo2)
         setTipoDeSede(res.data.tipo_de_sede)
         setIdMetas(res.data.id_metas)
         setAlmacen(res.data.almacen)
@@ -115,7 +119,7 @@ const EditarPecosaPedidos_cont = () => {
                                 />
                             </div>
                             <div className='formInput'>
-                                <label>Administrativos</label>
+                                <label>Solicitante</label>
                                 <input
                                     type="text"
                                     list="datap"
@@ -125,6 +129,18 @@ const EditarPecosaPedidos_cont = () => {
                                     required
                                 />
                                 <FilterDataEdit />
+                            </div>
+                            <div className='formInput'>
+                                <label>Entregar A</label>
+                                <input
+                                    type="text"
+                                    list="datap2"
+                                    //placeholder='FILTRAR ADDMINISTRATIVOS'
+                                    value={id_administrativo2}
+                                    onChange={(e) => setIdAdministrativo2(e.target.value)}
+                                    required
+                                />
+                                <FilterDataEdit2 />
                             </div>
                             <div className='formInput'>
                                 <label>Sedes </label>
