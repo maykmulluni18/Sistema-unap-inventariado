@@ -22,7 +22,7 @@ export const userColumns = [
 
   },
   {
-    field: 'descripcion',
+    field: 'descripcon',
     headerName: 'Descripcion',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
@@ -31,20 +31,20 @@ export const userColumns = [
       `${params.row.biene.description || ''}`
 
   },
-  { field: 'cuenta', headerName: 'Cuenta Contable', width: 150 },
+  { field: 'descripcion', headerName: 'Ubicacion', width: 240 },
   {
     field: 'medida',
     headerName: 'U. Medida',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 150,
+    width: 130,
     valueGetter: (params) =>
       `${params.row.biene.unidad_de_medida || ''}`
 
   },
   { field: 'cantidad_inicial', headerName: 'Cantidad', width: 100 },
   { field: 'cantidad', headerName: 'Stock', width: 90 },
-  { field: 'precio', headerName: 'P. Unitario', width: 140 },
+  { field: 'precio', headerName: 'P. Unitario', width: 110 },
   {
     field: 'P. Total',
     headerName: 'Precio Total',

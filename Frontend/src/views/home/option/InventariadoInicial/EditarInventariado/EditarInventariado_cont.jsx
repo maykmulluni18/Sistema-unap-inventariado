@@ -99,6 +99,7 @@ const Medida = [
 
 const EditInventariado_cont = () => {
     const [idBienes, setIdBienes] = useState('')
+    const [descripcion, setDescripcion] = useState('')
     const [cuenta, setCuenta] = useState('')
     const [cantidad_inicial, setCantidadInicial] = useState('')
     const [cantidad, setCantidad] = useState('')
@@ -112,6 +113,7 @@ const EditInventariado_cont = () => {
         try {
             const respon = await axios.put(URI + id, {
                 idBienes: idBienes,
+                descripcion: descripcion,
                 cuenta: cuenta,
                 cantidad_inicial: cantidad_inicial,
                 cantidad: cantidad,
@@ -151,6 +153,7 @@ const EditInventariado_cont = () => {
     const getInventariadoId = async () => {
         const resb = await axios.get(URI + id,)
         setIdBienes(resb.data.idBienes)
+        setDescripcion(resb.data.descripcion)
         setCuenta(resb.data.cuenta)
         setCantidadInicial(resb.data.cantidad_inicial)
         setCantidad(resb.data.cantidad)
@@ -202,7 +205,18 @@ const EditInventariado_cont = () => {
                                 </select>
 
                             </div>
+                            <div className="formInput" >
+                                <label>UBICACION</label>
+                                <input
+                                    value={descripcion}
+                                    name='descripcion'
+                                    onChange={(e) => setDescripcion(e.target.value)}
+                                    type="text"
+                                    placeholder=''
+                                //pattern="[A-Z-0-9]+"
+                                />
 
+                            </div>
                             <div className="formInput" >
                                 <label>CUENTA CONTABLE</label>
                                 <input

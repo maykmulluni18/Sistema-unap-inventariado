@@ -7,12 +7,12 @@ export const userColumns = [
     headerName: 'ID',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
-    width: 70,
+    width: 50,
     valueGetter: (params) =>
       `${params.row.id || ''}`
 
   },
-  { field: 'fecha_registro', headerName: 'Fecha Registro', width: 180 },
+  { field: 'descripcion', headerName: 'Ubicacion', width: 240 },
 
   {
     field: 'item',
@@ -25,7 +25,7 @@ export const userColumns = [
 
   },
   {
-    field: 'descripcion',
+    field: 'descripcn',
     headerName: 'Descripcion',
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
@@ -46,7 +46,7 @@ export const userColumns = [
   },
   { field: 'cantidad_inicial', headerName: 'Cantidad', width: 100 },
   { field: 'cantidad', headerName: 'Stock', width: 90 },
-  { field: 'precio', headerName: 'P. Unitario', width: 140 },
+  { field: 'precio', headerName: 'P. Unitario', width: 120 },
   {
     field: 'P. Total',
     headerName: 'Precio Total',

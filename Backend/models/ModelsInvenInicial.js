@@ -7,6 +7,10 @@ const ModelsInvenInicial = db.define('inventarido_inicial', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    descripcion:{
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     cuenta:{
         type: DataTypes.INTEGER,
         allowNull: false,

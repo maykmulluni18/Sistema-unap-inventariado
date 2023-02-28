@@ -27,6 +27,7 @@ const CrearIneventariado_cont = () => {
 
     const [detailss, setDetaills] = useState([{
         idBienes: "",
+        descripcion: "",
         cuenta: "1501070203",
         cantidad_inicial: "",
         cantidad: "",
@@ -49,6 +50,7 @@ const CrearIneventariado_cont = () => {
                 const respon = await axios.post(URI,
                     {
                         idBienes: detailss[i].idBienes,
+                        descripcion: detailss[i].descripcion,
                         cuenta: detailss[i].cuenta,
                         cantidad_inicial: detailss[i].cantidad_inicial,
                         cantidad: detailss[i].cantidad,
@@ -88,6 +90,7 @@ const CrearIneventariado_cont = () => {
     const handleAdd = () => {
         setDetaills([...detailss, {
             idBienes: "",
+            descripcion: "",
             cuenta: "",
             cantidad_inicial: "",
             cantidad: "",
@@ -143,8 +146,19 @@ const CrearIneventariado_cont = () => {
                                                 <FilterDescBien />
                                             </select>
                                         </div>
+                                        <div className="formInput_i" >
 
+                                            <label htmlFor='descripcion'>Ubicacion</label>
+                                            <input
+                                                id='descripcion'
+                                                value={valu_cont.descripcion}
+                                                name='descripcion'
+                                                onChange={(e) => handleSubmit(e, index)}
+                                                type="text"
+                                                placeholder=""
 
+                                            />
+                                        </div>
                                         <div className="formInput" >
 
                                             <label htmlFor='cantidad_inicial'>STOCK</label>

@@ -51,7 +51,7 @@ const app = express()
 app.use(express.json())
 app.use(cors({
     credentials: true,
-    origin: 'http://10.4.1.116:3000'
+    origin: 'http://192.168.0.6:3000'
 }))
 app.use(session({
     secret: process.env.SECRET_KEY || '28392mcdslskkkks',
